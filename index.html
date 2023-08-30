@@ -11,27 +11,27 @@ body {
   background-color: #f4f4f4;
   color: #333;
   display: flex;
-  max-height: 60vh;  
+  max-height: 100vh;  
   margin: 0;
   flex-direction: column;
 }
 
 .container {
   margin: auto;
-  overflow: auto; /* Novo */
+  overflow: auto; 
   background-color: #fff;
-  padding: 1rem; /* unidades relativas para o padding */
+  padding: 1rem; 
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   text-align: center;
-  width: 40%;  /* Reduzido para 50% da largura da viewport */
-  max-height: 90%; /* Reduzido para 70% da altura da viewport */
-  overflow-y: auto; /* permite a rolagem se o conteúdo exceder */
+  width: 40%;  
+  max-height: 90%; 
+  overflow-y: auto; 
 }
 
 @media (max-width: 768px) {
   .container {
-    width: 90%; /* Aumenta para usar mais espaço na tela pequena */
+    width: 90%; 
     padding: 0.8rem;
   }
 }
