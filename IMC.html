@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadoras de Saúde</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    body {
+  font-family: 'Montserrat', sans-serif !important;
+  background-color: #f4f4f4;
+  color: #333;
+  display: flex;
+  max-height: 100vh;  
+  margin: 0;
+  flex-direction: column;
+}
+
+.container {
+  margin: auto;
+  overflow: auto; 
+  background-color: #fff;
+  padding: 1rem; 
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 40%;  
+  max-height: 90%; 
+  overflow-y: auto; 
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%; 
+    padding: 0.8rem;
+  }
+}
+
+/* Componentes Específicos */
+h1, h2 {
+  color: #444;
+  margin: 0.5em 0;
+  font-size: 1.5em;
+}
+
+form {
+  margin: 1em 0;
+}
+
+label, input, select, button {
+  font-weight: bold;
+  margin: 0.8em 0;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.5em;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.8em 1.5em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#bmi-result {
+  margin-top: 1em;
+  padding: 0.8em;
+  background-color: #e1ffe1;
+  border: 1px solid #a1ffa1;
+  border-radius: 4px;
+  font-size: 1em;
+}
+    /* Navbar styling */
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <a href="index.html">Calculadora de EER</a>
+    <a href="IMC.html">Calculadora de IMC</a>
+  </div>
+  
+  <!-- Seção da Calculadora de EER -->
+  <div id="eer-section" class="container">
+    <!-- O conteúdo da calculadora EER aqui -->
+  </div>
+
+  <!-- Seção da Calculadora de IMC -->
+  <div id="bmi-section" class="container">
+    <h1>Calculadora de IMC</h1>
+    <form id="bmi-form">
+      <label for="preWeight">Peso pré-gestação (em kg):</label>
+      <input type="number" id="preWeight" name="preWeight">
+      <br>
+
+      <label for="heightM">Altura (Metros):</label>
+      <input type="number" id="heightM" name="heightM">
+      <br>
+
+      <button type="button" onclick="calculateBMI()">Calcular IMC</button>
+    </form>
+
+    <h2>Resultado do IMC</h2>
+    <div id="bmi-result"></div>
+    <script src="script.js"></script>
+  </div>
+</body>
+</html>
