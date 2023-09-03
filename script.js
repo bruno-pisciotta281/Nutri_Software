@@ -27,3 +27,22 @@ function calculateEER() {
   // Atualize o resultado na página
   document.getElementById("result").innerText = `O EER estimado é ${EER.toFixed(2)} kcal/dia.`;
 }
+
+function calculateBMI() {
+  // Pegue as variáveis do formulário
+  const preWeight = parseFloat(document.getElementById("preWeight").value);
+  const heightInM = parseFloat(document.getElementById("heightM").value);  // Já em metros
+
+
+  // Verifique se os valores são números válidos
+  if (isNaN(preWeight) || isNaN(heightInM)) {
+    alert("Por favor, insira números válidos");
+    return;
+  }
+
+  // Calcule o IMC
+  const BMI = preWeight / (heightInM * heightInM);
+
+  // Atualize o resultado na página
+  document.getElementById("bmi-result").innerText = `Seu IMC é ${BMI.toFixed(2)}`;
+}
