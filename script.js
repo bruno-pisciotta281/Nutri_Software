@@ -1,30 +1,29 @@
 function calculateEER() {
-    const age = parseInt(document.getElementById("age").value);
-    const preWeight = parseFloat(document.getElementById("preWeight").value);
-    const postWeight = parseFloat(document.getElementById("postWeight").value);
-    const height = parseFloat(document.getElementById("height").value);
-    const weeks = parseInt(document.getElementById("weeks").value);
-    const activityLevel = document.getElementById("activityLevel").value;
-  
-    const PA = getActivityLevelMultiplier(activityLevel);
-    const preEER = 354 - (6.91 * age) + PA * (10 * preWeight) + (934 * height) + 25;
-    const EER = preEER + (8 * weeks) + 180;
-  
-    document.getElementById("result").innerText = `O EER estimado é de ${EER.toFixed(2)} kcal/dia`;
+  // Pegue as variáveis do formulário
+  const age = parseFloat(document.getElementById("age").value);
+  const heightInCm = parseFloat(document.getElementById("height").value);
+  const weight = parseFloat(document.getElementById("postWeight").value); // Peso pós-gestação agora
+  const weeks = parseFloat(document.getElementById("weeks").value);
+  const activityLevel = document.getElementById("activityLevel").value;
+
+  let EER = 0;
+
+  // Calcula o EER com base no nível de atividade
+  switch (activityLevel) {
+    case 'Sedentária':
+      EER = 1131.20 - (2.04 * age) + (0.34 * heightInCm) + (12.15 * weight) + (9.16 * weeks);
+      break;
+    case 'Pouco Ativa':
+      EER = 693.35 - (2.04 * age) + (5.73 * heightInCm) + (10.20 * weight) + (9.16 * weeks);
+      break;
+    case 'Ativa':
+      EER = 223.84 - (2.04 * age) + (13.23 * heightInCm) + (8.15 * weight) + (9.16 * weeks);
+      break;
+    case 'Muito Ativa':
+      EER = 779.72 - (2.04 * age) + (18.45 * heightInCm) + (8.73 * weight) + (9.16 * weeks);
+      break;
   }
-  
-  function getActivityLevelMultiplier(level) {
-    switch (level) {
-      case 'Sedentária':
-        return 1.0;
-      case 'Pouco Ativa':
-        return 1.1;
-      case 'Ativa':
-        return 1.2;
-      case 'Muito Ativa':
-        return 1.3;
-      default:
-        return 1;
-    }
-  }
-  
+
+  // Atualize o resultado na página
+  document.getElementById("result").innerText = `O EER estimado é ${EER.toFixed(2)} kcal/dia.`;
+}
