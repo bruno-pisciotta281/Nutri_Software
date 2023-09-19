@@ -46,3 +46,33 @@ function calculateBMI() {
   // Atualize o resultado na página
   document.getElementById("bmi-result").innerText = `Seu IMC é ${BMI.toFixed(2)}`;
 }
+
+function calculateNutrientRequirements() {
+  // Pegue as variáveis do formulário
+  const age = parseFloat(document.getElementById("age").value);
+  const heightInCm = parseFloat(document.getElementById("height").value);
+  const weight = parseFloat(document.getElementById("weight").value);
+  const activityLevel = document.getElementById("activityLevel").value;
+
+  let nutrientRequirements = 0;
+
+  // Calcula os requisitos de nutrientes com base no nível de atividade
+  switch (activityLevel) {
+    case 'Sedentária':
+      nutrientRequirements = 584.90 - (7.01 * age) + (5.72 * heightInCm) + (11.71 * weight);
+      break;
+    case 'Pouco Ativa':
+      nutrientRequirements = 575.77 - (7.01 * age) + (6.60 * heightInCm) + (12.14 * weight);
+      break;
+    case 'Ativa':
+      nutrientRequirements = 710.25 - (7.01 * age) + (6.54 * heightInCm) + (12.34 * weight);
+      break;
+    case 'Muito Ativa':
+      nutrientRequirements = 511.83 - (7.01 * age) + (9.07 * heightInCm) + (12.53 * weight);
+      break;
+  }
+
+  // Atualize o resultado na página
+  document.getElementById("result").innerText = `A quantidade de nutrientes necessária é ${nutrientRequirements.toFixed(2)} unidades/dia.`;
+}
+
