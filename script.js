@@ -25,7 +25,7 @@ function calculateEER() {
   }
 
   // Atualize o resultado na página
-  document.getElementById("result").innerText = `O EER estimado é ${EER.toFixed(2)} kcal/dia.`;
+  document.getElementById("result").innerText = `O GET estimado é ${EER.toFixed(2)} kcal/dia.`;
 }
 
 function calculateBMI() {
@@ -73,6 +73,6 @@ function calculateNutrientRequirements() {
   }
 
   // Atualize o resultado na página
-  document.getElementById("result").innerText = `A quantidade de nutrientes necessária é ${nutrientRequirements.toFixed(2)} unidades/dia.`;
+  document.getElementById("result").innerText = `A quantidade de nutrientes necessária é ${nutrientRequirements.toFixed(2)} kcal/dia.`;
 }
 
