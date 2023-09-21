@@ -35,18 +35,24 @@
     margin-top: 1rem;
   }
 
-  .btn-container {
+   /* Botões dispostos lado a lado */
+   .btn-container {
     display: flex;
-    flex-wrap: wrap; 
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Espaço igual entre os botões */
     margin-top: 2rem;
   }
 
   .btn {
-    margin: 0.5rem; 
-    width: 45%; 
+    flex-basis: calc(50% - 1rem); /* Largura de 50% com margem de 1rem entre os botões */
     background-color: #4CAF50;
     border: none;
+    margin-bottom: 1rem; /* Espaço inferior entre os botões */
+  }
+
+  /* Estilo condicional para o último botão */
+  .btn:last-child {
+    flex-basis: 100%; /* Largura de 100% para o último botão */
   }
 
   .btn:hover {
@@ -55,7 +61,7 @@
 
   @media (max-width: 768px) {
     .container {
-      width: 90%; 
+      width: 90%;
       padding: 0.8rem;
     }
   }
@@ -166,8 +172,8 @@
   </ol>
   <div class="btn-container">
     <a href="imc.html" class="btn btn-primary">Calculadora de IMC</a>
-    <a href="eer.html" class="btn btn-primary">Calculadora de GET</a>
-    <a href="lactantes.html" class="btn btn-primary">Calculadora para Lactantes</a>
+    <a href="get.html" class="btn btn-primary">GET para Gestantes</a>
+    <a href="lactante.html" class="btn btn-primary">GET para <br> Lactantes</a>
   </div>
   <hr class="soon2">
   <h1 class="footer">Em desenvolvimento por: <br> Bruno Pisciotta e Duda Dias ♡</h1>
