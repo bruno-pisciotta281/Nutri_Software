@@ -6,7 +6,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -202,6 +201,56 @@
     color: #ffff;
     text-align: center;
   }
+
+/* Estilos para o modal */
+.modal {
+  display: none; /* Ocultar o modal por padrão */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Fundo escurecido */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btnmodal{
+  background-color: #4CAF50;
+    color: white;
+    padding: 0.2em 0.8em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  btnmodal:hover {
+    background-color: #45a049;
+  }
+
+
 </style>
 </head>
 <body>
@@ -241,6 +290,7 @@
   <h2>Resultado do IMC</h2>
   <div id="bmi-result"></div>
   <script src="script.js"></script>
+  <button class="btnmodal" type="button" id="showResolutionBtn" onclick="showResolution()">Ver Resolução</button>
   <!-- Tabela Informativa de IMC -->
   <br>
   <h1>Tabela Informativa</h1>
@@ -311,10 +361,60 @@
     const toggleBtn = document.querySelector(".toggle-btn");
 
     sidebar.style.width = "0";
-    content.style.marginLeft = "auto"; // Centraliza o conteúdo quando a barra lateral é fechada
+    content.style.marginLeft = "auto"; 
     toggleBtn.style.display = "block";
     sidebarOpen = false;
   }
+
+  // Função para mostrar o modal da resolução do IMC
+function showResolution() {
+  const modal = document.getElementById("resolutionModal");
+  modal.style.display = "block";
+  
+  // Calcula o IMC com base nos dados inseridos
+  const preWeight = parseFloat(document.getElementById("preWeight").value);
+  const heightM = parseFloat(document.getElementById("heightM").value);
+  const BMI = preWeight / (heightM * heightM);
+
+  // Atualiza o conteúdo da resolução
+  const resolutionContent = document.getElementById("resolutionContent");
+  resolutionContent.innerHTML = `
+    <p><strong>Peso:</strong> ${preWeight} kg</p>
+    <p><strong>Altura:</strong> ${heightM} metros</p>
+    <p><strong>IMC Calculado:</strong> ${BMI.toFixed(2)}</p>
+    <p>Aqui está a lógica para calcular o IMC:</p>
+    <p>IMC = Peso (kg) / (Altura (metros) * Altura (metros))</p>
+    <p>IMC = ${preWeight} / (${heightM} * ${heightM})</p>
+    <p>IMC = ${BMI.toFixed(2)}</p>
+  `;
+}
+
+// Função para fechar o modal da resolução do IMC
+function closeResolution() {
+  const modal = document.getElementById("resolutionModal");
+  modal.style.display = "none";
+}
+
+// Fecha o modal se o usuário clicar fora dele
+window.onclick = function(event) {
+  const modal = document.getElementById("resolutionModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+
+  }
 </script>
 </body>
+<!-- Modal da Resolução do IMC -->
+<div id="resolutionModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeResolution()">&times;</span>
+    <h2>Resolução do Cálculo de IMC</h2>
+    <p>Aqui está a resolução do cálculo do Índice de Massa Corporal (IMC) com base nos dados inseridos:</p>
+    <div id="resolutionContent">
+      <!-- O conteúdo da resolução será exibido aqui -->
+    </div>
+  </div>
+</div>
+
 </html>
