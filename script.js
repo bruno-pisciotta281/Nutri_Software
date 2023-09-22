@@ -105,7 +105,7 @@ function showResolution() {
         A fórmula utilizada para calcular o GET no nível <strong>'Pouco Ativa'</strong> é:<br><br>
         <strong>EER =</strong> 693.35 - (2.04 * idade) + (5.73 * altura em cm) + (10.20 * peso) + (9.16 * semanas de gestação).<br><br>
         <strong>EER =</strong> 693.35 - (2.04 * ${age}) + (5.73 * ${heightInCm}) + (10.20 * ${weight}) + (9.16 * ${weeks}).<br><br>
-        <strong>EER =${EER.toFixed(2)} kcal/dia.</strong>
+        <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
       `;
       break;
     case 'Ativa':
@@ -114,7 +114,7 @@ function showResolution() {
         A fórmula utilizada para calcular o GET no nível <strong>'Ativa'</strong> é:<br><br>
         <strong>EER =</strong> 223.84 - (2.04 * idade) + (13.23 * altura em cm) + (8.15 * peso) + (9.16 * semanas de gestação).<br><br>
         <strong>EER =</strong> 223.84 - (2.04 * ${age}) + (13.23 * ${heightInCm}) + (8.15 * ${weight}) + (9.16 * ${weeks}).<br><br>
-        <strong>EER =${EER.toFixed(2)} kcal/dia.</strong>
+        <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
       `;
       break;
     case 'Muito Ativa':
