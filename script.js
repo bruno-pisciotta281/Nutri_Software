@@ -76,7 +76,7 @@ function calculateNutrientRequirements() {
   document.getElementById("result").innerText = `A quantidade de nutrientes necessária é ${nutrientRequirements.toFixed(2)} kcal/dia.`;
 }
 
-// Função para mostrar a resolução do cálculo de GET em um modal
+ // Função para mostrar a resolução do cálculo de GET em um modal
 function showResolution() {
   // Pegue as variáveis do formulário
   const age = parseFloat(document.getElementById("age").value);
@@ -140,6 +140,72 @@ function showResolution() {
 
   // Exiba o modal com a resolução
   const modal = document.getElementById("resolutionModal");
+  modal.style.display = "block";
+}
+
+// Função para mostrar a resolução do cálculo de GET para Lactantes em um modal
+function showResolutionForLactantes() { 
+  // Pegue as variáveis do formulário
+  const age = parseFloat(document.getElementById("age").value);
+  const heightInCm = parseFloat(document.getElementById("height").value);
+  const weight = parseFloat(document.getElementById("weight").value);
+  const activityLevel = document.getElementById("activityLevel").value;
+
+  let EER = 0;
+  let explanation = ""; // Inicialize a explicação vazia
+
+  // Calcula o GET com base no nível de atividade e crie a explicação
+  switch (activityLevel) {
+    case 'Sedentária':
+      EER = 584.90 - (7.01 * age) + (5.72 * heightInCm) + (11.71 * weight);
+      explanation = `
+        A fórmula utilizada para calcular o GET no nível <strong>'Sedentária'</strong> é:<br><br>
+        <strong>EER =</strong> 584.90 - (7.01 * idade) + (5.72 * altura em cm) + (11.71 * peso).<br><br>
+        <strong>EER =</strong> 584.90 - (7.01 * ${age}) + (5.72 * ${heightInCm}) + (11.71 * ${weight}).<br><br>
+        <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+      `;
+      break;
+    case 'Pouco Ativa':
+      EER = 575.77 - (7.01 * age) + (6.60 * heightInCm) + (12.14 * weight);
+      explanation = `
+        A fórmula utilizada para calcular o GET no nível <strong>'Pouco Ativa'</strong> é:<br><br>
+        <strong>EER =</strong> 575.77 - (7.01 * idade) + (6.60 * altura em cm) + (12.14 * peso).<br><br>
+        <strong>EER =</strong> 575.77 - (7.01 * ${age}) + (6.60 * ${heightInCm}) + (12.14 * ${weight}).<br><br>
+        <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+      `;
+      break;
+    case 'Ativa':
+      EER = 710.25 - (7.01 * age) + (6.54 * heightInCm) + (12.34 * weight);
+      explanation = `
+        A fórmula utilizada para calcular o GET no nível <strong>'Ativa'</strong> é:<br><br>
+        <strong>EER =</strong> 710.25 - (7.01 * idade) + (6.54 * altura em cm) + (12.34 * peso).<br><br>
+        <strong>EER =</strong> 710.25 - (7.01 * ${age}) + (6.54 * ${heightInCm}) + (12.34 * ${weight}).<br><br>
+        <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+      `;
+      break;
+    case 'Muito Ativa':
+      EER = 511.83 - (7.01 * age) + (9.07 * heightInCm) + (12.53 * weight);
+      explanation = `
+        A fórmula utilizada para calcular o GET no nível <strong>'Muito Ativa'</strong> é:<br><br>
+        <strong>EER =</strong> 511.83 - (7.01 * idade) + (9.07 * altura em cm) + (12.53 * peso).<br><br>
+        <strong>EER =</strong> 511.83 - (7.01 * ${age}) + (9.07 * ${heightInCm}) + (12.53 * ${weight}).<br><br>
+        <strong>EER = ${EER.toFixed(2)} kcal/dia. </strong>
+      `;
+      break;
+  }
+
+  // Preencha o conteúdo do modal com a resolução e explicação
+  const resolutionContent = document.getElementById("resolutionContent");
+  resolutionContent.innerHTML = `
+    <p><strong>GET estimado:</strong> ${EER.toFixed(2)} kcal/dia</p>
+  `;
+
+  // Preencha a explicação no modal
+  const explanationElement = document.getElementById("explanation");
+  explanationElement.innerHTML = explanation;
+
+  // Exiba o modal com a resolução
+  const modal = document.getElementById("resolutionModalLactantes");
   modal.style.display = "block";
 }
 
