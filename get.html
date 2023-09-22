@@ -170,6 +170,43 @@
     color: #ffff;
     text-align: center;
   }
+
+
+  /* Estilos para o modal */
+  .modal {
+    display: none; /* Ocultar o modal por padrão */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo escurecido */
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
 </style>
 
 <body>
@@ -219,6 +256,7 @@
     <h2>Resultado</h2>
     <div id="result"></div>
     <script src="script.js"></script>
+    <button class="btnmodal" type="button" id="showResolutionBtn" onclick="showResolution()">Ver Resolução</button>
     <hr class="soon2">
     <h1 class="footer">Em desenvolvimento por: <br> Bruno Pisciotta e Duda Dias ♡</h1>
   </div>
@@ -255,6 +293,31 @@
       toggleBtn.style.display = "block";
       sidebarOpen = false;
     }
+
+// Função para fechar o modal da resolução do GET
+function closeResolution() {
+  const modal = document.getElementById("resolutionModal");
+  modal.style.display = "none";
+}
+
+// Fecha o modal se o usuário clicar fora dele
+window.onclick = function(event) {
+  const modal = document.getElementById("resolutionModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
   </script>
 </body>
+<!-- Modal da Resolução da Calculadora de GET para Gestantes -->
+<div id="resolutionModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeResolution()">&times;</span>
+    <h2>Resolução do Cálculo do Gasto Energético Total (GET)</h2>
+    <div id="resolutionContent">
+      <!-- O conteúdo da resolução será exibido aqui -->
+    </div>
+    <p id="explanation"></p> <!-- Elemento para a explicação -->
+  </div>
+</div>
 </html>
