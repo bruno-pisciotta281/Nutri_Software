@@ -44,7 +44,7 @@ function calculateBMI() {
   const BMI = preWeight / (heightInM * heightInM);
 
   // Atualize o resultado na página
-  document.getElementById("bmi-result").innerText = `Seu IMC é ${BMI.toFixed(2)}`;
+  document.getElementById("bmi-result").innerText = `Seu IMC é ${BMI.toFixed(2)} kg/m²`;
 }
 
 function calculateNutrientRequirements() {
@@ -207,6 +207,46 @@ function showResolutionForLactantes() {
   // Exiba o modal com a resolução
   const modal = document.getElementById("resolutionModalLactantes");
   modal.style.display = "block";
+}
+
+function calculateEERForLactantes() {
+  // Pegue as variáveis do formulário
+  const sex = document.querySelector('input[name="sex"]:checked').value;
+  const ageInMonths = parseFloat(document.getElementById("age").value);
+  const heightInCm = parseFloat(document.getElementById("height").value);
+  const weight = parseFloat(document.getElementById("weight").value);
+
+  // Converta a idade de meses para anos
+  const ageInYears = ageInMonths / 12;
+
+  let EER = 0;
+
+  // Aplica a fórmula com base no sexo e idade em anos
+  if (sex === 'menino') {
+    if (ageInMonths <= 3) {
+      EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 200;
+    } else if (ageInMonths <= 6) {
+      EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 50;
+    } else if (ageInMonths <= 12) {
+      EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 20;
+    }
+  } else if (sex === 'menina') {
+    if (ageInMonths <= 3) {
+      EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 180;
+    } else if (ageInMonths <= 6) {
+      EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 60;
+    } else if (ageInMonths <= 12) {
+      EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 20;
+    }
+  }
+
+  // Verifique se o resultado é negativo e, se for, defina como zero
+  if (EER < 0) {
+    EER = 0;
+  }
+
+  // Atualize o resultado na página
+  document.getElementById("result").innerText = `O GET estimado é ${EER.toFixed(2)} kcal/dia.`;
 }
 
 
