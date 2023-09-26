@@ -73,7 +73,7 @@
   }
 </style>
 <body>
-    <br><br><br><br><br> <br><br><br><br>
+    <br><br><br><br><br> <br><br><br>
     <div class="container">
         <h2>Login</h2>
         <form id="loginForm">
@@ -96,13 +96,14 @@
             // Adicione mais pares de nome de usuário e senha conforme necessário
         };
 
-        // Função para verificar as credenciais do usuário
         function login() {
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
 
-            // Verifique se as credenciais correspondem a algum usuário
-            if (users[username] && users[username] === password) {
+            // Aqui você deve adicionar a lógica para verificar as credenciais, por exemplo, com uma solicitação ao servidor
+
+            // Simule uma verificação de credenciais bem-sucedida
+            if (username === "seu_usuario" && password === "sua_senha") {
                 // Credenciais corretas, salve o estado de login no SessionStorage
                 sessionStorage.setItem("isLoggedIn", "true");
                 // Redirecione para a página restrita ou execute a ação desejada
@@ -129,6 +130,7 @@
                 window.location.href = "login.html";
             }
         }
+    </script>
     </script>
 </body>
 </html>
