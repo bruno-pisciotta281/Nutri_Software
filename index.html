@@ -177,6 +177,7 @@
     <a href="lactante.html" class="btn btn-primary">GET para Lactantes</a>
     <a href="lactente.html" class="btn btn-primary">GET para Lactentes</a>
   </div>
+  <center><button class="btn btn-danger" onclick="logout()">Sair</button></center>
   <hr class="soon2">
   <h1 class="footer">Em desenvolvimento por: <br> Bruno Pisciotta e Duda Dias ♡</h1>
 </div>
@@ -213,6 +214,15 @@
     toggleBtn.style.display = "block";
     sidebarOpen = false;
   }
+
+  // Função para fazer logout
+function logout() {
+  // Remove o estado de login do SessionStorage
+  sessionStorage.removeItem("isLoggedIn");
+  // Redireciona o usuário para a tela de login
+  window.location.href = "login.html";
+}
+
 </script>
 </body>
 </html>
