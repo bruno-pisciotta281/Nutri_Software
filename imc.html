@@ -368,12 +368,19 @@
 
   // Função para mostrar o modal da resolução do IMC
 function showResolution() {
-  const modal = document.getElementById("resolutionModal");
-  modal.style.display = "block";
-  
   // Calcula o IMC com base nos dados inseridos
   const preWeight = parseFloat(document.getElementById("preWeight").value);
   const heightM = parseFloat(document.getElementById("heightM").value);
+
+// Verifique se todos os campos foram preenchidos
+if (isNaN(preWeight) || isNaN(heightM) ) {
+  alert("Preencha todos os campos e gere um resultado para verificar a Resolução.");
+  return; // Não continue se algum campo estiver vazio ou não numérico
+}
+
+const modal = document.getElementById("resolutionModal");
+  modal.style.display = "block";
+
   const BMI = preWeight / (heightM * heightM);
 
   // Atualiza o conteúdo da resolução

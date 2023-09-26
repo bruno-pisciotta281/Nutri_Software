@@ -85,6 +85,13 @@ function showResolution() {
   const weeks = parseFloat(document.getElementById("weeks").value);
   const activityLevel = document.getElementById("activityLevel").value;
 
+// Verifique se todos os campos foram preenchidos
+if (isNaN(age) || isNaN(heightInCm) || isNaN(weight) || isNaN(weeks) || isNaN(activityLevel) ) {
+  alert("Preencha todos os campos e gere um resultado para verificar a Resolução.");
+  return; // Não continue se algum campo estiver vazio ou não numérico
+}
+
+
   let EER = 0;
   let explanation = ""; // Inicialize a explicação vazia
 
@@ -150,6 +157,13 @@ function showResolutionForLactantes() {
   const heightInCm = parseFloat(document.getElementById("height").value);
   const weight = parseFloat(document.getElementById("weight").value);
   const activityLevel = document.getElementById("activityLevel").value;
+
+  // Verifique se todos os campos foram preenchidos
+  if (isNaN(age) || isNaN(heightInCm) || isNaN(weight) || isNaN(activityLevel) ) {
+    alert("Preencha todos os campos e gere um resultado para verificar a Resolução.");
+    return; // Não continue se algum campo estiver vazio ou não numérico
+  }
+
 
   let EER = 0;
   let explanation = ""; // Inicialize a explicação vazia
@@ -259,6 +273,12 @@ function showSolutionForLactentes() {
   const heightInCm = parseFloat(document.getElementById("height").value);
   const weight = parseFloat(document.getElementById("weight").value);
 
+   // Verifique se todos os campos foram preenchidos
+   if (!sex || isNaN(ageInMonths) || isNaN(heightInCm) || isNaN(weight)) {
+    alert("Preencha todos os campos e gere um resultado para verificar a Resolução.");
+    return; // Não continue se algum campo estiver vazio ou não numérico
+  }
+
   // Converta a idade de meses para anos
   const ageInYears = ageInMonths / 12;
 
@@ -272,7 +292,7 @@ function showSolutionForLactentes() {
       if (ageInMonths <= 3) {
         EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 200;
         explanation = `
-          A fórmula utilizada para calcular o GET para lactentes meninos com idade até 3 meses é:<br><br>
+          A fórmula utilizada para calcular o GET para lactentes <strong>meninos</strong> com idade até<strong>3 meses</strong> é:<br><br>
           <strong>EER =</strong> -716.45 - (1 * idade em anos) + (17.82 * altura em cm) + (15.06 * peso) + 200.<br><br>
           <strong>EER =</strong> -716.45 - (1 * ${ageInYears}) + (17.82 * ${heightInCm}) + (15.06 * ${weight}) + 200.<br><br>
           <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
@@ -280,7 +300,7 @@ function showSolutionForLactentes() {
       } else if (ageInMonths <= 6) {
         EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 50;
         explanation = `
-          A fórmula utilizada para calcular o GET para lactentes meninos com idade entre 3 e 6 meses é:<br><br>
+          A fórmula utilizada para calcular o GET para lactentes <strong>meninos</strong> com idade entre <strong>3 e 6 meses</strong> é:<br><br>
           <strong>EER =</strong> -716.45 - (1 * idade em anos) + (17.82 * altura em cm) + (15.06 * peso) + 50.<br><br>
           <strong>EER =</strong> -716.45 - (1 * ${ageInYears}) + (17.82 * ${heightInCm}) + (15.06 * ${weight}) + 50.<br><br>
           <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
@@ -288,7 +308,7 @@ function showSolutionForLactentes() {
       } else if (ageInMonths <= 12) {
         EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 20;
         explanation = `
-          A fórmula utilizada para calcular o GET para lactentes meninos com idade entre 6 e 12 meses é:<br><br>
+          A fórmula utilizada para calcular o GET para lactentes <strong>meninos</strong> com idade entre <strong>6 e 12 meses</strong> é:<br><br>
           <strong>EER =</strong> -716.45 - (1 * idade em anos) + (17.82 * altura em cm) + (15.06 * peso) + 20.<br><br>
           <strong>EER =</strong> -716.45 - (1 * ${ageInYears}) + (17.82 * ${heightInCm}) + (15.06 * ${weight}) + 20.<br><br>
           <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
@@ -298,7 +318,7 @@ function showSolutionForLactentes() {
       if (ageInMonths <= 3) {
         EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 180;
         explanation = `
-          A fórmula utilizada para calcular o GET para lactentes meninas com idade até 3 meses é:<br><br>
+          A fórmula utilizada para calcular o GET para lactentes <strong>meninas</strong> com idade até <strong>3 meses</strong> é:<br><br>
           <strong>EER =</strong> -69.15 - (80 * idade em anos) + (2.65 * altura em cm) + (57.15 * peso) + 180.<br><br>
           <strong>EER =</strong> -69.15 - (80 * ${ageInYears}) + (2.65 * ${heightInCm}) + (57.15 * ${weight}) + 180.<br><br>
           <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
@@ -306,7 +326,7 @@ function showSolutionForLactentes() {
       } else if (ageInMonths <= 6) {
         EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 60;
         explanation = `
-          A fórmula utilizada para calcular o GET para lactentes meninas com idade entre 3 e 6 meses é:<br><br>
+          A fórmula utilizada para calcular o GET para lactentes <strong>meninas</strong> com idade entre <strong>3 e 6 meses</strong> é:<br><br>
           <strong>EER =</strong> -69.15 - (80 * idade em anos) + (2.65 * altura em cm) + (57.15 * peso) + 60.<br><br>
           <strong>EER =</strong> -69.15 - (80 * ${ageInYears}) + (2.65 * ${heightInCm}) + (57.15 * ${weight}) + 60.<br><br>
           <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
@@ -314,7 +334,7 @@ function showSolutionForLactentes() {
       } else if (ageInMonths <= 12) {
         EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 20;
         explanation = `
-          A fórmula utilizada para calcular o GET para lactentes meninas com idade entre 6 e 12 meses é:<br><br>
+          A fórmula utilizada para calcular o GET para lactentes <strong>meninas</strong> com idade entre <strong>6 e 12 meses</strong> é:<br><br>
           <strong>EER =</strong> -69.15 - (80 * idade em anos) + (2.65 * altura em cm) + (57.15 * peso) + 20.<br><br>
           <strong>EER =</strong> -69.15 - (80 * ${ageInYears}) + (2.65 * ${heightInCm}) + (57.15 * ${weight}) + 20.<br><br>
           <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
