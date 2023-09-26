@@ -85,12 +85,11 @@ function showResolution() {
   const weeks = parseFloat(document.getElementById("weeks").value);
   const activityLevel = document.getElementById("activityLevel").value;
 
-// Verifique se todos os campos foram preenchidos
-if (isNaN(age) || isNaN(heightInCm) || isNaN(weight) || isNaN(weeks) || isNaN(activityLevel) ) {
+ // Verifique se todos os campos foram preenchidos
+ if (isNaN(age) || isNaN(heightInCm) || isNaN(weight) || isNaN(weeks) ) {
   alert("Preencha todos os campos e gere um resultado para verificar a Resolução.");
   return; // Não continue se algum campo estiver vazio ou não numérico
 }
-
 
   let EER = 0;
   let explanation = ""; // Inicialize a explicação vazia
@@ -158,8 +157,7 @@ function showResolutionForLactantes() {
   const weight = parseFloat(document.getElementById("weight").value);
   const activityLevel = document.getElementById("activityLevel").value;
 
-  // Verifique se todos os campos foram preenchidos
-  if (isNaN(age) || isNaN(heightInCm) || isNaN(weight) || isNaN(activityLevel) ) {
+  if (isNaN(age) || isNaN(heightInCm) || isNaN(weight)) {
     alert("Preencha todos os campos e gere um resultado para verificar a Resolução.");
     return; // Não continue se algum campo estiver vazio ou não numérico
   }
