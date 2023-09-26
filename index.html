@@ -90,8 +90,8 @@
     <script>
       // Objeto para armazenar pares de nome de usuário e senha
       const users = {
-          "usuario1": "senha123",
-          "usuario2": "outrasenha",
+          "bruno_pisciotta": "bruno123",
+          "Duda_Dias": "duda123",
           // Adicione mais pares de nome de usuário e senha conforme necessário
       };
 
@@ -105,7 +105,7 @@
               // Credenciais corretas, salve o estado de login no SessionStorage
               sessionStorage.setItem("isLoggedIn", "true");
               // Redirecione para a página restrita ou execute a ação desejada
-              window.location.href = "index.html";
+              window.location.href = "home.html";
           } else {
               alert("Credenciais inválidas. Tente novamente.");
           }
@@ -121,7 +121,7 @@
           const isLoggedIn = sessionStorage.getItem("isLoggedIn");
           if (isLoggedIn === "true") {
               // O usuário está logado, permita o acesso à página restrita ou execute a ação desejada
-              window.location.href = "index.html";
+              window.location.href = "home.html";
           }
       }
   </script>
