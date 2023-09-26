@@ -209,9 +209,9 @@ function showResolutionForLactantes() {
   modal.style.display = "block";
 }
 
-function calculateEERForLactantes() {
+function calculateEERForLactentes() {
   // Pegue as variáveis do formulário
-  const sex = document.querySelector('input[name="sex"]:checked').value;
+  const sex = document.querySelector('input[name="sex"]:checked');
   const ageInMonths = parseFloat(document.getElementById("age").value);
   const heightInCm = parseFloat(document.getElementById("height").value);
   const weight = parseFloat(document.getElementById("weight").value);
@@ -221,22 +221,25 @@ function calculateEERForLactantes() {
 
   let EER = 0;
 
-  // Aplica a fórmula com base no sexo e idade em anos
-  if (sex === 'menino') {
-    if (ageInMonths <= 3) {
-      EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 200;
-    } else if (ageInMonths <= 6) {
-      EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 50;
-    } else if (ageInMonths <= 12) {
-      EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 20;
-    }
-  } else if (sex === 'menina') {
-    if (ageInMonths <= 3) {
-      EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 180;
-    } else if (ageInMonths <= 6) {
-      EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 60;
-    } else if (ageInMonths <= 12) {
-      EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 20;
+  // Verifique se o sexo foi selecionado
+  if (sex) {
+    // Aplica a fórmula com base no sexo e idade em anos
+    if (sex.value === 'menino') {
+      if (ageInMonths <= 3) {
+        EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 200;
+      } else if (ageInMonths <= 6) {
+        EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 50;
+      } else if (ageInMonths <= 12) {
+        EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 20;
+      }
+    } else if (sex.value === 'menina') {
+      if (ageInMonths <= 3) {
+        EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 180;
+      } else if (ageInMonths <= 6) {
+        EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 60;
+      } else if (ageInMonths <= 12) {
+        EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 20;
+      }
     }
   }
 
@@ -248,5 +251,99 @@ function calculateEERForLactantes() {
   // Atualize o resultado na página
   document.getElementById("result").innerText = `O GET estimado é ${EER.toFixed(2)} kcal/dia.`;
 }
+
+function showSolutionForLactentes() {
+  // Pegue as variáveis do formulário
+  const sex = document.querySelector('input[name="sex"]:checked');
+  const ageInMonths = parseFloat(document.getElementById("age").value);
+  const heightInCm = parseFloat(document.getElementById("height").value);
+  const weight = parseFloat(document.getElementById("weight").value);
+
+  // Converta a idade de meses para anos
+  const ageInYears = ageInMonths / 12;
+
+  let EER = 0;
+  let explanation = ""; // Inicialize a explicação vazia
+
+  // Verifique se o sexo foi selecionado
+  if (sex) {
+    // Aplica a fórmula com base no sexo e idade em anos
+    if (sex.value === 'menino') {
+      if (ageInMonths <= 3) {
+        EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 200;
+        explanation = `
+          A fórmula utilizada para calcular o GET para lactentes meninos com idade até 3 meses é:<br><br>
+          <strong>EER =</strong> -716.45 - (1 * idade em anos) + (17.82 * altura em cm) + (15.06 * peso) + 200.<br><br>
+          <strong>EER =</strong> -716.45 - (1 * ${ageInYears}) + (17.82 * ${heightInCm}) + (15.06 * ${weight}) + 200.<br><br>
+          <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+        `;
+      } else if (ageInMonths <= 6) {
+        EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 50;
+        explanation = `
+          A fórmula utilizada para calcular o GET para lactentes meninos com idade entre 3 e 6 meses é:<br><br>
+          <strong>EER =</strong> -716.45 - (1 * idade em anos) + (17.82 * altura em cm) + (15.06 * peso) + 50.<br><br>
+          <strong>EER =</strong> -716.45 - (1 * ${ageInYears}) + (17.82 * ${heightInCm}) + (15.06 * ${weight}) + 50.<br><br>
+          <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+        `;
+      } else if (ageInMonths <= 12) {
+        EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 20;
+        explanation = `
+          A fórmula utilizada para calcular o GET para lactentes meninos com idade entre 6 e 12 meses é:<br><br>
+          <strong>EER =</strong> -716.45 - (1 * idade em anos) + (17.82 * altura em cm) + (15.06 * peso) + 20.<br><br>
+          <strong>EER =</strong> -716.45 - (1 * ${ageInYears}) + (17.82 * ${heightInCm}) + (15.06 * ${weight}) + 20.<br><br>
+          <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+        `;
+      }
+    } else if (sex.value === 'menina') {
+      if (ageInMonths <= 3) {
+        EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 180;
+        explanation = `
+          A fórmula utilizada para calcular o GET para lactentes meninas com idade até 3 meses é:<br><br>
+          <strong>EER =</strong> -69.15 - (80 * idade em anos) + (2.65 * altura em cm) + (57.15 * peso) + 180.<br><br>
+          <strong>EER =</strong> -69.15 - (80 * ${ageInYears}) + (2.65 * ${heightInCm}) + (57.15 * ${weight}) + 180.<br><br>
+          <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+        `;
+      } else if (ageInMonths <= 6) {
+        EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 60;
+        explanation = `
+          A fórmula utilizada para calcular o GET para lactentes meninas com idade entre 3 e 6 meses é:<br><br>
+          <strong>EER =</strong> -69.15 - (80 * idade em anos) + (2.65 * altura em cm) + (57.15 * peso) + 60.<br><br>
+          <strong>EER =</strong> -69.15 - (80 * ${ageInYears}) + (2.65 * ${heightInCm}) + (57.15 * ${weight}) + 60.<br><br>
+          <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+        `;
+      } else if (ageInMonths <= 12) {
+        EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 20;
+        explanation = `
+          A fórmula utilizada para calcular o GET para lactentes meninas com idade entre 6 e 12 meses é:<br><br>
+          <strong>EER =</strong> -69.15 - (80 * idade em anos) + (2.65 * altura em cm) + (57.15 * peso) + 20.<br><br>
+          <strong>EER =</strong> -69.15 - (80 * ${ageInYears}) + (2.65 * ${heightInCm}) + (57.15 * ${weight}) + 20.<br><br>
+          <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+        `;
+      }
+    }
+  }
+
+  // Verifique se o resultado é negativo e, se for, defina como zero
+  if (EER < 0) {
+    EER = 0;
+  }
+
+  // Atualize o resultado na página
+  document.getElementById("result").innerText = `O GET estimado é ${EER.toFixed(2)} kcal/dia.`;
+
+  // Atualize o conteúdo da explicação na página
+  const explanationElement = document.getElementById("explanation");
+  explanationElement.innerHTML = explanation;
+
+  // Exiba o modal de solução
+  const modal = document.getElementById("solutionModal");
+  modal.style.display = "block";
+}
+
+
+
+
+
+
 
 

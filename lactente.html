@@ -214,6 +214,30 @@
     cursor: pointer;
   }
 
+  /* Estilos para o container de texto e botões de seleção */
+.sex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.points {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ajustado para colocar os botões lado a lado */
+  margin-top: 10px;
+}
+
+.sex-container label,
+.points label {
+  margin: 0; /* Removido o espaçamento para alinhar os textos e os botões */
+}
+
+/* Estilos para os botões de rádio */
+input[type="radio"] {
+  margin: 0 5px; /* Ajuste o espaçamento entre os botões aqui */
+}
+
   btnmodal:hover {
     background-color: #45a049;
   }
@@ -241,13 +265,19 @@
         <br>
         <h1>Calculadora para Lactentes</h1>
         <p>Insira as informações abaixo para calcular o GET de Lactentes.</p>
-        <form id="lactante-form">
+          <form id="lactante-form">
             <label for="sex">Sexo:</label>
             <br>
-            <label for="sex-male">Menino</label>
-            <input type="radio" id="sex-male" name="sex" value="menino">
-            <label for="sex-female">Menina</label>
-            <input type="radio" id="sex-female" name="sex" value="menina">
+            <div class="sex-container">
+              <div>
+                <label for="sex-male">Menino</label>
+                <input type="radio" id="sex-male" name="sex" value="menino">
+              </div>
+              <div>
+                <label for="sex-female">Menina</label>
+                <input type="radio" id="sex-female" name="sex" value="menina">
+              </div>
+            </div>
             <label for="age">Idade (meses):</label>
             <input type="number" id="age" name="age" required>
 
@@ -257,13 +287,13 @@
             <label for="weight">Peso (kg):</label>
             <input type="number" id="weight" name="weight" required>
 
-            <button type="button" onclick="calculateEERForLactantes()">Calcular</button>
+            <button type="button" onclick="calculateEERForLactentes()">Calcular</button>
         </form>
 
         <h2>Resultado</h2>
         <div id="result"></div>
         <script src="script.js"></script>
-        <button class="btnmodal" type="button" id="showResolutionBtn" onclick="showResolutionForLactantes()">Ver Resolução</button>
+        <button class="btnmodal" type="button" onclick="showSolutionForLactentes()">Ver Solução</button>
     <hr class="soon2">
     <h1 class="footer">Em desenvolvimento por: Bruno Pisciotta e Duda Dias ♡</h1>
   </div>
@@ -302,26 +332,25 @@
       sidebarOpen = false;
     }
 
-// Função para fechar o modal de resolução
-function closeresolutionModalLactantes() {
-  const modal = document.getElementById("resolutionModalLactantes");
+// Função para abrir o modal de resolução
+function closeSolutionModal() {
+  const modal = document.getElementById("solutionModal");
   modal.style.display = "none";
 }
 
 // Fecha o modal se o usuário clicar fora dele
 window.onclick = function(event) {
-  const modal = document.getElementById("resolutionModalLactantes");
+  const modal = document.getElementById("solutionModal");
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
   </script>
 </body>
-<!-- Modal de Resolução -->
-<div id="resolutionModalLactantes" class="modal">
+<div id="solutionModal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeresolutionModalLactantes()">&times;</span>
-    <h2>Resolução do Cálculo de GET para Lactantes:</h2>
+    <span class="close" onclick="closeSolutionModal()">&times;</span>
+    <h2>Solução do Cálculo de GET para Lactentes:</h2>
     <div id="resolutionContent">
       <!-- Aqui será exibida a resolução -->
     </div>
