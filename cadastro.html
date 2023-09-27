@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" type="text/css" href="style.css"> <!-- Se você tiver um arquivo CSS externo -->
+</head>
+<style>
+    /* Estilos globais */
+   body {
+     font-family: 'Montserrat', sans-serif !important;
+     background-color: #f4f4f4;
+     color: #333;
+     display: flex;
+     max-height: 100vh;
+     margin: 0;
+     flex-direction: column;
+   }
+ 
+   .container {
+     margin: auto;
+     background-color: #fff;
+     padding: 2rem;
+     border-radius: 8px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     text-align: center;
+     max-width: 800px;
+     margin-top: 1rem;
+   }
+ 
+    /* Botões dispostos lado a lado */
+    .btn-container {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-between; /* Espaço igual entre os botões */
+     margin-top: 2rem;
+   }
+ 
+   .btn {
+     color: #f4f4f4;
+     flex-basis: calc(50% - 1rem); /* Largura de 50% com margem de 1rem entre os botões */
+     background-color: #4CAF50;
+     border: none;
+     margin-bottom: 1rem; /* Espaço inferior entre os botões */
+   }
+ 
+   .btn:hover {
+     color: #f4f4f4;
+     background-color: #45a049;
+   }
+ 
+   @media (max-width: 768px) {
+     .container {
+       width: 90%;
+       padding: 0.8rem;
+     }
+   }
+ 
+   h1, h2 {
+     color: #444;
+     margin: 0.5em 0;
+     font-size: 1.5em;
+   }
+ 
+   p {
+     font-size: 1.2em;
+   }
+ </style>
+<body>
+    <div class="container">
+    <h1>Cadastro de Usuário</h1>
+    <form action="api/processar_cadastro.php" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required><br><br>
+
+        <input type="submit" value="Cadastrar">
+    </form>
+</div>
+</body>
+</html>
