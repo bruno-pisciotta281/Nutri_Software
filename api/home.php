@@ -206,7 +206,7 @@ session_start();
  <p>Olá, <strong class="user-name"><?php echo $_SESSION['usuario_nome']; ?></strong>!</p> 
   <!-- Resto do conteúdo -->
   <br>
-  <h1>Bem-vindo <span id="nomeUsuario"></span> ao Software de Nutrição B&D </h1>
+  <h1>Bem-vindo ao Software de Nutrição B&D </h1>
   <p>Nosso software ajuda você a calcular suas necessidades nutricionais e manter uma dieta saudável.</p>
   <h2>Como Usar:</h2>
   <p>Siga estes passos simples para começar:</p>
