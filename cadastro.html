@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cadastro de Usuário</title>
-    <link rel="stylesheet" type="text/css" href="style.css"> <!-- Se você tiver um arquivo CSS externo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <title>Cadastro de Usuário</title>
 </head>
 <style>
     /* Estilos globais */
@@ -66,8 +73,9 @@
    }
  </style>
 <body>
+  <br><br><br><br><br><br>
     <div class="container">
-    <h1>Cadastro de Usuário</h1>
+    <h1>Cadastro de Users</h1>
     <form action="api/processar_cadastro.php" method="POST">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required><br><br>
