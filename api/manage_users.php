@@ -264,7 +264,7 @@ a{
     <h1>Gerenciamento de Usuários</h1>
     
     <!-- Botão para adicionar usuário -->
-    <a href="index.php"><button class="btn">Voltar</button></a>
+    <a href="home.php"><button class="btn">Voltar</button></a>
     <a href="../cadastro.html" class="btn btn-success">Adicionar Usuário</a>
 
     <!-- Listagem de usuários -->
