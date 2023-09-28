@@ -16,11 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         session_start();
         $_SESSION['usuario_id'] = $row['id'];
         $_SESSION['usuario_nome'] = $row['nome'];
-        header("Location: ../index.html"); 
+        header("Location: ../index.html");
         exit();
     } else {
         // Login falhou
-        echo "Email ou senha incorretos.";
+        echo '<script>alert("Email ou senha incorretos.");</script>';
+        echo '<script>window.location.href="../login.html";</script>';
+        exit();
     }
 }
 ?>

@@ -71,23 +71,35 @@
    p {
      font-size: 1.2em;
    }
+
+   .soon2{
+    background-color: #333;
+  }
  </style>
 <body>
-  <br><br><br><br><br><br>
+  <br><br>
     <div class="container">
-    <h1>Cadastro de Users</h1>
+    <h1>Bem vindo ao Cadastro</h1>
+    <p>Preencha os campos para criar um cadastro e efetuar o Login</p>
+    <hr class="soon2">
     <form action="api/processar_cadastro.php" method="POST">
         <label for="nome">Nome:</label>
+        <br>
         <input type="text" id="nome" name="nome" required><br><br>
 
         <label for="email">Email:</label>
+        <br>
         <input type="email" id="email" name="email" required><br><br>
 
         <label for="senha">Senha:</label>
+        <br>
         <input type="password" id="senha" name="senha" required><br><br>
 
         <input class="btn" type="submit" value="Cadastrar">
     </form>
+    <br>
+    <a href="index.html"><button class="btn">Voltar</button></a>
 </div>
+<br>
 </body>
 </html>

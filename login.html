@@ -71,21 +71,31 @@
    p {
      font-size: 1.2em;
    }
+
+   .soon2{
+    background-color: #333;
+  }
  </style>
 <body>
-    <br><br><br><br><br><br>
+    <br><br><br><br><br>
     <div class="container">
-    <h1>Login</h1>
+    <h1>Bem vindo ao Login</h1>
+    <p>Efetue seu Login para acessar a plataforma</p>
+    <hr class="soon2">
     <form action="api/processar_login.php" method="POST">
 
         <label for="email">Email:</label>
+        <br>
         <input type="email" id="email" name="email" required><br><br>
 
         <label for="senha">Senha:</label>
+        <br>
         <input type="password" id="senha" name="senha" required><br><br>
 
+         <!-- Mensagens de erro -->
         <input class="btn" type="submit" value="Entrar">
     </form>
 </div>
+<br>
 </body>
 </html>
