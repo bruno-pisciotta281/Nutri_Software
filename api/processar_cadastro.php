@@ -3,7 +3,7 @@
 require_once("config.php");
 
 try {
-    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname;user=$user;password=$password;sslmode=require");
+    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname;user=$user;password=$password options='endpoint=ep-frosty-union-26727263-pooler'");
 } catch (PDOException $e) {
     die("Erro na conexão com o banco de dados: " . $e->getMessage());
 }
@@ -24,7 +24,7 @@ $stmt->bindParam(':senha', $senha);
 if ($stmt->execute()) {
     echo "Usuário cadastrado com sucesso!";
     // Redirecionar para a página de login
-    header("Location: login.html");
+    header("Location: ../login.html");
 } else {
     echo "Erro ao cadastrar o usuário.";
 }
