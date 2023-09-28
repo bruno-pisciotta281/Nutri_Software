@@ -6,6 +6,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
+    $role = $_POST['role'];
+
+    // Hash da senha
+    $hashed_senha = password_hash($senha, PASSWORD_DEFAULT);
+
     // Verifique se o email já está em uso
     $sql_check_email = "SELECT id FROM usuarios WHERE email = :email";
     $stmt_check_email = $pdo->prepare($sql_check_email);
@@ -18,16 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 
-    // Hash da senha
-    $hashed_senha = password_hash($senha, PASSWORD_DEFAULT);
-
-    // Inserir dados na tabela 'usuarios'
-    $sql_insert = "INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)";
+    // Inserir dados na tabela 'usuarios', incluindo o campo "role"
+    $sql_insert = "INSERT INTO usuarios (nome, email, senha, role) VALUES (:nome, :email, :senha, :role)";
     $stmt_insert = $pdo->prepare($sql_insert);
 
     $stmt_insert->bindParam(':nome', $nome);
     $stmt_insert->bindParam(':email', $email);
     $stmt_insert->bindParam(':senha', $hashed_senha);
+    $stmt_insert->bindParam(':role', $role); // Defina o valor do campo "role" aqui
 
     if ($stmt_insert->execute()) {
         // Cadastro bem-sucedido

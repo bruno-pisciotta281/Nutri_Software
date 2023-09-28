@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         session_start();
         $_SESSION['usuario_id'] = $row['id'];
         $_SESSION['usuario_nome'] = $row['nome'];
-        header("Location: ../index.html");
+        header("Location: index.php");
         exit();
     } else {
         // Login falhou
