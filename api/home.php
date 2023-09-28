@@ -203,7 +203,7 @@ session_start();
 <!-- Conteúdo Principal -->
 <div class="container">
 <button class="btn btn-danger logout-button" onclick="logout()"><strong>SAIR</strong></button>
-  
+ <p>Olá, <strong class="user-name"><?php echo $_SESSION['usuario_nome']; ?></strong>!</p> 
   <!-- Resto do conteúdo -->
   <br>
   <h1>Bem-vindo <span id="nomeUsuario"></span> ao Software de Nutrição B&D </h1>
