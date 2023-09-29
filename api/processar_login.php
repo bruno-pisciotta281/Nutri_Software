@@ -16,14 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         session_start();
         $_SESSION['usuario_id'] = $row['id'];
         $_SESSION['usuario_nome'] = $row['nome'];
-
-        // Adicione este código JavaScript para definir o nome de usuário no Local Storage
-        echo '<script>';
-        echo 'var nomeUsuario = "' . $row['nome'] . '";';
-        echo 'localStorage.setItem("nomeUsuario", nomeUsuario);';
-        echo '</script>';
-
-        // Redirecionar após definir o nome de usuário no Local Storage
         header("Location: home.php");
         exit();
     } else {

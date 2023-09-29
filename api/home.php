@@ -183,14 +183,6 @@ session_start();
 }
 
 </style>
-<script>
-   // Verifica se o nome do usuário está no Local Storage e o exibe
-const nomeUsuario = localStorage.getItem("nomeUsuario");
-if (nomeUsuario) {
-    document.getElementById("user-name").textContent = "Olá, " + nomeUsuario;
-}
-
-</script>
 <body>
   <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
   <div class="sidebar" id="mySidebar">
@@ -207,18 +199,34 @@ if (nomeUsuario) {
     <p class="soon">Em breve mais funcionalidades!</p>
   </div>
 </div>
-
 <!-- Conteúdo Principal -->
 <div class="container">
+<button class="btn btn-danger logout-button" onclick="logout()"><strong>SAIR</strong></button>
 <?php
-if(isset($_SESSION['usuario_nome'])) {
-    echo "Valor de usuario_nome: " . $_SESSION['usuario_nome'];
+// Incluir o arquivo de configuração do banco de dados (se ainda não estiver incluído)
+require_once("config.php");
+
+// Verificar se o usuário está logado e tem um ID de usuário válido na sessão
+if (isset($_SESSION['usuario_id'])) {
+    $userId = $_SESSION['usuario_id'];
+
+    // Consultar o banco de dados para obter o nome do usuário (substitua 'usuarios' pelo nome real da tabela)
+    $sql = "SELECT nome FROM usuarios WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':id', $userId);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row) {
+        $userName = $row['nome'];
+        echo "<p>Olá, <strong class='user-name'>$userName</strong></p>";
+    } else {
+        echo "Nome de usuário não encontrado.";
+    }
 } else {
-    echo "usuario_nome não está definido na sessão.";
+    echo "Usuário não logado.";
 }
 ?>
-<button class="btn btn-danger logout-button" onclick="logout()"><strong>SAIR</strong></button>
-<p>Olá, <strong class="user-name" id="user-name"></strong></p> 
   <!-- Resto do conteúdo -->
   <br>
   <h1>Bem-vindo ao Software de Nutrição B&D </h1>
@@ -251,6 +259,7 @@ if(isset($_SESSION['usuario_nome'])) {
 </div>
 <br>
 <script>
+
 // Script para a funcionalida da sidebar
   let sidebarOpen = false;
 
