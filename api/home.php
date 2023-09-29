@@ -243,16 +243,35 @@ if (isset($_COOKIE['user_identifier'])) {
     <a href="get.html" class="btn btn-primary">GET para Gestantes</a>
     <a href="lactante.html" class="btn btn-primary">GET para Lactantes</a>
     <a href="lactente.html" class="btn btn-primary">GET para Lactentes</a>
-    
-
-    <?php
-  if (isset($_SESSION['usuario_role']) && $_SESSION['usuario_role'] === "administrador") {
-      // Se o usuário for um administrador, exiba o botão para acessar a página de gerenciamento
-      echo '<a href="manage_users.php" class="btn btn-primary">Gerenciar Usuários</a>';
-  }
-  ?>
   </div>
-  <center><a href="manage_users.php" class="btn btn-success">Gerenciar Usuário</a></center>
+  <?php
+    // Verificar se o cookie de identificador está presente
+if (isset($_COOKIE['user_identifier'])) {
+  $identifier = $_COOKIE['user_identifier'];
+
+  // Consultar o banco de dados para obter o nome do usuário com base no identificador
+  $sql = "SELECT nome, role FROM usuarios WHERE identifier = :identifier";
+  $stmt = $pdo->prepare($sql);
+  $stmt->bindParam(':identifier', $identifier);
+  $stmt->execute();
+  $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if ($row) {
+      $userName = $row['nome'];
+      $userRole = $row['role'];
+
+      // Verificar se o usuário é um administrador
+      if ($userRole === 'administrador') {
+          // Se o usuário for administrador, exiba o botão para acessar a página de gerenciamento
+          echo '<a href="manage_users.php" class="btn btn-primary">Gerenciar Usuários</a>';
+      }
+  } else {
+      echo "Nome de usuário não encontrado.";
+  }
+} else {
+  echo "Usuário não autenticado.";
+}
+?>
   <hr class="soon2">
   <h1 class="footer">Em desenvolvimento por: <br> Bruno Pisciotta e Duda Dias ♡</h1>
 </div>

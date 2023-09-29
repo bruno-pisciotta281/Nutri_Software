@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    $sql = "SELECT id, nome, senha FROM usuarios WHERE email = :email";
+    $sql = "SELECT id, nome, senha, role FROM usuarios WHERE email = :email";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':email', $email);
     $stmt->execute();
@@ -14,6 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($row && password_verify($senha, $row['senha'])) {
         // Login bem-sucedido
         $userId = $row['id'];
+
+        // Verifique o papel do usuário e defina o cookie 'user_role' para administradores
+        if ($row['role'] === 'administrador') {
+            setcookie('user_role', 'administrador', time() + 3600, '/'); // O cookie expira em 1 hora
+        }
 
         // Gerar um identificador único (por exemplo, um UUID)
         $identifier = uniqid();
@@ -37,4 +42,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 }
+
 ?>

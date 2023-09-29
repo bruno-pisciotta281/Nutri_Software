@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         session_start();
         $_SESSION['usuario_id'] = $pdo->lastInsertId(); // Obter o ID do novo usuário
         $_SESSION['usuario_nome'] = $nome;
-        header("Location: home.php"); // Redireciona para a página de login após o cadastro
+        header("Location: ../login.html"); // Redireciona para a página de login após o cadastro
         exit();
     } else {
         // Cadastro falhou

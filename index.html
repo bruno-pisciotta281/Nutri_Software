@@ -1,7 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="refresh" content="0;url=api/home.php">
+    <script>
+        // Verifique se o usuário está autenticado
+        var userIdentifier = getCookie('user_identifier'); // Usando o nome do seu cookie de identificação
+
+        if (userIdentifier) {
+            // Se o usuário estiver autenticado, redirecione para a página inicial
+            window.location.href = 'api/home.php';
+        } else {
+            // Se o usuário não estiver autenticado, redirecione para a página de login
+            window.location.href = 'login.html';
+        }
+
+        // Função para obter o valor de um cookie pelo nome
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        }
+    </script>
 </head>
 <body>
 </body>
