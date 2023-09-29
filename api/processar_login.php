@@ -13,9 +13,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($row && password_verify($senha, $row['senha'])) {
         // Login bem-sucedido
-        session_start();
-        $_SESSION['usuario_id'] = $row['id'];
-        $_SESSION['usuario_nome'] = $row['nome'];
+        $userId = $row['id'];
+
+        // Gerar um identificador único (por exemplo, um UUID)
+        $identifier = uniqid();
+
+        // Armazenar o identificador no banco de dados junto com o ID do usuário
+        $sql = "UPDATE usuarios SET identifier = :identifier WHERE id = :userId";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':identifier', $identifier);
+        $stmt->bindParam(':userId', $userId);
+        $stmt->execute();
+
+        // Definir um cookie com o identificador
+        setcookie('user_identifier', $identifier, time() + 3600, '/'); // O cookie expira em 1 hora
+
         header("Location: home.php");
         exit();
     } else {

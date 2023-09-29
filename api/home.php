@@ -203,17 +203,16 @@ session_start();
 <div class="container">
 <button class="btn btn-danger logout-button" onclick="logout()"><strong>SAIR</strong></button>
 <?php
-// Incluir o arquivo de configuração do banco de dados (se ainda não estiver incluído)
 require_once("config.php");
 
-// Verificar se o usuário está logado e tem um ID de usuário válido na sessão
-if (isset($_SESSION['usuario_id'])) {
-    $userId = $_SESSION['usuario_id'];
+// Verificar se o cookie de identificador está presente
+if (isset($_COOKIE['user_identifier'])) {
+    $identifier = $_COOKIE['user_identifier'];
 
-    // Consultar o banco de dados para obter o nome do usuário (substitua 'usuarios' pelo nome real da tabela)
-    $sql = "SELECT nome FROM usuarios WHERE id = :id";
+    // Consultar o banco de dados para obter o nome do usuário com base no identificador
+    $sql = "SELECT nome FROM usuarios WHERE identifier = :identifier";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':id', $userId);
+    $stmt->bindParam(':identifier', $identifier);
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -224,9 +223,10 @@ if (isset($_SESSION['usuario_id'])) {
         echo "Nome de usuário não encontrado.";
     }
 } else {
-    echo "Usuário não logado.";
+    echo "Usuário não autenticado.";
 }
 ?>
+
   <!-- Resto do conteúdo -->
   <br>
   <h1>Bem-vindo ao Software de Nutrição B&D </h1>
