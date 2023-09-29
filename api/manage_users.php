@@ -7,43 +7,45 @@ require_once("config.php");
 
 // Função para listar os usuários
 function listarUsuarios() {
-    global $pdo; // Alterado de $conn para $pdo (assumindo que seja o objeto PDO)
+  global $pdo;
 
-    $sql = "SELECT id, nome, email FROM usuarios";
-    $stmt = $pdo->query($sql);
+  $sql = "SELECT id, nome, email, role FROM usuarios"; // Adicione o campo "role" na consulta SQL
+  $stmt = $pdo->query($sql);
 
-    if ($stmt) {
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if (count($result) > 0) {
-            echo '<table class="table">';
-            echo '<thead>';
-            echo '<tr>';
-            echo '<th>ID</th>';
-            echo '<th>Nome</th>';
-            echo '<th>Email</th>';
-            echo '<th>Ações</th>';
-            echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-            foreach ($result as $row) {
-                echo '<tr>';
-                echo '<td data-label="ID">' . $row['id'] . '</td>';
-                echo '<td data-label="Nome">' . $row['nome'] . '</td>';
-                echo '<td data-label="Email">' . $row['email'] . '</td>';
-                echo '<td>';
-                echo '<a href="editar_usuario.php?id=' . $row['id'] . '" class="btn btn-primary">Editar</a>';
-                echo '<a href="excluir_usuario.php?id=' . $row['id'] . '" class="btn btn-danger">Excluir</a>';
-                echo '</td>';
-                echo '</tr>';
-            }
-            echo '</tbody>';
-            echo '</table>';
-        } else {
-            echo "Nenhum usuário encontrado.";
-        }
-    } else {
-        echo "Erro na consulta: " . $pdo->errorInfo()[2];
-    }
+  if ($stmt) {
+      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      if (count($result) > 0) {
+          echo '<table class="table">';
+          echo '<thead>';
+          echo '<tr>';
+          echo '<th>ID</th>';
+          echo '<th>Nome</th>';
+          echo '<th>Email</th>';
+          echo '<th>Role</th>'; // Adicione a coluna "Role"
+          echo '<th>Ações</th>';
+          echo '</tr>';
+          echo '</thead>';
+          echo '<tbody>';
+          foreach ($result as $row) {
+              echo '<tr>';
+              echo '<td data-label="ID">' . $row['id'] . '</td>';
+              echo '<td data-label="Nome">' . $row['nome'] . '</td>';
+              echo '<td data-label="Email">' . $row['email'] . '</td>';
+              echo '<td data-label="Role">' . $row['role'] . '</td>'; // Exiba o valor da coluna "role"
+              echo '<td>';
+              echo '<a href="editar_usuario.php?id=' . $row['id'] . '" class="btn btn-primary">Editar</a>';
+              echo '<button onclick="confirmDelete(' . $row['id'] . ')" class="btn btn-danger">Excluir</button>';
+              echo '</td>';
+              echo '</tr>';
+          }
+          echo '</tbody>';
+          echo '</table>';
+      } else {
+          echo "Nenhum usuário encontrado.";
+      }
+  } else {
+      echo "Erro na consulta: " . $pdo->errorInfo()[2];
+  }
 }
 
 ?>
