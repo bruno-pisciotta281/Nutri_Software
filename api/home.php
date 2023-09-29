@@ -202,8 +202,15 @@ session_start();
 
 <!-- Conteúdo Principal -->
 <div class="container">
+<?php
+if(isset($_SESSION['usuario_nome'])) {
+    echo "Valor de usuario_nome: " . $_SESSION['usuario_nome'];
+} else {
+    echo "usuario_nome não está definido na sessão.";
+}
+?>
 <button class="btn btn-danger logout-button" onclick="logout()"><strong>SAIR</strong></button>
- <p>Olá, <strong class="user-name"><?php echo $_SESSION['usuario_nome']; ?></strong>!</p> 
+ <p>Olá, <strong class="user-name"><?php echo $_SESSION['usuario_nome'];?></strong></p> 
   <!-- Resto do conteúdo -->
   <br>
   <h1>Bem-vindo ao Software de Nutrição B&D </h1>
