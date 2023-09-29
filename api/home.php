@@ -183,6 +183,14 @@ session_start();
 }
 
 </style>
+<script>
+   // Verifica se o nome do usuário está no Local Storage e o exibe
+const nomeUsuario = localStorage.getItem("nomeUsuario");
+if (nomeUsuario) {
+    document.getElementById("user-name").textContent = "Olá, " + nomeUsuario;
+}
+
+</script>
 <body>
   <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
   <div class="sidebar" id="mySidebar">
@@ -210,7 +218,7 @@ if(isset($_SESSION['usuario_nome'])) {
 }
 ?>
 <button class="btn btn-danger logout-button" onclick="logout()"><strong>SAIR</strong></button>
- <p>Olá, <strong class="user-name"><?php echo $_SESSION['usuario_nome'];?></strong></p> 
+<p>Olá, <strong class="user-name" id="user-name"></strong></p> 
   <!-- Resto do conteúdo -->
   <br>
   <h1>Bem-vindo ao Software de Nutrição B&D </h1>
@@ -243,7 +251,6 @@ if(isset($_SESSION['usuario_nome'])) {
 </div>
 <br>
 <script>
-
 // Script para a funcionalida da sidebar
   let sidebarOpen = false;
 
