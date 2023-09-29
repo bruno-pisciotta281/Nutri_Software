@@ -239,10 +239,10 @@ if (isset($_COOKIE['user_identifier'])) {
     <li>Clique no botão "Calcular" para obter seus resultados.</li>
   </ol>
   <div class="btn-container">
-    <a href="imc.html" class="btn btn-primary">Calculadora de IMC</a>
-    <a href="get.html" class="btn btn-primary">GET para Gestantes</a>
-    <a href="lactante.html" class="btn btn-primary">GET para Lactantes</a>
-    <a href="lactente.html" class="btn btn-primary">GET para Lactentes</a>
+    <a href="../imc.html" class="btn btn-primary">Calculadora de IMC</a>
+    <a href="../get.html" class="btn btn-primary">GET para Gestantes</a>
+    <a href="..;lactante.html" class="btn btn-primary">GET para Lactantes</a>
+    <a href="../lactente.html" class="btn btn-primary">GET para Lactentes</a>
   </div>
   <?php
     // Verificar se o cookie de identificador está presente
