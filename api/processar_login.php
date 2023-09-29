@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo 'localStorage.setItem("nomeUsuario", nomeUsuario);';
         echo '</script>';
 
+        // Redirecionar após definir o nome de usuário no Local Storage
         header("Location: home.php");
         exit();
     } else {
