@@ -220,6 +220,43 @@
     background-color: #45a049;
   }
 
+   /* Estilos para a Tabela Informativa de IMC */
+   table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    background-color: #fff;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+
+  thead {
+    background-color: #45a049;
+    color: #fff;
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+
+  /* Estilos para células específicas */
+  tbody td:first-child {
+    font-weight: bold;
+  }
+
+  tbody td:last-child {
+    font-style: italic;
+  }
+
+  /* Adicionando algum espaçamento e margem inferior */
+  table {
+    margin-bottom: 20px;
+  }
 
 </style>
 
@@ -272,6 +309,33 @@
     <div id="result"></div>
     <script src="script.js"></script>
     <button class="btnmodal" type="button" id="showResolutionBtn" onclick="showResolution()">Ver Resolução</button>
+    <br>
+  <h1>Tabela Informativa</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Trimestre</th>
+        <th>Acréscimos para depósito</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1º Tri</td>
+        <td>0 (zero)</td>
+      </tr>
+      <tr>
+        <td>2º e 3º Tri</td>
+        <td>
+          <ul>
+            <li>Baixo peso pré-gestacional: <strong>+300 kcal</strong></li>
+            <li>Peso pré-gestacional normal: <strong>+200 kcal</strong></li>
+            <li>Peso pré-gestacional em sobrepeso: <strong>+150 kcal</strong></li>
+            <li>Peso pré-gestacional em obesidade: <strong>-50 kcal</strong></li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
     <hr class="soon2">
     <h1 class="footer">Em desenvolvimento por: <br> Bruno Pisciotta e Duda Dias ♡</h1>
   </div>
