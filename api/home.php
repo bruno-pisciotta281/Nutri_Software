@@ -227,8 +227,7 @@ if (isset($_COOKIE['user_identifier'])) {
 }
 ?>
 
-  <!-- Resto do conteúdo -->
-  <br>
+  <hr class="soon2">
   <h1>Bem-vindo(a) ao Software de Nutrição B&D </h1>
   <p>Nosso software ajuda você a calcular suas necessidades nutricionais e manter uma dieta saudável.</p>
   <h2>Como Usar:</h2>
@@ -238,6 +237,8 @@ if (isset($_COOKIE['user_identifier'])) {
     <li>Preencha os campos com suas informações pessoais.</li>
     <li>Clique no botão "Calcular" para obter seus resultados.</li>
   </ol>
+  <hr class="soon2">
+  <h1>Calculadoras:</h1>
   <div class="btn-container">
     <a href="../imc.html" class="btn btn-primary">Calculadora de IMC</a>
     <a href="../get.html" class="btn btn-primary">GET para Gestantes</a>
@@ -263,6 +264,8 @@ if (isset($_COOKIE['user_identifier'])) {
       // Verificar se o usuário é um administrador
       if ($userRole === 'administrador') {
           // Se o usuário for administrador, exiba o botão para acessar a página de gerenciamento
+          echo '<hr class="soon2">';
+          echo '<h1>Gestão:</h1>';
           echo '<a href="manage_users.php" class="btn btn-primary">Gerenciar Usuários</a>';
       }
   } else {
