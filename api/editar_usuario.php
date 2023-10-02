@@ -114,7 +114,7 @@ if (isset($_GET['id'])) {
 <body>
     <div class="container">
         <h1>Editar Usuário</h1>
-        <p>Edite as informações do usuário nesta págin</p>
+        <p>Edite as informações do usuário baixo, como nome, email e nível. Depois clique em atualizar para alterar os dados do usuário</p>
         <hr class="soon2">
         <form action="atualizar_usuario.php" method="POST"> <!-- Crie uma página "atualizar_usuario.php" para processar a atualização -->
             <input type="hidden" name="userId" value="<?php echo $userId; ?>"> <!-- Inclua o ID do usuário no formulário oculto -->
