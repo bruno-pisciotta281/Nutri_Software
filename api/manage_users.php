@@ -278,7 +278,7 @@ a{
   <a href="home.php"><button class="btn-back"><strong>Voltar</strong></button></a>
   <br>
     <h1>Gerenciamento de Usuários</h1>
-    <p>Esta é a página de gerenciamento de usuários, aqui você pode excluir, adicionar ou editar os usuários já existentes no Software</p>
+    <p style="font-size: 15px;">Esta é a página de gerenciamento de usuários, aqui você pode excluir, adicionar ou editar os usuários já existentes no Software.</p>
 
     <hr class="soon2">
     
