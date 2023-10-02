@@ -114,6 +114,8 @@ if (isset($_GET['id'])) {
 <body>
     <div class="container">
         <h1>Editar Usuário</h1>
+        <p>Edite as informações do usuário nesta págin</p>
+        <hr class="soon2">
         <form action="atualizar_usuario.php" method="POST"> <!-- Crie uma página "atualizar_usuario.php" para processar a atualização -->
             <input type="hidden" name="userId" value="<?php echo $userId; ?>"> <!-- Inclua o ID do usuário no formulário oculto -->
             <label for="nome">Nome:</label><br>
@@ -130,7 +132,7 @@ if (isset($_GET['id'])) {
 
             <input class="btn" type="submit" value="Atualizar">
         </form>
-        <br>
+        <hr class="soon2">
         <a href="manage_users.php"><button class="btn">Cancelar</button></a>
     </div>
 </body>

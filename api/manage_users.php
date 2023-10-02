@@ -220,11 +220,6 @@ function listarUsuarios() {
     cursor: pointer;
 }
 
-.logout-button {
-  float: right;
-
-}
-
 /* Estilos para tornar a tabela responsiva */
 @media (max-width: 768px) {
   table {
@@ -260,13 +255,34 @@ a{
     color: #f4f4f4;
 }
 
+
+.btn-back{
+  font-size: 13px;
+  height: 25px;
+  width: 55px;
+  float: left;
+  text-align: center; /* Centraliza o texto horizontalmente */
+  display: flex;
+  align-items: center; /* Centraliza verticalmente */
+  justify-content: center; /* Centraliza verticalmente */
+  background-color: #4CAF50;
+  padding: 10px 15px;
+  color: #f4f4f4;
+  border: none;
+  border-radius: 3px;
+}
+
   </style>
 <body>
   <div class="container">
+  <a href="home.php"><button class="btn-back"><strong>Voltar</strong></button></a>
+  <br>
     <h1>Gerenciamento de Usuários</h1>
+    <p>Esta é a página de gerenciamento de usuários, aqui você pode excluir, adicionar ou editar os usuários já existentes no Software</p>
+
+    <hr class="soon2">
     
     <!-- Botão para adicionar usuário -->
-    <a href="home.php"><button class="btn">Voltar</button></a>
     <a href="../cadastro.html" class="btn btn-success">Adicionar Usuário</a>
 
     <!-- Listagem de usuários -->

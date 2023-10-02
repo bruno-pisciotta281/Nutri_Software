@@ -229,7 +229,7 @@ if (isset($_COOKIE['user_identifier'])) {
 
   <!-- Resto do conteúdo -->
   <br>
-  <h1>Bem-vindo ao Software de Nutrição B&D </h1>
+  <h1>Bem-vindo(a) ao Software de Nutrição B&D </h1>
   <p>Nosso software ajuda você a calcular suas necessidades nutricionais e manter uma dieta saudável.</p>
   <h2>Como Usar:</h2>
   <p>Siga estes passos simples para começar:</p>
