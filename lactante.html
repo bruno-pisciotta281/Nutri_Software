@@ -220,6 +220,44 @@
     background-color: #45a049;
   }
 
+  /* Estilos para a Tabela Informativa de IMC */
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    background-color: #fff;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+
+  thead {
+    background-color: #45a049;
+    color: #fff;
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+
+  /* Estilos para células específicas */
+  tbody td:first-child {
+    font-weight: bold;
+  }
+
+  tbody td:last-child {
+    font-style: italic;
+  }
+
+  /* Adicionando algum espaçamento e margem inferior */
+  table {
+    margin-bottom: 20px;
+  }
+
 </style>
 
 <body>
@@ -267,7 +305,30 @@
     <h2>Resultado</h2>
     <div id="result"></div>
     <script src="script.js"></script>
+    <p style="font-size: 15px;">(Sem acréscimo de depósito)</p>
     <button class="btnmodal" type="button" id="showResolutionBtn" onclick="showResolutionForLactantes()">Ver Resolução</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Semestre</th>
+          <th>Acréscimos para depósito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1º</td>
+          <td> <strong>540 kcal*</strong> (540 - 140 = <strong>400kcal</strong>)</td>
+        </tr>
+        <tr>
+          <td>2º</td>
+          <td>380 kcal</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size: 15px;">*Subtração de <strong>140kcal</strong> para mobilização de <strong>RESERVAS MATERNAS</strong> e ajuste de peso, e se a perda de peso necessitar ser maior, pode usar PPG na equação preditiva.</p>
+
     <hr class="soon2">
     <h1 class="footer">Em desenvolvimento por: Bruno Pisciotta e Duda Dias ♡</h1>
   </div>

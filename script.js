@@ -241,7 +241,7 @@ function calculateEERForLactentes() {
         EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 200;
       } else if (ageInMonths <= 6) {
         EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 50;
-      } else if (ageInMonths <= 12) {
+      } else if (ageInMonths <= 36) {
         EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 20;
       }
     } else if (sex.value === 'menina') {
@@ -251,6 +251,8 @@ function calculateEERForLactentes() {
         EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 60;
       } else if (ageInMonths <= 12) {
         EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 20;
+      }else if(ageInMonths <= 36){
+        EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 15;
       }
     }
   }
@@ -303,7 +305,7 @@ function showSolutionForLactentes() {
           <strong>EER =</strong> -716.45 - (1 * ${ageInYears}) + (17.82 * ${heightInCm}) + (15.06 * ${weight}) + 50.<br><br>
           <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
         `;
-      } else if (ageInMonths <= 12) {
+      } else if (ageInMonths <= 36) {
         EER = -716.45 - (1 * ageInYears) + (17.82 * heightInCm) + (15.06 * weight) + 20;
         explanation = `
           A fórmula utilizada para calcular o GET para lactentes <strong>meninos</strong> com idade entre <strong>6 e 12 meses</strong> é:<br><br>
@@ -324,7 +326,7 @@ function showSolutionForLactentes() {
       } else if (ageInMonths <= 6) {
         EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 60;
         explanation = `
-          A fórmula utilizada para calcular o GET para lactentes <strong>meninas</strong> com idade entre <strong>3 e 6 meses</strong> é:<br><br>
+          A fórmula utilizada para calcular o GET para lactentes <strong>meninas</strong> com idade entre <strong>3 a 6 meses</strong> é:<br><br>
           <strong>EER =</strong> -69.15 - (80 * idade em anos) + (2.65 * altura em cm) + (57.15 * peso) + 60.<br><br>
           <strong>EER =</strong> -69.15 - (80 * ${ageInYears}) + (2.65 * ${heightInCm}) + (57.15 * ${weight}) + 60.<br><br>
           <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
@@ -332,12 +334,20 @@ function showSolutionForLactentes() {
       } else if (ageInMonths <= 12) {
         EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 20;
         explanation = `
-          A fórmula utilizada para calcular o GET para lactentes <strong>meninas</strong> com idade entre <strong>6 e 12 meses</strong> é:<br><br>
+          A fórmula utilizada para calcular o GET para lactentes <strong>meninas</strong> com idade entre <strong>6 a 12 meses</strong> é:<br><br>
           <strong>EER =</strong> -69.15 - (80 * idade em anos) + (2.65 * altura em cm) + (57.15 * peso) + 20.<br><br>
           <strong>EER =</strong> -69.15 - (80 * ${ageInYears}) + (2.65 * ${heightInCm}) + (57.15 * ${weight}) + 20.<br><br>
           <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
         `;
-      }
+       } else if (ageInMonths <= 36) {
+        EER = -69.15 - (80 * ageInYears) + (2.65 * heightInCm) + (57.15 * weight) + 15;
+        explanation = `
+          A fórmula utilizada para calcular o GET para lactentes <strong>meninas</strong> com idade entre <strong>12 a 36 meses</strong> é:<br><br>
+          <strong>EER =</strong> -69.15 - (80 * idade em anos) + (2.65 * altura em cm) + (57.15 * peso) + 20.<br><br>
+          <strong>EER =</strong> -69.15 - (80 * ${ageInYears}) + (2.65 * ${heightInCm}) + (57.15 * ${weight}) + 20.<br><br>
+          <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+        `;
+       }
     }
   }
 
