@@ -76,10 +76,9 @@ session_start();
     font-size: 1.5em;
   }
 
-  p {
-    font-size: 1.2em;
+ p {
+    font-size: 1.1em;
   }
-
   /* Estilização da navbar lateral */
   .sidebar {
     background-color: #333;
@@ -229,8 +228,7 @@ if (isset($_COOKIE['user_identifier'])) {
 
   <hr class="soon2">
   <h1>Bem-vindo(a) ao Software de Nutrição D&B </h1>
-  <p style="text-align:center;">O D&B software te auxilia a calcular as  necessidades nutricionais de acordo com a <strong>idade</strong>, <strong>sexo</strong> e <strong>estado fisiológico</strong>. As fórmulas utilizadas para os cálculos tem como base a <strong>DRI 2023</strong> .</p>
-  <hr class="soon2">
+  <p style="text-align:center;">O software NTTD&B te auxilia a calcular as necessidades calóricas de acordo com a <strong>idade</strong>, <strong>sexo</strong> e <strong>estado fisiológico</strong> na área de Nutrição. <br> <br> As fórmulas utilizadas para os cálculos tem como base a <strong>DRI 2023</strong> .</p>
   <h2>Como Usar:</h2>
   <p>Siga estes passos simples para começar:</p>
   <ol>
