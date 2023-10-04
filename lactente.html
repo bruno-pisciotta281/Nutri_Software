@@ -122,8 +122,6 @@
   /* Botão de toggle para abrir a barra lateral */
   .toggle-btn {
     position: absolute;
-    top: 10px;
-    left: 10px; 
     font-size: 30px;
     color: #555;
     cursor: pointer;
@@ -245,7 +243,6 @@ input[type="radio"] {
 </style>
 <body>
      <!-- Navbar -->
-  <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
   <div class="sidebar" id="mySidebar">
     <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006;</a>
     <hr class="soon1">
@@ -261,6 +258,7 @@ input[type="radio"] {
   </div>
   </div>
     <div class="container">
+      <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
         <br>
         <h1>Calculadora para Lactentes</h1>
         <p>Insira as informações abaixo para calcular o GET de Lactentes.</p>

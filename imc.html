@@ -117,8 +117,6 @@
   /* Botão de toggle para abrir a barra lateral */
   .toggle-btn {
     position: absolute;
-    top: 10px;
-    left: 10px; 
     font-size: 30px;
     color: #555;
     cursor: pointer;
@@ -255,7 +253,6 @@
 </head>
 <body>
 <!-- Navbar -->
-<div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
 <div class="sidebar" id="mySidebar">
   <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006;</a>
   <hr class="soon1">
@@ -272,6 +269,7 @@
 
 <!-- Seção da Calculadora de IMC -->
 <div class="container">
+  <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
   <br>
   <h1>Calculadora de IMC</h1>
   <p>Insira os dados abaixo para calcular o Índice de Massa Corporal (IMC).</p>

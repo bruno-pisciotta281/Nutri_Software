@@ -106,9 +106,7 @@ session_start();
 
   /* Botão de toggle para abrir a barra lateral */
   .toggle-btn {
-    position: absolute;
-    top: 10px;
-    left: 10px; 
+    position: absolute; 
     font-size: 30px;
     color: #555;
     cursor: pointer;
@@ -183,7 +181,6 @@ session_start();
 
 </style>
 <body>
-  <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
   <div class="sidebar" id="mySidebar">
     <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006;</a>
     <hr class="soon1">
@@ -200,6 +197,7 @@ session_start();
 </div>
 <!-- Conteúdo Principal -->
 <div class="container">
+<div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
 <button class="btn btn-danger logout-button" onclick="logout()"><strong>SAIR</strong></button>
 <?php
 require_once("config.php");
@@ -228,6 +226,9 @@ if (isset($_COOKIE['user_identifier'])) {
 
   <hr class="soon2">
   <h1>Bem-vindo(a) ao Software de Nutrição <strong>NutriD&B</strong></h1>
+  <img style="height: 200px" src="../media/hello.svg" alt="">
+  <br>
+
   <p style="text-align:center;">O software NutriD&B te auxilia a calcular as necessidades energéticas de acordo com a <strong>idade</strong>, <strong>sexo</strong> e <strong>estado fisiológico</strong> na área de Nutrição. <br> <br> As fórmulas utilizadas para os cálculos tem como base a <strong>DRI 2023</strong>.</p>
   <hr class="soon2">
   <h2>Como Usar:</h2>

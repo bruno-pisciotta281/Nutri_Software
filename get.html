@@ -121,15 +121,13 @@
     background-color: #555;
   }
 
-  /* Botão de toggle para abrir a barra lateral */
   .toggle-btn {
-    position: absolute;
-    top: 10px;
-    left: 10px; 
-    font-size: 30px;
-    color: #555;
-    cursor: pointer;
-  }
+  position: absolute;
+  font-size: 30px;
+  color: #555;
+  cursor: pointer;
+  z-index: 9999;
+}
 
   /* Ajuste da posição do toggle para a esquerda em dispositivos móveis */
   @media (max-width: 768px) {
@@ -262,7 +260,6 @@
 
 <body>
   <!-- Navbar -->
-  <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
   <div class="sidebar" id="mySidebar">
     <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006;</a>
     <hr class="soon1">
@@ -279,6 +276,7 @@
 
   <!-- Seção da Calculadora de GET para Gestantes -->
   <div class="container">
+    <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
     <br>
     <h1>Calculadora de GET para Gestantes</h1>
     <p>Insira os dados abaixo para calcular o Gasto Energético Total (GET) para gestantes.</p>
