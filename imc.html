@@ -276,7 +276,7 @@
   <h1>Calculadora de IMC</h1>
   <p>Insira os dados abaixo para calcular o Índice de Massa Corporal (IMC).</p>
   <form id="bmi-form">
-    <label for="preWeight">Peso (em kg):</label>
+    <label for="preWeight">Peso (Kg):</label>
     <input type="number" id="preWeight" name="preWeight">
     <br>
 
@@ -392,7 +392,7 @@ const modal = document.getElementById("resolutionModal");
     <p>Aqui está a lógica para calcular o IMC:</p>
     <p>IMC = Peso (kg) / (Altura (metros) * Altura (metros))</p>
     <p>IMC = ${preWeight} / (${heightM} * ${heightM})</p>
-    <p>IMC = ${BMI.toFixed(2)}</p>
+    <p> <strong> IMC = ${BMI.toFixed(2)} </strong></p>
   `;
 }
 

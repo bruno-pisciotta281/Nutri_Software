@@ -228,14 +228,15 @@ if (isset($_COOKIE['user_identifier'])) {
 
   <hr class="soon2">
   <h1>Bem-vindo(a) ao Software de Nutrição <strong>NutriD&B</strong></h1>
-  <p style="text-align:center;">O software NutriD&B te auxilia a calcular as necessidades calóricas de acordo com a <strong>idade</strong>, <strong>sexo</strong> e <strong>estado fisiológico</strong> na área de Nutrição. <br> <br> As fórmulas utilizadas para os cálculos tem como base a <strong>DRI 2023</strong>.</p>
+  <p style="text-align:center;">O software NutriD&B te auxilia a calcular as necessidades energéticas de acordo com a <strong>idade</strong>, <strong>sexo</strong> e <strong>estado fisiológico</strong> na área de Nutrição. <br> <br> As fórmulas utilizadas para os cálculos tem como base a <strong>DRI 2023</strong>.</p>
   <hr class="soon2">
   <h2>Como Usar:</h2>
   <p>Siga estes passos simples para começar:</p>
   <ol>
     <li>Escolha uma calculadora abaixo.</li>
-    <li>Preencha os campos com suas informações pessoais.</li>
+    <li>Na Calculadora preencha os campos com as informações solicitadas.</li>
     <li>Clique no botão "Calcular" para obter seus resultados.</li>
+    <li>Depois em "Solução" para verificar como o calculo foi realizado!</li>
   </ol>
   <hr class="soon2">
   <h1>Calculadoras:</h1>
@@ -245,6 +246,7 @@ if (isset($_COOKIE['user_identifier'])) {
     <a href="../lactante.html" class="btn btn-primary">GET para Lactantes</a>
     <a href="../lactente.html" class="btn btn-primary">GET para Lactentes</a>
   </div>
+  <center><p style="font-size: 15px;">Em breve mais funcionalidades!</p></center>
   <?php
     // Verificar se o cookie de identificador está presente
 if (isset($_COOKIE['user_identifier'])) {
