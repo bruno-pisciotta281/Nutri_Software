@@ -5,47 +5,61 @@ session_start();
 // Incluir o arquivo de configuração
 require_once("config.php");
 
-// Função para listar os usuários
-function listarUsuarios() {
-  global $pdo;
+// Função para listar os usuários com base em um filtro de nome
+function listarUsuarios($filterName = "") {
+    global $pdo;
 
-  $sql = "SELECT id, nome, email, role FROM usuarios"; // Adicione o campo "role" na consulta SQL
-  $stmt = $pdo->query($sql);
+    $sql = "SELECT id, nome, email, role FROM usuarios";
 
-  if ($stmt) {
-      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      if (count($result) > 0) {
-          echo '<table class="table">';
-          echo '<thead>';
-          echo '<tr>';
-          echo '<th>ID</th>';
-          echo '<th>Nome</th>';
-          echo '<th>Email</th>';
-          echo '<th>Role</th>'; // Adicione a coluna "Role"
-          echo '<th>Ações</th>';
-          echo '</tr>';
-          echo '</thead>';
-          echo '<tbody>';
-          foreach ($result as $row) {
-              echo '<tr>';
-              echo '<td data-label="ID">' . $row['id'] . '</td>';
-              echo '<td data-label="Nome">' . $row['nome'] . '</td>';
-              echo '<td data-label="Email">' . $row['email'] . '</td>';
-              echo '<td data-label="Role">' . $row['role'] . '</td>'; // Exiba o valor da coluna "role"
-              echo '<td>';
-              echo '<a href="editar_usuario.php?id=' . $row['id'] . '" class="btn btn-primary">Editar</a>';
-              echo '<button onclick="confirmDelete(' . $row['id'] . ')" class="btn btn-danger">Excluir</button>';
-              echo '</td>';
-              echo '</tr>';
-          }
-          echo '</tbody>';
-          echo '</table>';
-      } else {
-          echo "Nenhum usuário encontrado.";
-      }
-  } else {
-      echo "Erro na consulta: " . $pdo->errorInfo()[2];
-  }
+    // Se um filtro de nome foi especificado, adicione uma cláusula WHERE à consulta
+    if (!empty($filterName)) {
+        $sql .= " WHERE nome LIKE :filterName";
+    }
+
+    $stmt = $pdo->prepare($sql);
+
+    // Se um filtro de nome foi especificado, vincule o parâmetro
+    if (!empty($filterName)) {
+        $filterName = "%$filterName%";
+        $stmt->bindParam(':filterName', $filterName, PDO::PARAM_STR);
+    }
+
+    $stmt->execute();
+
+    if ($stmt) {
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (count($result) > 0) {
+            echo '<table class="table">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>ID</th>';
+            echo '<th>Nome</th>';
+            echo '<th>Email</th>';
+            echo '<th>Role</th>';
+            echo '<th>Ações</th>';
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+            foreach ($result as $row) {
+                echo '<tr>';
+                echo '<td data-label="ID">' . $row['id'] . '</td>';
+                echo '<td data-label="Nome">' . $row['nome'] . '</td>';
+                echo '<td data-label="Email">' . $row['email'] . '</td>';
+                echo '<td data-label="Role">' . $row['role'] . '</td>';
+                echo '<td>';
+                echo '<a href="editar_usuario.php?id=' . $row['id'] . '" class="btn btn-primary">Editar</a>';
+                echo '<button onclick="confirmDelete(' . $row['id'] . ')" class="btn btn-danger">Excluir</button>';
+                echo '</td>';
+                echo '</tr>';
+            }
+            echo '</tbody>';
+            echo '</table>';
+        } else {
+            echo "Nenhum usuário encontrado.";
+        }
+    } else {
+        echo "Erro na consulta: " . $pdo->errorInfo()[2];
+    }
 }
 
 ?>
@@ -53,7 +67,6 @@ function listarUsuarios() {
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Inclua o jQuery para os alertas -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -260,7 +273,7 @@ a{
   font-size: 13px;
   height: 25px;
   width: 55px;
-  float: left;
+
   text-align: center; /* Centraliza o texto horizontalmente */
   display: flex;
   align-items: center; /* Centraliza verticalmente */
@@ -274,27 +287,52 @@ a{
 
   </style>
 <body>
-  <div class="container">
-  <a href="home.php"><button class="btn-back"><strong>Voltar</strong></button></a>
-  <br>
+<div class="container">
+<center><a href="home.php"><button class="btn-back"><strong>Voltar</strong></button></a></center>
+<hr class="soon2">
     <h1>Gerenciamento de Usuários</h1>
     <p style="font-size: 15px;">Esta é a página de gerenciamento de usuários, aqui você pode excluir, adicionar ou editar os usuários já existentes no Software.</p>
-
     <hr class="soon2">
-    
+    <!-- Campo de pesquisa por nome -->
+    <div class="form-group">
+        <input type="text" class="form-control" id="searchName" placeholder="Pesquisar usuários por nome">
+    </div>
+
     <!-- Botão para adicionar usuário -->
     <a href="../cadastro.html" class="btn btn-success">Adicionar Usuário</a>
 
     <!-- Listagem de usuários -->
-    <?php listarUsuarios(); ?>
-  </div>
-  <br>
-  <script>
+    <div id="userList">
+        <?php listarUsuarios(); ?>
+    </div>
+</div>
+<br>
+<script>
     function confirmDelete(userId) {
         if (confirm("Tem certeza de que deseja excluir este usuário?")) {
             window.location.href = 'excluir_usuario.php?id=' + userId;
         }
     }
-  </script>
+
+    // Lidar com a pesquisa à medida que as letras são digitadas
+    $(document).ready(function () {
+        $("#searchName").on("input", function () {
+            var searchName = $("#searchName").val();
+            atualizarListaUsuarios(searchName);
+        });
+
+        // Função para atualizar a lista de usuários com base no filtro de nome
+        function atualizarListaUsuarios(filterName) {
+            $.ajax({
+                type: "POST", // Alterado para POST
+                url: "search_users.php", // Crie um novo arquivo PHP para processar a pesquisa
+                data: { filterName: filterName },
+                success: function (data) {
+                    $("#userList").html(data);
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>
