@@ -218,7 +218,7 @@ if (isset($_COOKIE['user_identifier'])) {
         $userName = $row['nome'];
         echo "<p>Olá, <strong class='user-name'>$userName</strong></p>";
     } else {
-        echo "Efetue Login Novamente!.";
+        echo "Efetue o Login Novamente!";
     }
 } else {
     echo "Usuário não autenticado.";
@@ -273,10 +273,10 @@ if (isset($_COOKIE['user_identifier'])) {
           echo '<a href="manage_users.php" class="btn btn-primary">Gerenciar Usuários</a>';
       }
   } else {
-      echo "Efetue Login Novamente!.";
+      echo ".";
   }
 } else {
-  echo "Usuário não autenticado.";
+  echo ".";
 }
 ?>
   <hr class="soon2">
