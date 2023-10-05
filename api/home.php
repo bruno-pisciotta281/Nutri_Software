@@ -221,7 +221,7 @@ if (isset($_COOKIE['user_identifier'])) {
         echo "Efetue o Login Novamente!";
     }
 } else {
-    echo "Usuário não autenticado.";
+    echo "Efetue o Login Novamente!";
 }
 ?>
 
