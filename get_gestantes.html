@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <!--Arquivos CSS e JavaScript do Bootstrap -->
+   <!-- Inclua os arquivos CSS e JavaScript do Bootstrap -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -10,8 +11,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <title>Calculadora para Lactentes</title>
+  <title>Calculadora de GET para Gestantes</title>
 </head>
+
 <style>
   /* Estilos globais */
   body {
@@ -43,7 +45,7 @@
     }
   }
 
-  /* Componentes Específicos */
+  /* Componentes específicos */
   h1,
   h2 {
     color: #444;
@@ -119,19 +121,19 @@
     background-color: #555;
   }
 
-  /* Botão de toggle para abrir a barra lateral */
   .toggle-btn {
-    position: absolute;
-    font-size: 30px;
-    color: #555;
-    cursor: pointer;
-  }
+  position: absolute;
+  font-size: 30px;
+  color: #555;
+  cursor: pointer;
+  z-index: 9999;
+}
 
-  /* Ajusta a posição do toggle para a esquerda em dispositivos móveis */
+  /* Ajuste da posição do toggle para a esquerda em dispositivos móveis */
   @media (max-width: 768px) {
     .toggle-btn {
       left: 25px;
-      top: 25px; 
+      top: 20px; 
     }
   }
 
@@ -167,8 +169,9 @@
     text-align: center;
   }
 
- /* Estilos para o modal */
- .modal {
+
+  /* Estilos para o modal */
+  .modal {
     display: none; /* Ocultar o modal por padrão */
     position: fixed;
     z-index: 1;
@@ -211,38 +214,52 @@
     cursor: pointer;
   }
 
-  /* Estilos para o container de texto e botões de seleção */
-.sex-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.points {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Ajustado para colocar os botões lado a lado */
-  margin-top: 10px;
-}
-
-.sex-container label,
-.points label {
-  margin: 0; /* Removido o espaçamento para alinhar os textos e os botões */
-}
-
-/* Estilos para os botões de rádio */
-input[type="radio"] {
-  margin: 0 5px; /* Ajuste o espaçamento entre os botões aqui */
-}
-
   btnmodal:hover {
     background-color: #45a049;
   }
 
+   /* Estilos para a Tabela Informativa de IMC */
+   table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    background-color: #fff;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+
+  thead {
+    background-color: #45a049;
+    color: #fff;
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+
+  /* Estilos para células específicas */
+  tbody td:first-child {
+    font-weight: bold;
+  }
+
+  tbody td:last-child {
+    font-style: italic;
+  }
+
+  /* Adicionando algum espaçamento e margem inferior */
+  table {
+    margin-bottom: 20px;
+  }
+
 </style>
-</style>
+
 <body>
-     <!-- Navbar -->
+  <!-- Navbar -->
   <div class="sidebar" id="mySidebar">
     <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006;</a>
     <hr class="soon1">
@@ -250,54 +267,83 @@ input[type="radio"] {
     <hr class="soon1">
     <h2 class="tnav">Calculadoras:</h2>
     <a href="imc.html">Índice de Massa Corporal</a>
-    <a href="get.html">Gasto Energético Total para Gestantes</a>
-    <a href="lactante.html">Gasto Energético Total para Lactantes</a>
-    <a href="lactente.html">Gasto Energético Total para Lactentes</a>
+    <a href="get_gestantes.html">Gasto Energético Total para Gestantes</a>
+    <a href="get_lactantes.html">Gasto Energético Total para Lactantes</a>
+    <a href="get_lactentes.html">Gasto Energético Total para Lactentes</a>
+    <a href="get_adultos.html">Gasto Energético Total para Adultos</a>
     <hr class="soon1">
     <p class="soon">Em breve mais funcionalidades!</p>
   </div>
-  </div>
-    <div class="container">
-      <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
-        <br>
-        <h1>Calculadora para Lactentes</h1>
-        <p>Insira as informações abaixo para calcular o GET de Lactentes.</p>
-          <form id="lactante-form">
-            <label for="sex">Sexo:</label>
-            <br>
-            <div class="sex-container">
-              <div>
-                <label for="sex-male">Menino</label>
-                <input type="radio" id="sex-male" name="sex" value="menino">
-              </div>
-              <div>
-                <label for="sex-female">Menina</label>
-                <input type="radio" id="sex-female" name="sex" value="menina">
-              </div>
-            </div>
-            <label for="age">Idade (0 a 36 meses):</label>
-            <input type="number" id="age" name="age" required>
 
-            <label for="height">Altura (Cm):</label>
-            <input type="number" id="height" name="height" required>
-
-            <label for="weight">Peso (kg):</label>
-            <input type="number" id="weight" name="weight" required>
-
-            <button type="button" onclick="calculateEERForLactentes()">Calcular</button>
-        </form>
-
-        <h2>Resultado</h2>
-        <div id="result"></div>
-        <script src="script.js"></script>
-        <button class="btnmodal" type="button" onclick="showSolutionForLactentes()">Ver Solução</button>
+  <!-- Seção da Calculadora de GET para Gestantes -->
+  <div class="container">
+    <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
+    <br>
+    <h1>Calculadora de GET para Gestantes</h1>
+    <p>Insira os dados abaixo para calcular o Gasto Energético Total (GET) para gestantes.</p>
+    <form id="eer-form">
+      <label for="age">Idade:</label>
+      <input type="number" id="age" name="age">
+      <br>
+      <label for="postWeight">Peso atual (kg):</label>
+      <input type="number" id="postWeight" name="postWeight">
+      <br>
+      <label for="height">Altura (Cm):</label>
+      <input type="number" id="height" name="height">
+      <br>
+      <label for="weeks">Período da gestação em semanas:</label>
+      <input type="number" id="weeks" name="weeks">
+      <br>
+      <label for="activityLevel">Nível de Atividade:</label>
+      <select id="activityLevel" name="activityLevel">
+        <option value="Sedentária">Sedentária</option>
+        <option value="Pouco Ativa">Pouco Ativa</option>
+        <option value="Ativa">Ativa</option>
+        <option value="Muito Ativa">Muito Ativa</option>
+      </select>
+      <br>
+      <button type="button" onclick="calculateEER()">Calcular</button>
+    </form>
+    <h2>Resultado</h2>
+    <div id="result"></div>
+    <script src="script.js"></script>
+    <p style="font-size: 15px;">(Sem acréscimo de depósito)</p>
+    <button class="btnmodal" type="button" id="showResolutionBtn" onclick="showResolution()">Ver Resolução</button>
+    <br>
+  <h1>Tabela Informativa</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Trimestre</th>
+        <th>Acréscimos para depósito</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1º Tri</td>
+        <td>0 (zero)</td>
+      </tr>
+      <tr>
+        <td>2º e 3º Tri</td>
+        <td>
+          <ul>
+            <p style="font-size: 12px;">Baixo peso pré-gestacional: <strong>+300 kcal</strong></p>
+            <hr class="soon2">
+            <p style="font-size: 12px;">Peso pré-gestacional normal: <strong>+200 kcal</strong></p>
+            <hr class="soon2">
+            <p style="font-size: 12px;">Peso pré-gestacional em sobrepeso: <strong>+150 kcal</strong></p>
+            <hr class="soon2">
+            <p style="font-size: 12px;">Peso pré-gestacional em obesidade: <strong>-50 kcal</strong></p>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
     <hr class="soon2">
-    <h1 class="footer">Em desenvolvimento por: Bruno Pisciotta e Duda Dias ♡</h1>
+    <h1 class="footer">Em desenvolvimento por: <br> Bruno Pisciotta e Duda Dias ♡</h1>
   </div>
-    </div>
-</body>
 <br>
-<script>
+  <script>
     // Script para a funcionalida da sidebar
     let sidebarOpen = false;
 
@@ -330,31 +376,30 @@ input[type="radio"] {
       sidebarOpen = false;
     }
 
-// Função para abrir o modal de resolução
-function closeSolutionModal() {
-  const modal = document.getElementById("solutionModal");
+// Função para fechar o modal da resolução do GET
+function closeResolution() {
+  const modal = document.getElementById("resolutionModal");
   modal.style.display = "none";
 }
 
 // Fecha o modal se o usuário clicar fora dele
 window.onclick = function(event) {
-  const modal = document.getElementById("solutionModal");
+  const modal = document.getElementById("resolutionModal");
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
   </script>
 </body>
-<div id="solutionModal" class="modal">
+<!-- Modal da Resolução da Calculadora de GET para Gestantes -->
+<div id="resolutionModal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeSolutionModal()">&times;</span>
-    <h2>Solução do Cálculo de GET para Lactentes:</h2>
+    <span class="close" onclick="closeResolution()">&times;</span>
+    <h2>Resolução do Cálculo de GET para Gestantes:</h2>
     <div id="resolutionContent">
-      <!-- Aqui será exibida a resolução -->
+      <!-- O conteúdo da resolução será exibido aqui -->
     </div>
-    <div id="explanation">
-      <!-- Aqui será exibida a explicação do cálculo -->
-    </div>
+    <p id="explanation"></p> <!-- Elemento para a explicação -->
   </div>
 </div>
 </html>

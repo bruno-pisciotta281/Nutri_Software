@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Arquivos CSS e JavaScript do Bootstrap -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <title>Calculadora para Lactentes</title>
+</head>
+<style>
+  /* Estilos globais */
+  body {
+    font-family: 'Montserrat', sans-serif !important;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    max-height: 100vh;
+    margin: 0;
+    flex-direction: column;
+  }
+
+  .container {
+    margin: auto;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 800px;
+    margin-top: 1rem;
+  }
+
+  /* Responsividade para dispositivos menores */
+  @media (max-width: 768px) {
+    .container {
+      width: 90%;
+      padding: 0.8rem;
+    }
+  }
+
+  /* Componentes Específicos */
+  h1,
+  h2 {
+    color: #444;
+    margin: 0.5em 0;
+    font-size: 1.5em;
+  }
+
+  form {
+    margin: 1em 0;
+  }
+
+  label,
+  input,
+  select,
+  button {
+    font-weight: bold;
+    margin: 0.8em 0;
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 0.5em;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.8em 1.5em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  #result {
+    margin-top: 1em;
+    padding: 0.8em;
+    background-color: #e1ffe1;
+    border: 1px solid #a1ffa1;
+    border-radius: 4px;
+    font-size: 1em;
+  }
+
+  /* Estilize a sua navbar lateral aqui */
+  .sidebar {
+    background-color: #333;
+    width: 0; 
+    padding-top: 20px;
+    position: fixed; 
+    height: 100%; 
+    transition: 0.5s; 
+    z-index: 1; 
+    overflow-x: hidden; 
+  }
+
+  .sidebar a {
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+  }
+
+  .sidebar a:hover {
+    background-color: #555;
+  }
+
+  /* Botão de toggle para abrir a barra lateral */
+  .toggle-btn {
+    position: absolute;
+    font-size: 30px;
+    color: #555;
+    cursor: pointer;
+  }
+
+  /* Ajusta a posição do toggle para a esquerda em dispositivos móveis */
+  @media (max-width: 768px) {
+    .toggle-btn {
+      left: 25px;
+      top: 25px; 
+    }
+  }
+
+  /* Conteúdo principal (à direita da navbar) */
+  .content {
+    margin-left: 0; 
+    padding: 20px;
+    transition: 0.5s; 
+  }
+
+  .footer {
+    font-size: 15px;
+  }
+
+  /* Estilos para elementos "em breve" */
+  .soon {
+    color: #ffff;
+    text-align: center;
+  }
+
+  .soon1 {
+    background-color: #ffff;
+    color: #ffff;
+    text-align: center;
+  }
+
+  .soon2{
+    background-color: #333;
+  }
+
+  .tnav {
+    color: #ffff;
+    text-align: center;
+  }
+
+ /* Estilos para o modal */
+ .modal {
+    display: none; /* Ocultar o modal por padrão */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo escurecido */
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .btnmodal{
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.2em 0.8em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  /* Estilos para o container de texto e botões de seleção */
+.sex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.points {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ajustado para colocar os botões lado a lado */
+  margin-top: 10px;
+}
+
+.sex-container label,
+.points label {
+  margin: 0; /* Removido o espaçamento para alinhar os textos e os botões */
+}
+
+/* Estilos para os botões de rádio */
+input[type="radio"] {
+  margin: 0 5px; /* Ajuste o espaçamento entre os botões aqui */
+}
+
+  btnmodal:hover {
+    background-color: #45a049;
+  }
+
+</style>
+</style>
+<body>
+     <!-- Navbar -->
+  <div class="sidebar" id="mySidebar">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006;</a>
+    <hr class="soon1">
+    <a href="api/home.php">Home</a>
+    <hr class="soon1">
+    <h2 class="tnav">Calculadoras:</h2>
+    <a href="imc.html">Índice de Massa Corporal</a>
+    <a href="get_gestantes.html">Gasto Energético Total para Gestantes</a>
+    <a href="get_lactantes.html">Gasto Energético Total para Lactantes</a>
+    <a href="get_lactentes.html">Gasto Energético Total para Lactentes</a>
+    <a href="get_adultos.html">Gasto Energético Total para Adultos</a>
+    <hr class="soon1">
+    <p class="soon">Em breve mais funcionalidades!</p>
+  </div>
+  </div>
+    <div class="container">
+      <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
+        <br>
+        <h1>Calculadora para Lactentes</h1>
+        <p>Insira as informações abaixo para calcular o GET de Lactentes.</p>
+          <form id="lactante-form">
+            <label for="sex">Sexo:</label>
+            <br>
+            <div class="sex-container">
+              <div>
+                <label for="sex-male">Menino</label>
+                <input type="radio" id="sex-male" name="sex" value="menino">
+              </div>
+              <div>
+                <label for="sex-female">Menina</label>
+                <input type="radio" id="sex-female" name="sex" value="menina">
+              </div>
+            </div>
+            <label for="age">Idade (0 a 36 meses):</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="height">Altura (Cm):</label>
+            <input type="number" id="height" name="height" required>
+
+            <label for="weight">Peso (kg):</label>
+            <input type="number" id="weight" name="weight" required>
+
+            <button type="button" onclick="calculateEERForLactentes()">Calcular</button>
+        </form>
+
+        <h2>Resultado</h2>
+        <div id="result"></div>
+        <script src="script.js"></script>
+        <button class="btnmodal" type="button" onclick="showSolutionForLactentes()">Ver Solução</button>
+    <hr class="soon2">
+    <h1 class="footer">Em desenvolvimento por: Bruno Pisciotta e Duda Dias ♡</h1>
+  </div>
+    </div>
+</body>
+<br>
+<script>
+    // Script para a funcionalida da sidebar
+    let sidebarOpen = false;
+
+    function toggleNav() {
+      const sidebar = document.getElementById("mySidebar");
+      const content = document.querySelector(".container");
+      const toggleBtn = document.querySelector(".toggle-btn");
+
+      if (!sidebarOpen) {
+        sidebar.style.width = "250px";
+        content.style.marginLeft = "250px";
+        toggleBtn.style.display = "none";
+        sidebarOpen = true;
+      } else {
+        sidebar.style.width = "0";
+        content.style.marginLeft = "auto"; 
+        toggleBtn.style.display = "block";
+        sidebarOpen = false;
+      }
+    }
+
+    function closeNav() {
+      const sidebar = document.getElementById("mySidebar");
+      const content = document.querySelector(".container");
+      const toggleBtn = document.querySelector(".toggle-btn");
+
+      sidebar.style.width = "0";
+      content.style.marginLeft = "auto"; 
+      toggleBtn.style.display = "block";
+      sidebarOpen = false;
+    }
+
+// Função para abrir o modal de resolução
+function closeSolutionModal() {
+  const modal = document.getElementById("solutionModal");
+  modal.style.display = "none";
+}
+
+// Fecha o modal se o usuário clicar fora dele
+window.onclick = function(event) {
+  const modal = document.getElementById("solutionModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+  </script>
+</body>
+<div id="solutionModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeSolutionModal()">&times;</span>
+    <h2>Solução do Cálculo de GET para Lactentes:</h2>
+    <div id="resolutionContent">
+      <!-- Aqui será exibida a resolução -->
+    </div>
+    <div id="explanation">
+      <!-- Aqui será exibida a explicação do cálculo -->
+    </div>
+  </div>
+</div>
+</html>

@@ -55,11 +55,11 @@ session_start();
     margin-bottom: 1rem; /* Espaço inferior entre os botões */
   }
 
-  /* Estilo condicional para o último botão 
+  /* Estilo condicional para o último botão */
   .btn:last-child {
     flex-basis: 100%; 
   }
-*/
+
   .btn:hover {
     background-color: #45a049;
   }
@@ -189,9 +189,10 @@ session_start();
     <hr class="soon1">
     <h2 class="tnav">Calculadoras:</h2>
     <a href="../imc.html">Índice de Massa Corporal</a>
-    <a href="../get.html">Gasto Energético Total para Gestantes</a>
-    <a href="../lactante.html">Gasto Energético Total para Lactantes</a>
-    <a href="../lactente.html">Gasto Energético Total para Lactentes</a>
+    <a href="../get_gestantes.html">Gasto Energético Total para Gestantes</a>
+    <a href="../get_lactantes.html">Gasto Energético Total para Lactantes</a>
+    <a href="../get_lactentes.html">Gasto Energético Total para Lactentes</a>
+    <a href="../get_adultos.html">Gasto Energético Total para Adultos</a>
     <hr class="soon1">
     <p class="soon">Em breve mais funcionalidades!</p>
   </div>
@@ -218,10 +219,10 @@ if (isset($_COOKIE['user_identifier'])) {
         $userName = $row['nome'];
         echo "<p>Olá, <strong class='user-name'>$userName</strong></p>";
     } else {
-        echo "Efetue o Login Novamente!";
+        echo "Faça o Login Novamente!";
     }
 } else {
-    echo "Efetue o Login Novamente!";
+    echo "Faça o Login Novamente!";
 }
 ?>
 
@@ -244,9 +245,10 @@ if (isset($_COOKIE['user_identifier'])) {
   <h1>Calculadoras:</h1>
   <div class="btn-container">
     <a href="../imc.html" class="btn btn-primary">Calculadora de IMC</a>
-    <a href="../get.html" class="btn btn-primary">GET para Gestantes</a>
-    <a href="../lactante.html" class="btn btn-primary">GET para Lactantes</a>
-    <a href="../lactente.html" class="btn btn-primary">GET para Lactentes</a>
+    <a href="../get_gestantes.html" class="btn btn-primary">GET para Gestantes</a>
+    <a href="../get_lactantes.html" class="btn btn-primary">GET para Lactantes</a>
+    <a href="../get_lactentes.html" class="btn btn-primary">GET para Lactentes</a>
+    <a href="../get_adultos.html" class="btn btn-primary">GET para Adultos</a>
   </div>
   <center><p style="font-size: 15px;">Em breve mais funcionalidades!</p></center>
   <?php
