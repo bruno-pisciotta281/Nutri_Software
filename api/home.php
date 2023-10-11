@@ -275,6 +275,10 @@ if (isset($_COOKIE['user_identifier'])) {
           echo '<hr class="soon2">';
           echo '<h1>Gestão:</h1>';
           echo '<a href="manage_users.php" class="btn btn-primary">Gerenciar Usuários</a>';
+
+          echo '<hr class="soon2">';
+          echo '<h1>Conteúdos:</h1>';
+          echo '<a href="../conteudo.html" class="btn btn-primary">Acesso aos Conteúdos</a>';
       }
   } else {
       echo ".";

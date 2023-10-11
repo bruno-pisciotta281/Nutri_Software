@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <!-- Inclua os arquivos CSS e JavaScript do Bootstrap -->
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+       <title>Calculadora de GET para Adultos</title>
+     </head>
+<style>
+    /* Estilos globais */
+    body {
+      font-family: 'Montserrat', sans-serif !important;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      max-height: 100vh;
+      margin: 0;
+      flex-direction: column;
+    }
+  
+    .container {
+      margin: auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 800px;
+      margin-top: 1rem;
+    }
+  
+    /* Responsividade para dispositivos menores */
+    @media (max-width: 768px) {
+      .container {
+        width: 90%;
+        padding: 0.8rem;
+      }
+    }
+  
+    /* Componentes específicos */
+    h1,
+    h2 {
+      color: #444;
+      margin: 0.5em 0;
+      font-size: 1.5em;
+    }
+  
+    form {
+      margin: 1em 0;
+    }
+  
+    label,
+    input,
+    select,
+    button {
+      font-weight: bold;
+      margin: 0.8em 0;
+    }
+  
+    input,
+    select {
+      width: 100%;
+      padding: 0.5em;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 0.8em 1.5em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  
+    button:hover {
+      background-color: #45a049;
+    }
+  
+    #result {
+      margin-top: 1em;
+      padding: 0.8em;
+      background-color: #e1ffe1;
+      border: 1px solid #a1ffa1;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+  
+    /* Estilize a sua navbar lateral aqui */
+    .sidebar {
+      background-color: #333;
+      width: 0; 
+      padding-top: 20px;
+      position: fixed; 
+      height: 100%; 
+      transition: 0.5s; 
+      z-index: 1; 
+      overflow-x: hidden; 
+    }
+  
+    .sidebar a {
+      padding: 15px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+    }
+  
+    .sidebar a:hover {
+      background-color: #555;
+    }
+  
+    .toggle-btn {
+    position: absolute;
+    font-size: 30px;
+    color: #555;
+    cursor: pointer;
+    z-index: 9999;
+  }
+  
+    /* Ajuste da posição do toggle para a esquerda em dispositivos móveis */
+    @media (max-width: 768px) {
+      .toggle-btn {
+        left: 25px;
+        top: 20px; 
+      }
+    }
+  
+    /* Conteúdo principal (à direita da navbar) */
+    .content {
+      margin-left: 0; 
+      padding: 20px;
+      transition: 0.5s; 
+    }
+  
+    .footer {
+      font-size: 15px;
+    }
+  
+    /* Estilos para elementos "em breve" */
+    .soon {
+      color: #ffff;
+      text-align: center;
+    }
+  
+    .soon1 {
+      background-color: #ffff;
+      color: #ffff;
+      text-align: center;
+    }
+  
+    .soon2{
+      background-color: #333;
+    }
+  
+    .tnav {
+      color: #ffff;
+      text-align: center;
+    }
+  
+  
+    /* Estilos para o modal */
+    .modal {
+      display: none; /* Ocultar o modal por padrão */
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4); /* Fundo escurecido */
+    }
+  
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+  
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+  
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  
+    .btnmodal{
+      background-color: #4CAF50;
+      color: white;
+      padding: 0.2em 0.8em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  
+    btnmodal:hover {
+      background-color: #45a049;
+    }
+  
+     /* Estilos para a Tabela Informativa de IMC */
+     table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      border: 1px solid #ccc;
+      background-color: #fff;
+    }
+  
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+  
+    thead {
+      background-color: #45a049;
+      color: #fff;
+    }
+  
+    tbody tr:nth-child(odd) {
+      background-color: #f2f2f2;
+    }
+  
+    /* Estilos para células específicas */
+    tbody td:first-child {
+      font-weight: bold;
+    }
+  
+    tbody td:last-child {
+      font-style: italic;
+    }
+  
+    /* Adicionando algum espaçamento e margem inferior */
+    table {
+      margin-bottom: 20px;
+    }
+
+     /* Estilos para o container de texto e botões de seleção */
+.sex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.points {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ajustado para colocar os botões lado a lado */
+  margin-top: 10px;
+}
+
+.sex-container label,
+.points label {
+  margin: 0; /* Removido o espaçamento para alinhar os textos e os botões */
+}
+
+/* Estilos para os botões de rádio */
+input[type="radio"] {
+  margin: 0 5px; /* Ajuste o espaçamento entre os botões aqui */
+}
+
+/* Estiliza o carrossel */
+#contentCarousel {
+  margin-top: 20px;
+  background-color: #f8f9fa;
+}
+
+/* Estiliza os slides do carrossel */
+#contentCarousel .carousel-item {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estiliza os títulos dos slides */
+#contentCarousel .carousel-item h3 {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Estiliza os parágrafos dos slides */
+#contentCarousel .carousel-item p {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Estiliza os controles de navegação */
+#contentCarousel .carousel-control-prev, #contentCarousel .carousel-control-next {
+    bottom: 0; /* Posiciona os controladores na parte inferior */
+  top: auto; /* Remove o posicionamento superior padrão */
+  background-color: #4CAF50;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+/* Estiliza os ícones dos controles de navegação */
+#contentCarousel .carousel-control-prev-icon, #contentCarousel .carousel-control-next-icon {
+  width: 30px;
+  height: 30px;
+  color: #fff;
+}
+
+/* Estiliza o indicador de slides */
+/* Estiliza os indicadores do carrossel */
+#contentCarousel .carousel-indicators {
+  bottom: 10px; /* Posiciona os indicadores na parte inferior com uma pequena margem */
+  text-align: center; /* Centraliza os indicadores horizontalmente */
+}
+
+#contentCarousel .carousel-indicators li {
+  background-color: #888; /* Cor de fundo dos indicadores não ativos */
+  border: 1px solid #777; /* Borda dos indicadores não ativos */
+  border-radius: 50%; /* Torna os indicadores círculos */
+  width: 12px; /* Largura dos indicadores (ajuste conforme necessário) */
+  height: 12px; /* Altura dos indicadores (ajuste conforme necessário) */
+  margin: 0 5px; /* Espaçamento entre os indicadores (ajuste conforme necessário) */
+  cursor: pointer; /* Cursor ao passar o mouse sobre os indicadores */
+}
+
+#contentCarousel .carousel-indicators .active {
+  background-color: #4CAF50; /* Cor de fundo do indicador ativo (pode ser ajustada) */
+}
+
+/* Remover marcadores de lista */
+#contentCarousel .carousel-indicators {
+  list-style: none;
+  padding: 0;
+}
+
+#contentCarousel .carousel-indicators li {
+  display: inline-block; /* Para evitar que os indicadores apareçam em uma lista vertical */
+}
+
+#contentCarousel .carousel-item img {
+  max-width: 50%; /* Define o tamanho máximo da imagem como 100% da largura do contêiner do slide */
+  height: auto; /* Isso mantém a proporção da imagem */
+}
+  </style>
+<body>
+      <!-- Navbar -->
+  <div class="sidebar" id="mySidebar">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006;</a>
+    <hr class="soon1">
+    <a href="api/home.php">Home</a>
+    <hr class="soon1">
+    <h2 class="tnav">Calculadoras:</h2>
+    <a href="imc.html">Índice de Massa Corporal</a>
+    <a href="get_gestantes.html">Gasto Energético Total para Gestantes</a>
+    <a href="get_lactantes.html">Gasto Energético Total para Lactantes</a>
+    <a href="get_lactentes.html">Gasto Energético Total para Lactentes</a>
+    <a href="get_adultos.html">Gasto Energético Total para Adultos</a>
+    <hr class="soon1">
+    <p class="soon">Em breve mais funcionalidades!</p>
+  </div>
+  </div>
+    <div class="container">
+    <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
+    <br>
+    <h2>Página de Conteúdos</h2>
+    <p>Bem vindo a Página de conteúdos, aqui você pode acompanhar os melhores conteúdos sobre os tópicos mais atuais de nutrição com as melhores artes possíveis</p>
+    <img style="height: 150px"src="media/conteudo.svg" alt="">
+    <hr class="soon2">
+    <h1>Conteúdos Disponíveis</h1>
+
+
+        <!-- Adicione este código abaixo do h1 "Conteúdos Disponíveis" -->
+<div id="contentCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicadores do carrossel -->
+    <ul class="carousel-indicators">
+      <li data-target="#contentCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#contentCarousel" data-slide-to="1"></li>
+      <!-- Adicione mais indicadores conforme necessário -->
+    </ul>
+  
+    <!-- Slides do carrossel -->
+    <div class="carousel-inner">
+      <!-- Primeiro slide (conteúdo 1) -->
+      <div class="carousel-item active">
+        <h3>Conteúdo 1</h3>
+          <p>Descrição do Conteúdo 1.</p>
+        <img src="media/carrossel/4motivos0.jpeg" alt="Conteúdo 1" onclick="openContentModal(1)">
+        <div class="carousel-caption">
+        </div>
+      </div>
+  
+      <!-- Segundo slide (conteúdo 2) -->
+      <div class="carousel-item">
+        <h3>Conteúdo 2</h3>
+          <p>Descrição do Conteúdo 2.</p>
+        <img src="media/carrossel/cLeite_materno.jpeg" alt="Conteúdo 2" onclick="openContentModal(2)">
+        <div class="carousel-caption">
+        </div>
+      </div>
+  
+      <!-- Terceiro slide (conteúdo 3) -->
+
+      <!-- Adicione mais slides conforme necessário -->
+    </div>
+  
+<br><br><br>
+
+    <!-- Controles do carrossel -->
+    <a class="carousel-control-prev" href="#contentCarousel" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#contentCarousel" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  </div>
+
+ <!-- Modal para a primeira imagem -->
+<div id="contentModal1" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeContentModal(1)">&times;</span>
+      <div id="modalContent1">
+        <!-- Conteúdo do modal será inserido aqui -->
+        <h1>4 Motivos para preferir frutas a sucos na intrudução alimentar</h1>
+        <hr class="soon2">
+        <p>Conteúdo</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal para a segunda imagem -->
+  <div id="contentModal2" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeContentModal(2)">&times;</span>
+      <div id="modalContent2">
+        <!-- Conteúdo do modal será inserido aqui -->
+        <h1>Curiosidades do Leite Materno</h1>
+        <hr class="soon2">
+        <p>Conteúdo</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Adicione mais modais conforme necessário para cada imagem do carrossel -->
+  
+  
+
+     <hr class="soon2">
+    <h1 class="footer">Em desenvolvimento por: Bruno Pisciotta e Duda Dias ♡</h1>
+</div>
+</div>
+<br>
+</body>
+    <script>
+
+// Script para a funcionalida da sidebar
+let sidebarOpen = false;
+
+function toggleNav() {
+const sidebar = document.getElementById("mySidebar");
+const content = document.querySelector(".container");
+const toggleBtn = document.querySelector(".toggle-btn");
+
+if (!sidebarOpen) {
+sidebar.style.width = "250px";
+content.style.marginLeft = "250px";
+toggleBtn.style.display = "none";
+sidebarOpen = true;
+} else {
+sidebar.style.width = "0";
+content.style.marginLeft = "auto"; 
+toggleBtn.style.display = "block";
+sidebarOpen = false;
+}
+}
+
+function closeNav() {
+const sidebar = document.getElementById("mySidebar");
+const content = document.querySelector(".container");
+const toggleBtn = document.querySelector(".toggle-btn");
+
+sidebar.style.width = "0";
+content.style.marginLeft = "auto"; 
+toggleBtn.style.display = "block";
+sidebarOpen = false;
+}
+
+$(document).ready(function(){
+    // Inicie o carrossel
+    $('#contentCarousel').carousel();
+
+    // Adicione a funcionalidade de clicar para avançar
+    $('#contentCarousel').on('click', '.carousel-control-next', function () {
+      $('#contentCarousel').carousel('next');
+    });
+
+    // Adicione a funcionalidade de clicar para retroceder
+    $('#contentCarousel').on('click', '.carousel-control-prev', function () {
+      $('#contentCarousel').carousel('prev');
+    });
+
+    // Defina o intervalo de tempo para a passagem automática (em milissegundos)
+    $('#contentCarousel').carousel({
+      interval: 3000 // 3 segundos
+    });
+  });
+
+// Adicione um evento de clique a cada indicador
+const indicators = document.querySelectorAll('#contentCarousel .carousel-indicators li');
+indicators.forEach((indicator, index) => {
+  indicator.addEventListener('click', () => {
+    // Vá para o slide correspondente quando o indicador é clicado
+    $('#contentCarousel').carousel(index);
+  });
+});
+
+// Função para abrir o modal com o conteúdo relacionado à imagem
+function openContentModal(modalNumber) {
+  const modal = document.getElementById(`contentModal${modalNumber}`);
+  const modalContent = document.getElementById(`modalContent${modalNumber}`);
+  
+  // Preencha o conteúdo do modal com o conteúdo relacionado à imagem
+  // Por exemplo:
+  modalContent.innerHTML = document.getElementById(`modalContent${modalNumber}`).innerHTML;
+  
+  modal.style.display = "block";
+}
+
+// Função para fechar o modal
+function closeContentModal(modalNumber) {
+  const modal = document.getElementById(`contentModal${modalNumber}`);
+  modal.style.display = "none";
+}
+
+
+</script>
+</html>
