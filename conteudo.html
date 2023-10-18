@@ -126,6 +126,10 @@
     cursor: pointer;
     z-index: 9999;
   }
+
+li {
+  text-align: justify;
+}
   
     /* Ajuste da posição do toggle para a esquerda em dispositivos móveis */
     @media (max-width: 768px) {
@@ -187,6 +191,7 @@
       padding: 20px;
       border: 1px solid #888;
       width: 80%;
+      
     }
   
     .close {
@@ -254,12 +259,7 @@
       margin-bottom: 20px;
     }
 
-     /* Estilos para o container de texto e botões de seleção */
-.sex-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 .points {
   display: flex;
@@ -268,10 +268,7 @@
   margin-top: 10px;
 }
 
-.sex-container label,
-.points label {
-  margin: 0; /* Removido o espaçamento para alinhar os textos e os botões */
-}
+
 
 /* Estilos para os botões de rádio */
 input[type="radio"] {
@@ -358,6 +355,79 @@ input[type="radio"] {
   max-width: 50%; /* Define o tamanho máximo da imagem como 100% da largura do contêiner do slide */
   height: auto; /* Isso mantém a proporção da imagem */
 }
+
+@media (max-width: 768px) {
+  #contentCarousel .carousel-item img {
+    max-width: 100%; /* Define o tamanho máximo da imagem como 100% da largura do contêiner do slide */
+    height: auto;
+      }
+    }
+
+    .pconteudo{
+      text-align: justify;
+    }
+
+/* Estilização da barra de rolagem horizontal */
+::-webkit-scrollbar {
+  width: 12px; /* Largura da barra de rolagem */
+  height: 12px; /* Altura da barra de rolagem */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #45a049; /* Cor do polegar da barra de rolagem */
+  border-radius: 6px; /* Arredondamento do polegar */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #4CAF60; /* Cor do polegar da barra de rolagem ao passar o mouse */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Cor da faixa de rolagem */
+}
+
+/* Estilização da barra de rolagem vertical (caso necessário) */
+/* Você pode ajustar as cores e outros estilos conforme desejado */
+::-webkit-scrollbar-vertical {
+  width: 12px; /* Largura da barra de rolagem vertical */
+  height: 12px; /* Altura da barra de rolagem vertical */
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  background-color: #45a049; /* Cor do polegar da barra de rolagem vertical */
+  border-radius: 6px; /* Arredondamento do polegar vertical */
+}
+
+::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: #4CAF60 ; /* Cor do polegar da barra de rolagem vertical ao passar o mouse */
+}
+
+::-webkit-scrollbar-track:vertical {
+  background-color: #f1f1f1; /* Cor da faixa de rolagem vertical */
+}
+
+/* Estilização da barra de rolagem vertical para dispositivos móveis */
+/* Você pode ajustar as cores e outros estilos conforme desejado */
+@media only screen and (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem vertical */
+  }
+
+  ::-webkit-scrollbar-thumb:vertical {
+    background-color: #45a049; /* Cor do polegar da barra de rolagem vertical */
+    border-radius: 6px; /* Arredondamento do polegar vertical */
+  }
+
+  ::-webkit-scrollbar-thumb:vertical:hover {
+    background-color: #4CAF60; /* Cor do polegar da barra de rolagem vertical ao passar o mouse */
+  }
+
+  ::-webkit-scrollbar-track:vertical {
+    background-color: #f1f1f1; /* Cor da faixa de rolagem vertical */
+  }
+}
+
+
   </style>
 <body>
       <!-- Navbar -->
@@ -373,23 +443,27 @@ input[type="radio"] {
     <a href="get_lactentes.html">Gasto Energético Total para Lactentes</a>
     <a href="get_adultos.html">Gasto Energético Total para Adultos</a>
     <hr class="soon1">
+    <a href="conteudo.html"><strong>Página de Conteúdos</strong></a>
+    <hr class="soon1">
     <p class="soon">Em breve mais funcionalidades!</p>
   </div>
   </div>
     <div class="container">
     <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
     <br>
+    
     <h2>Página de Conteúdos</h2>
-    <p>Bem vindo a Página de conteúdos, aqui você pode acompanhar os melhores conteúdos sobre os tópicos mais atuais de nutrição com as melhores artes possíveis</p>
     <img style="height: 150px"src="media/conteudo.svg" alt="">
+    <p>Bem vindo a Página de conteúdos, aqui você pode acompanhar os melhores conteúdos sobre a área de nutrição, sempre com qualidade e muita informação relevante para te deixar por dentro de tudo sobre os mais diversos assuntos nutricionais!</p>
+  
     <hr class="soon2">
     <h1>Conteúdos Disponíveis</h1>
-
+    <p>Arraste para o lado ou clique nas setas para alternar entre os conteúdos!</p>
 
         <!-- Adicione este código abaixo do h1 "Conteúdos Disponíveis" -->
 <div id="contentCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicadores do carrossel -->
-    <ul class="carousel-indicators">
+    <ul class="carousel-indicators custom-indicators">
       <li data-target="#contentCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#contentCarousel" data-slide-to="1"></li>
       <!-- Adicione mais indicadores conforme necessário -->
@@ -399,8 +473,8 @@ input[type="radio"] {
     <div class="carousel-inner">
       <!-- Primeiro slide (conteúdo 1) -->
       <div class="carousel-item active">
-        <h3>Conteúdo 1</h3>
-          <p>Descrição do Conteúdo 1.</p>
+        <h4>Introdução Alimentar</h4>
+          <p>Clique para acompanhar o conteúdo!</p>
         <img src="media/carrossel/4motivos0.jpeg" alt="Conteúdo 1" onclick="openContentModal(1)">
         <div class="carousel-caption">
         </div>
@@ -408,8 +482,8 @@ input[type="radio"] {
   
       <!-- Segundo slide (conteúdo 2) -->
       <div class="carousel-item">
-        <h3>Conteúdo 2</h3>
-          <p>Descrição do Conteúdo 2.</p>
+        <h3>Curiosidades LM</h3>
+          <p>Clique para acompanhar o conteúdo!</p>
         <img src="media/carrossel/cLeite_materno.jpeg" alt="Conteúdo 2" onclick="openContentModal(2)">
         <div class="carousel-caption">
         </div>
@@ -435,11 +509,26 @@ input[type="radio"] {
 <div id="contentModal1" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeContentModal(1)">&times;</span>
+      <hr class="soon2">
       <div id="modalContent1">
         <!-- Conteúdo do modal será inserido aqui -->
         <h1>4 Motivos para preferir frutas a sucos na intrudução alimentar</h1>
+        <img style="max-width: 50%;" src="media/carrossel/4motivos0.jpeg" alt="">
         <hr class="soon2">
-        <p>Conteúdo</p>
+        <p class="pconteudo">Optar por oferecer frutas em vez de sucos pode trazer diversos benefícios à saúde e ao desenvolvimento da criança. Aqui estão quatro motivos convincentes para preferir frutas à introdução alimentar em vez de sucos:</p>
+        <ol>
+          <li class="pconteudo"><strong>Nutrientes essenciais:</strong> As frutas são naturalmente ricas em vitaminas, minerais e antioxidantes. Ao oferecer frutas em sua forma natural, você garante que seu filho receba todos esses nutrientes essenciais. Frutas como maçãs, bananas, peras e abacates são ótimas opções, pois são ricas em vitaminas C e K, potássio e fibras, que são essenciais para o crescimento e desenvolvimento saudável.</li>
+          <br>
+          <li class="pconteudo"><strong>Fibra dietética:</strong> A introdução de frutas inteiras fornece fibras dietéticas, que são importantes para a saúde digestiva e a formação de bons hábitos alimentares. A fibra também ajuda a regular o trânsito intestinal, reduzindo o risco de constipação. Os sucos, por outro lado, geralmente carecem de fibras, uma vez que muitas vezes são desprovidos da polpa da fruta. Isso pode levar a flutuações no nível de açúcar no sangue e a uma menor sensação de saciedade.</li>
+          <br>
+          <li class="pconteudo"><strong>Menos açúcar:</strong> Os sucos de frutas frequentemente contêm açúcares naturalmente presentes nas frutas, mas em concentrações muito maiores. Ao oferecer frutas inteiras, você controla a quantidade de açúcar ingerida, proporcionando uma alternativa mais saudável. Evitar o consumo excessivo de açúcar é importante para prevenir problemas de saúde, como obesidade, diabetes tipo 2 e cáries dentárias.</li>
+          <br>
+          <li class="pconteudo"s><strong>Habilidades de mastigação:</strong> Oferecer frutas em sua forma natural estimula o desenvolvimento da mastigação e fortalece os músculos da mandíbula da criança. Isso é essencial para a aquisição de habilidades de alimentação e fala. Ao mastigar frutas, as crianças também têm a oportunidade de explorar diferentes texturas, o que é fundamental para o desenvolvimento sensorial.</li>
+        </ol>
+        
+        <hr class="soon2">
+        <p>Não deixe de acompanhar também para mais conteúdos!</p>
+        <p><a target="_blank" href="https://instagram.com/dudadiasoliv?igshid=MzRlODBiNWFlZA==">@dudadiasoliv</p></a>
       </div>
     </div>
   </div>
@@ -450,9 +539,69 @@ input[type="radio"] {
       <span class="close" onclick="closeContentModal(2)">&times;</span>
       <div id="modalContent2">
         <!-- Conteúdo do modal será inserido aqui -->
-        <h1>Curiosidades do Leite Materno</h1>
+        <h1>Curiosidades e Dicas sobre o Leite Materno</h1>
+        <img style="max-width: 50%;" src="media/carrossel/cLeite_materno.jpeg" alt="">
         <hr class="soon2">
-        <p>Conteúdo</p>
+        <h3>Introdução:</h3>
+        <p class="pconteudo">O leite materno é o alimento ideal para os bebês, pois é completo e fornece todos os nutrientes necessários para o seu desenvolvimento. Além disso, o aleitamento materno oferece diversos benefícios para a saúde da mãe e do bebê, como:</p>
+
+        <ul>
+          <li>Diminui o risco de infecções, como diarreia, pneumonia e alergias.</li>
+          <li>Ajuda no desenvolvimento do sistema imunológico.</li>
+          <li>Favorece o vínculo entre mãe e bebê.</li>
+          <li>Pode ajudar a mãe a perder peso.</li>
+          <li>É mais econômico do que a fórmula infantil.</li>
+        </ul>
+
+        <hr class="soon2">
+
+        <h3>Algumas Dicas para o Aleitamento Materno:</h3>
+        <br>
+        <ol>
+          <li class="pconteudo"><strong>Encontre uma posição confortável para você e o bebê:</strong> A posição é fundamental para que a amamentação seja agradável e eficiente. Algumas posições comuns são:</li>
+
+          <br>
+
+          <ul>
+            <li>Deitada de lado.</li>
+            <br>
+            <li>Sentada com o bebê no colo.</li>
+            <br>
+            <li>Sentada com o bebê no braço.</li>
+          </ul>
+
+          <br>
+          <li class="pconteudo"><strong>Mantenha-se hidratada e bem alimentada:</strong> A hidratação é essencial para a produção de leite. Beba bastante água e sucos naturais. Uma alimentação saudável também é importante para fornecer os nutrientes necessários para a produção de leite.
+          </li>
+          <br>
+          <li class="pconteudo"><strong>Aproveite os momentos:</strong> A amamentação é um momento de conexão e intimidade entre mãe e bebê. Aproveite para relaxar e curtir esse momento especial.</li>
+          <br>
+          <li class="pconteudo"s><strong>Peça apoio:</strong> Se você tiver alguma dúvida ou dificuldade, não hesite em procurar ajuda. Existem profissionais de saúde e grupos de apoio que podem te ajudar a amamentar com sucesso.</li>
+          <br>
+          <li class="pconteudo"s><strong>Cada bebê é único.</strong> Cada bebê tem um ritmo de alimentação diferente. Não se preocupe se seu bebê não mamar a mesma quantidade que outro bebê. O importante é que ele esteja ganhando peso e se desenvolvendo bem.</li>
+        </ol>
+
+        <hr class="soon2">
+
+        <h3>Dicas adicionais para amamentação bem-sucedida:</h3>
+      
+        <br>
+
+        <ul>
+          <li>Comece a amamentar o mais cedo possível, logo após o nascimento do bebê.</li>
+          <br>
+          <li>Amamente sempre que o bebê estiver com fome.</li>
+          <br>
+          <li>Não pule as mamadas.</li>
+          <br>
+          <li>Ofereça os dois seios em cada mamada.</li>
+          <br>
+          <li>Se o bebê não estiver mamando bem, procure ajuda de um profissional de saúde.</li>
+        </ul>
+        
+        <hr class="soon2">
+        <p>Conteúdos desenvolvidos por:</p>
+        <p><a target="_blank" href="https://instagram.com/dudadiasoliv?igshid=MzRlODBiNWFlZA==">@dudadiasoliv</p></a>
       </div>
     </div>
   </div>
@@ -530,11 +679,33 @@ indicators.forEach((indicator, index) => {
   });
 });
 
+
+
+// Função para ocultar os indicadores
+function hideIndicators() {
+  for (let indicator of indicators) {
+    indicator.style.display = 'none';
+  }
+}
+
+// Função para exibir os indicadores
+function showIndicators() {
+  for (let indicator of indicators) {
+    indicator.style.display = 'block';
+  }
+}
+
 // Função para abrir o modal com o conteúdo relacionado à imagem
 function openContentModal(modalNumber) {
   const modal = document.getElementById(`contentModal${modalNumber}`);
   const modalContent = document.getElementById(`modalContent${modalNumber}`);
-  
+
+ 
+
+  // Exibe os indicadores novamente
+  hideToggleWhenModalOpen();
+  hideIndicators();
+
   // Preencha o conteúdo do modal com o conteúdo relacionado à imagem
   // Por exemplo:
   modalContent.innerHTML = document.getElementById(`modalContent${modalNumber}`).innerHTML;
@@ -546,8 +717,42 @@ function openContentModal(modalNumber) {
 function closeContentModal(modalNumber) {
   const modal = document.getElementById(`contentModal${modalNumber}`);
   modal.style.display = "none";
+
+   // Oculta os indicadores
+   showIndicators();
+   showToggleWhenModalClosed();
 }
 
+// Fecha o modal se o usuário clicar fora dele
+window.onclick = function(event) {
+  // Verifique se o evento de clique ocorreu em um modal aberto
+  const modals = document.querySelectorAll(".modal");
+  for (const modal of modals) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+
+      // Oculta os indicadores
+   showIndicators();
+   showToggleWhenModalClosed();
+    }
+  }
+}
+
+// Função para ocultar o botão de toggle quando um modal estiver aberto
+function hideToggleWhenModalOpen() {
+  const toggleBtn = document.querySelector(".toggle-btn");
+  if (toggleBtn) {
+    toggleBtn.style.visibility = "hidden";
+  }
+}
+
+// Função para exibir o botão de toggle quando um modal for fechado
+function showToggleWhenModalClosed() {
+  const toggleBtn = document.querySelector(".toggle-btn");
+  if (toggleBtn) {
+    toggleBtn.style.visibility = "visible";
+  }
+}
 
 </script>
 </html>

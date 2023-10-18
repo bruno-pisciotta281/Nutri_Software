@@ -14,7 +14,7 @@ session_start();
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link rel="shortcut icon" href="../media/logo.png">
+  <link rel="shortcut icon" href="../media/logo2.jpeg">
   <title>Tela Inicial - Software de Nutrição</title>
 </head>
 <style>
@@ -80,6 +80,7 @@ session_start();
  p {
     font-size: 1.1em;
   }
+
   /* Estilização da navbar lateral */
   .sidebar {
     background-color: #333;
@@ -180,6 +181,66 @@ session_start();
   justify-content: center; /* Centraliza verticalmente */
 }
 
+/*Estilização da barra de rolagem horizontal */
+::-webkit-scrollbar {
+  width: 12px; /* Largura da barra de rolagem */
+  height: 12px; /* Altura da barra de rolagem */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #45a049; /* Cor do polegar da barra de rolagem */
+  border-radius: 6px; /* Arredondamento do polegar */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #4CAF60; /* Cor do polegar da barra de rolagem ao passar o mouse */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Cor da faixa de rolagem */
+}
+
+/* Estilização da barra de rolagem vertical (caso necessário) */
+/* Você pode ajustar as cores e outros estilos conforme desejado */
+::-webkit-scrollbar-vertical {
+  width: 12px; /* Largura da barra de rolagem vertical */
+  height: 12px; /* Altura da barra de rolagem vertical */
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  background-color: #45a049; /* Cor do polegar da barra de rolagem vertical */
+  border-radius: 6px; /* Arredondamento do polegar vertical */
+}
+
+::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: #4CAF60 ; /* Cor do polegar da barra de rolagem vertical ao passar o mouse */
+}
+
+::-webkit-scrollbar-track:vertical {
+  background-color: #f1f1f1; /* Cor da faixa de rolagem vertical */
+} 
+
+/* Estilização da barra de rolagem vertical para dispositivos móveis */
+/* Você pode ajustar as cores e outros estilos conforme desejado */
+@media only screen and (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem vertical */
+  }
+
+  ::-webkit-scrollbar-thumb:vertical {
+    background-color: #45a049; /* Cor do polegar da barra de rolagem vertical */
+    border-radius: 6px; /* Arredondamento do polegar vertical */
+  }
+
+  ::-webkit-scrollbar-thumb:vertical:hover {
+    background-color: #4CAF60; /* Cor do polegar da barra de rolagem vertical ao passar o mouse */
+  }
+
+  ::-webkit-scrollbar-track:vertical {
+    background-color: #f1f1f1; /* Cor da faixa de rolagem vertical */
+  }
+}
+
 </style>
 <body>
   <div class="sidebar" id="mySidebar">
@@ -193,6 +254,8 @@ session_start();
     <a href="../get_lactantes.html">Gasto Energético Total para Lactantes</a>
     <a href="../get_lactentes.html">Gasto Energético Total para Lactentes</a>
     <a href="../get_adultos.html">Gasto Energético Total para Adultos</a>
+    <hr class="soon1">
+    <a href="../conteudo.html"> <strong>Página de Conteúdos</strong> </a>
     <hr class="soon1">
     <p class="soon">Em breve mais funcionalidades!</p>
   </div>
@@ -253,6 +316,11 @@ if (isset($_COOKIE['user_identifier'])) {
     <a href="../get_adultos.html" style="width: 150px;" class="btn btn-primary">GET para <br> Adultos</a>
     <p style="font-size: 15px;">Em breve mais funcionalidades!</p>
   </center>
+
+  <hr class="soon2">
+  <h1>Conteúdos:</h1>
+  <p>Acesse também os nossos conteúdos! Aqui você pode encontrar os melhores temas relacionados a área de Nutrição sobre os mais diversos assuntos!</p>
+  <a href="../conteudo.html" class="btn btn-primary">Acesso aos Conteúdos</a>
   <?php
     // Verificar se o cookie de identificador está presente
 if (isset($_COOKIE['user_identifier'])) {
@@ -273,17 +341,19 @@ if (isset($_COOKIE['user_identifier'])) {
       if ($userRole === 'administrador') {
           // Se o usuário for administrador, exiba o botão para acessar a página de gerenciamento
           echo '<hr class="soon2">';
-          echo '<h1>Gestão:</h1>';
-          echo '<a href="manage_users.php" class="btn btn-primary">Gerenciar Usuários</a>';
-
+          echo '<p>Conteúdo para admins</p>';
           echo '<hr class="soon2">';
-          echo '<h1>Conteúdos:</h1>';
-          echo '<a href="../conteudo.html" class="btn btn-primary">Acesso aos Conteúdos</a>';
+          echo '<h1>Gestão:</h1>';
+          echo '<p>Para você administrador, gerencie aqui os usuários da plataforma!</p>';
+          echo '<a href="manage_users.php" class="btn btn-primary">Gerenciar Usuários</a>';
+          echo '<hr class="soon2">';
       }
   } else {
+    echo '<br>';
       echo ".";
   }
 } else {
+  echo '<br>';
   echo ".";
 }
 ?>
