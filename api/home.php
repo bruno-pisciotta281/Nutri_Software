@@ -317,10 +317,8 @@ if (isset($_COOKIE['user_identifier'])) {
     <p style="font-size: 15px;">Em breve mais funcionalidades!</p>
   </center>
 
-  <hr class="soon2">
-  <h1>Conteúdos:</h1>
-  <p>Acesse também os nossos conteúdos! Aqui você pode encontrar os melhores temas relacionados a área de Nutrição sobre os mais diversos assuntos!</p>
-  <a href="../conteudo.html" class="btn btn-primary">Acesso aos Conteúdos</a>
+<!--Sessão de Conteúdos-->
+   
   <?php
     // Verificar se o cookie de identificador está presente
 if (isset($_COOKIE['user_identifier'])) {
@@ -340,6 +338,10 @@ if (isset($_COOKIE['user_identifier'])) {
       // Verificar se o usuário é um administrador
       if ($userRole === 'administrador') {
           // Se o usuário for administrador, exiba o botão para acessar a página de gerenciamento
+          echo '<hr class="soon2">';
+          echo '<h1>Conteúdos:</h1>';
+          echo '<p>Acesse também os nossos conteúdos! Aqui você pode encontrar os melhores temas relacionados a área de Nutrição sobre os mais diversos assuntos!</p>';
+          echo '<a href="../conteudo.html" class="btn btn-primary">Acesso aos Conteúdos</a>';
           echo '<hr class="soon2">';
           echo '<p>Conteúdo para admins</p>';
           echo '<hr class="soon2">';
