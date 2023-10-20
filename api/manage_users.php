@@ -54,8 +54,9 @@ function listarUsuarios($filterName = "") {
             }
             echo '</tbody>';
             echo '</table>';
+
         } else {
-            echo "Nenhum usuário encontrado.";
+            echo "Nenhum usuário encontrado...";
         }
     } else {
         echo "Erro na consulta: " . $pdo->errorInfo()[2];
@@ -345,14 +346,65 @@ a{
   }
 }
 
+.contador{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
   </style>
 <body>
+
+<?php
+
+$sql = "SELECT COUNT(*) AS total_users FROM usuarios";
+$stmt = $pdo->query($sql);
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$totalUsers = $row['total_users'];
+
+// Use uma consulta SQL para obter a contagem de usuários comuns
+$sqlCountCommonUsers = "SELECT COUNT(*) AS common_users_count FROM usuarios WHERE role = 'usuario'";
+$stmtCountCommonUsers = $pdo->query($sqlCountCommonUsers);
+$commonUsersCount = $stmtCountCommonUsers->fetchColumn();
+
+$valorTotalUsuariosComuns = 0;
+$valorTotalUsuariosComuns = $commonUsersCount * 25 - 25;
+
+
+if ($stmt) {
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    
+    foreach ($result as $row) {
+        // Verifique o papel do usuário e atualize o contador de usuários comuns
+        if ($row['role'] === 'usuario') {
+            $commonUsersCount++;
+        }
+    }
+} else {
+    // Lidar com o erro da consulta, se necessário
+    echo "Erro na consulta: " . $pdo->errorInfo()[2];
+}
+// Agora exibimos a contagem de usuários
+?>
+
 <div class="container">
 <center><a href="home.php"><button class="btn-back"><strong>Voltar</strong></button></a></center>
 <hr class="soon2">
     <h1>Gerenciamento de Usuários</h1>
+    <img style="height: 125px" src="../media/notFound.svg" alt="">
     <p style="font-size: 15px;">Esta é a página de gerenciamento de usuários, aqui você pode excluir, adicionar ou editar os usuários já existentes no Software.</p>
+
     <hr class="soon2">
+    <h1>Métricas:</h1>
+    <div class="contador">
+    <p>Total de Usuários: <strong><?php echo $totalUsers; ?></strong></p>
+    <p>Usuários Comuns: <strong><?php echo $commonUsersCount; ?></strong></p>
+    </div>
+    <p>Valor arrecadado: <strong>R$<?php echo $valorTotalUsuariosComuns; ?></strong><br><span style="font-size: 12px;">(Retirando o Usuário Teste)</span></p>
+
+    <hr class="soon2">
+    <h1>Usuários:</h1>
     <!-- Campo de pesquisa por nome -->
     <div class="form-group">
         <input type="text" class="form-control" id="searchName" placeholder="Pesquisar usuários por nome">
