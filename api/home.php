@@ -255,7 +255,7 @@ session_start();
     <a href="../get_lactentes.html">Gasto Energético Total para Lactentes</a>
     <a href="../get_adultos.html">Gasto Energético Total para Adultos</a>
     <hr class="soon1">
-    
+    <a href="conteudo.html"><strong>Página de Conteúdos</strong></a>
     <hr class="soon1">
     <p class="soon">Em breve mais funcionalidades!</p>
   </div>
@@ -315,10 +315,13 @@ if (isset($_COOKIE['user_identifier'])) {
   <center>
     <a href="../get_adultos.html" style="width: 150px;" class="btn btn-primary">GET para <br> Adultos</a>
     <p style="font-size: 15px;">Em breve mais funcionalidades!</p>
+    <hr class="soon2">
   </center>
 
 <!--Sessão de Conteúdos-->
-   
+<h1>Conteúdos:</h1>
+<p>Acesse também os nossos conteúdos! Aqui você pode encontrar os melhores temas relacionados a área de Nutrição sobre os mais diversos assuntos!</p>
+<a href="../conteudo.html" class="btn btn-primary">Acesso aos Conteúdos</a>
   <?php
     // Verificar se o cookie de identificador está presente
 if (isset($_COOKIE['user_identifier'])) {
@@ -338,10 +341,6 @@ if (isset($_COOKIE['user_identifier'])) {
       // Verificar se o usuário é um administrador
       if ($userRole === 'administrador') {
           // Se o usuário for administrador, exiba o botão para acessar a página de gerenciamento
-          echo '<hr class="soon2">';
-          echo '<h1>Conteúdos:</h1>';
-          echo '<p>Acesse também os nossos conteúdos! Aqui você pode encontrar os melhores temas relacionados a área de Nutrição sobre os mais diversos assuntos!</p>';
-          echo '<a href="../conteudo.html" class="btn btn-primary">Acesso aos Conteúdos</a>';
           echo '<hr class="soon2">';
           echo '<p>Conteúdo para admins</p>';
           echo '<hr class="soon2">';
