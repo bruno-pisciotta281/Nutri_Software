@@ -316,6 +316,10 @@
   }
 }
 
+input::placeholder {
+  color: #b6f8c3;
+}
+
 </style>
 
 <body>
@@ -345,16 +349,16 @@
     <p>Insira os dados abaixo para calcular o Gasto Energético Total (GET) para gestantes.</p>
     <form id="eer-form">
       <label for="age">Idade:</label>
-      <input type="number" id="age" name="age">
+      <input type="number" id="age" name="age" placeholder="Exemplo: 20 (anos)">
       <br>
       <label for="postWeight">Peso atual (kg):</label>
-      <input type="number" id="postWeight" name="postWeight">
+      <input type="number" id="postWeight" name="postWeight" placeholder="Exemplo: 60 (quilos)">
       <br>
       <label for="height">Altura (Cm):</label>
-      <input type="number" id="height" name="height">
+      <input type="number" id="height" name="height" placeholder="Exemplo: 170 (centímetros)">
       <br>
       <label for="weeks">Período da gestação em semanas:</label>
-      <input type="number" id="weeks" name="weeks">
+      <input type="number" id="weeks" name="weeks" placeholder="Exemplo: 0 a 41 (semanas)">
       <br>
       <label for="activityLevel">Nível de Atividade:</label>
       <select id="activityLevel" name="activityLevel">

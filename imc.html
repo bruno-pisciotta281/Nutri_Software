@@ -308,6 +308,10 @@
   }
 }
 
+input::placeholder {
+  color: #b6f8c3;
+}
+
 </style>
 </head>
 <body>
@@ -336,11 +340,11 @@
   <p>Insira os dados abaixo para calcular o Índice de Massa Corporal (IMC).</p>
   <form id="bmi-form">
     <label for="preWeight">Peso (Kg):</label>
-    <input type="number" id="preWeight" name="preWeight">
+    <input type="number" id="preWeight" name="preWeight" placeholder="Exemplo: 78 (quilos)">
     <br>
 
     <label for="heightM">Altura (Metros):</label>
-    <input type="number" id="heightM" name="heightM">
+    <input type="number" id="heightM" name="heightM" placeholder="Exemplo: 1,80 (metros)">
     <br>
 
     <button type="button" onclick="calculateBMI()">Calcular IMC</button>

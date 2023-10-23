@@ -299,6 +299,10 @@ input[type="radio"] {
   }
 }
 
+input::placeholder {
+  color: #b6f8c3;
+}
+
 </style>
 </style>
 <body>
@@ -338,14 +342,14 @@ input[type="radio"] {
                 <input type="radio" id="sex-female" name="sex" value="menina">
               </div>
             </div>
-            <label for="age">Idade (0 a 36 meses):</label>
-            <input type="number" id="age" name="age" required>
+            <label for="age">Idade:</label>
+            <input type="number" id="age" name="age" placeholder="Exemplo: 0 a 36 (meses)">
 
             <label for="height">Altura (Cm):</label>
-            <input type="number" id="height" name="height" required>
+            <input type="number" id="height" name="height" placeholder="Exemplo: 60 (centímetros)">
 
             <label for="weight">Peso (kg):</label>
-            <input type="number" id="weight" name="weight" required>
+            <input type="number" id="weight" name="weight" placeholder="Exemplo: 6,0 (quilos)">
 
             <button type="button" onclick="calculateEERForLactentes()">Calcular</button>
         </form>

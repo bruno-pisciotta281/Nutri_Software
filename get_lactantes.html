@@ -315,6 +315,10 @@
   }
 }
 
+input::placeholder {
+  color: #b6f8c3;
+}
+
 </style>
 
 <body>
@@ -344,13 +348,13 @@
     <p>Insira os dados abaixo para calcular a quantidade de nutrientes necessária para uma lactante.</p>
     <form id="lactante-form">
       <label for="age">Idade:</label>
-      <input type="number" id="age" name="age">
+      <input type="number" id="age" name="age" placeholder="Exemplo: 20 (anos)">
       <br>
       <label for="height">Altura (Cm):</label>
-      <input type="number" id="height" name="height">
+      <input type="number" id="height" name="height" placeholder="Exemplo: 170 (centímetros)">
       <br>
       <label for="weight">Peso (kg):</label>
-      <input type="number" id="weight" name="weight">
+      <input type="number" id="weight" name="weight" placeholder="Exemplo: 70 (quilos)">
       <br>
       <label for="activityLevel">Nível de Atividade:</label>
       <select id="activityLevel" name="activityLevel">

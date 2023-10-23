@@ -337,6 +337,10 @@ input[type="radio"] {
     background-color: #f1f1f1; /* Cor da faixa de rolagem vertical */
   }
 }
+
+input::placeholder {
+  color: #b6f8c3;
+}
   
   </style>
 <body>
@@ -379,13 +383,13 @@ input[type="radio"] {
         </div>
 
         <label for="age">Idade (anos):</label>
-        <input type="number" id="age" name="age" required>
+        <input type="number" id="age" name="age" placeholder="Exemplo: 22 (anos)">
 
         <label for="height">Altura (cm):</label>
-        <input type="number" id="height" name="height" required>
+        <input type="number" id="height" name="height" placeholder="Exemplo: 180 (centíemtros)">
 
         <label for="weight">Peso (kg):</label>
-        <input type="number" id="weight" name="weight" required>
+        <input type="number" id="weight" name="weight" placeholder="Exemplo: 75 (quilos)">
 
         <label for="activityLevel">Nível de Atividade:</label>
         <select id="activityLevel" name="activityLevel">
