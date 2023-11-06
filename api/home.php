@@ -292,8 +292,7 @@ if (isset($_COOKIE['user_identifier'])) {
   <hr class="soon2">
   <h1>Bem-vindo(a) ao Software de Nutrição <strong>NutriD&B</strong></h1>
   <img style="height: 200px" src="../media/hello.svg" alt="">
-  <br>
-
+  <br><br>
   <p style="text-align:center;">O software NutriD&B te auxilia a calcular as necessidades energéticas de acordo com a <strong>idade</strong>, <strong>sexo</strong> e <strong>estado fisiológico</strong> na área de Nutrição. <br> <br> As fórmulas utilizadas para os cálculos tem como base a <strong>DRI 2023</strong>.</p>
   <hr class="soon2">
   <h2>Como Usar:</h2>
