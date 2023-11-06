@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <!-- Inclua os arquivos CSS e JavaScript do Bootstrap -->
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+       <title>Calculadora de GET para Adultos</title>
+     </head>
+<style>
+    /* Estilos globais */
+    body {
+      font-family: 'Montserrat', sans-serif !important;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      max-height: 100vh;
+      margin: 0;
+      flex-direction: column;
+    }
+  
+    .container {
+      margin: auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 800px;
+      margin-top: 1rem;
+    }
+  
+    /* Responsividade para dispositivos menores */
+    @media (max-width: 768px) {
+      .container {
+        width: 90%;
+        padding: 0.8rem;
+      }
+    }
+  
+    /* Componentes específicos */
+    h1,
+    h2 {
+      color: #444;
+      margin: 0.5em 0;
+      font-size: 1.5em;
+    }
+  
+    form {
+      margin: 1em 0;
+    }
+  
+    label,
+    input,
+    select,
+    button {
+      font-weight: bold;
+      margin: 0.8em 0;
+    }
+  
+    input,
+    select {
+      width: 100%;
+      padding: 0.5em;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 0.8em 1.5em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  
+    button:hover {
+      background-color: #45a049;
+    }
+  
+    #result {
+      margin-top: 1em;
+      padding: 0.8em;
+      background-color: #e1ffe1;
+      border: 1px solid #a1ffa1;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+  
+    /* Estilize a sua navbar lateral aqui */
+    .sidebar {
+      background-color: #333;
+      width: 0; 
+      padding-top: 20px;
+      position: fixed; 
+      height: 100%; 
+      transition: 0.5s; 
+      z-index: 1; 
+      overflow-x: hidden; 
+    }
+  
+    .sidebar a {
+      padding: 15px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+    }
+  
+    .sidebar a:hover {
+      background-color: #555;
+    }
+  
+    .toggle-btn {
+    position: absolute;
+    font-size: 30px;
+    color: #555;
+    cursor: pointer;
+    z-index: 9999;
+  }
+  
+    /* Ajuste da posição do toggle para a esquerda em dispositivos móveis */
+    @media (max-width: 768px) {
+      .toggle-btn {
+        left: 25px;
+        top: 20px; 
+      }
+    }
+  
+    /* Conteúdo principal (à direita da navbar) */
+    .content {
+      margin-left: 0; 
+      padding: 20px;
+      transition: 0.5s; 
+    }
+  
+    .footer {
+      font-size: 15px;
+    }
+  
+    /* Estilos para elementos "em breve" */
+    .soon {
+      color: #ffff;
+      text-align: center;
+    }
+  
+    .soon1 {
+      background-color: #ffff;
+      color: #ffff;
+      text-align: center;
+    }
+  
+    .soon2{
+      background-color: #333;
+    }
+  
+    .tnav {
+      color: #ffff;
+      text-align: center;
+    }
+  
+  
+    /* Estilos para o modal */
+    .modal {
+      display: none; /* Ocultar o modal por padrão */
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4); /* Fundo escurecido */
+    }
+  
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+  
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+  
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  
+    .btnmodal{
+      background-color: #4CAF50;
+      color: white;
+      padding: 0.2em 0.8em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  
+    btnmodal:hover {
+      background-color: #45a049;
+    }
+  
+     /* Estilos para a Tabela Informativa de IMC */
+     table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      border: 1px solid #ccc;
+      background-color: #fff;
+    }
+  
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+  
+    thead {
+      background-color: #45a049;
+      color: #fff;
+    }
+  
+    tbody tr:nth-child(odd) {
+      background-color: #f2f2f2;
+    }
+  
+    /* Estilos para células específicas */
+    tbody td:first-child {
+      font-weight: bold;
+    }
+  
+    tbody td:last-child {
+      font-style: italic;
+    }
+  
+    /* Adicionando algum espaçamento e margem inferior */
+    table {
+      margin-bottom: 20px;
+    }
+
+     /* Estilos para o container de texto e botões de seleção */
+.sex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.points {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ajustado para colocar os botões lado a lado */
+  margin-top: 10px;
+}
+
+.sex-container label,
+.points label {
+  margin: 0; /* Removido o espaçamento para alinhar os textos e os botões */
+}
+
+/* Estilos para os botões de rádio */
+input[type="radio"] {
+  margin: 0 5px; /* Ajuste o espaçamento entre os botões aqui */
+}
+
+/* Estilização da barra de rolagem horizontal */
+::-webkit-scrollbar {
+  width: 12px; /* Largura da barra de rolagem */
+  height: 12px; /* Altura da barra de rolagem */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #45a049; /* Cor do polegar da barra de rolagem */
+  border-radius: 6px; /* Arredondamento do polegar */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #4CAF60; /* Cor do polegar da barra de rolagem ao passar o mouse */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Cor da faixa de rolagem */
+}
+
+/* Estilização da barra de rolagem vertical (caso necessário) */
+/* Você pode ajustar as cores e outros estilos conforme desejado */
+::-webkit-scrollbar-vertical {
+  width: 12px; /* Largura da barra de rolagem vertical */
+  height: 12px; /* Altura da barra de rolagem vertical */
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  background-color: #45a049; /* Cor do polegar da barra de rolagem vertical */
+  border-radius: 6px; /* Arredondamento do polegar vertical */
+}
+
+::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: #4CAF60 ; /* Cor do polegar da barra de rolagem vertical ao passar o mouse */
+}
+
+::-webkit-scrollbar-track:vertical {
+  background-color: #f1f1f1; /* Cor da faixa de rolagem vertical */
+}
+
+/* Estilização da barra de rolagem vertical para dispositivos móveis */
+/* Você pode ajustar as cores e outros estilos conforme desejado */
+@media only screen and (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem vertical */
+  }
+
+  ::-webkit-scrollbar-thumb:vertical {
+    background-color: #45a049; /* Cor do polegar da barra de rolagem vertical */
+    border-radius: 6px; /* Arredondamento do polegar vertical */
+  }
+
+  ::-webkit-scrollbar-thumb:vertical:hover {
+    background-color: #4CAF60; /* Cor do polegar da barra de rolagem vertical ao passar o mouse */
+  }
+
+  ::-webkit-scrollbar-track:vertical {
+    background-color: #f1f1f1; /* Cor da faixa de rolagem vertical */
+  }
+}
+
+input::placeholder {
+  color: #b6f8c3;
+}
+
+.estilo {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #d3d3d3;
+    outline: none;
+    width: 100%;
+    height: 20px;
+    border-radius: 9px;   
+}
+
+.estilo::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+
+    background: #45a049;
+    cursor: pointer;
+}
+
+.estilo::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+
+    background: #45a049;
+    cursor: pointer;
+}
+  
+  </style>
+
+<body>
+    <!-- Navbar -->
+<div class="sidebar" id="mySidebar">
+  <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&#10006;</a>
+  <hr class="soon1">
+  <a href="api/home.php">Home</a>
+  <hr class="soon1">
+  <h2 class="tnav">Calculadoras:</h2>
+  <a href="imc.html">Índice de Massa Corporal</a>
+  <a href="get_gestantes.html">Gasto Energético Total para Gestantes</a>
+  <a href="get_lactantes.html">Gasto Energético Total para Lactantes</a>
+  <a href="get_lactentes.html">Gasto Energético Total para Lactentes</a>
+  <a href="get_adultos.html">Gasto Energético Total para Adultos</a>
+  <hr class="soon1">
+  <a href="conteudo.html"><strong>Página de Conteúdos</strong></a>
+  <hr class="soon1">
+  <p class="soon">Em breve mais funcionalidades!</p>
+</div>
+</div>
+  <div class="container">
+  <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
+  <br>
+  <h1>Calculadora de Gasto Energético de 3 a 13 anos</h1>
+  <p>Insira as informações abaixo para calcular o GET.</p>
+  <hr class="soon2">
+  <form id="calculatorForm">
+        <label for="sex">Sexo:</label>
+        <br>
+        <div class="sex-container">
+            <div>
+                <label for="sex-male">Menino</label>
+                <input type="radio" id="sex-male" name="sex" value="male">
+            </div>
+            <div>
+                <label for="sex-female">Menina</label>
+                <input type="radio" id="sex-female" name="sex" value="female">
+            </div>
+        </div>
+
+        <label for="age">Idade (anos): <span style="color: #a1ffa1;"></span></label>
+        <p>Selecione a idade baixo &darr;</p>
+        <input type="range" min="3" max="13" value="3" class="estilo" id="valor">
+        <p id="resultado">.</p>
+
+        <label for="height">Altura (cm):</label>
+        <input type="number" id="height" name="height" placeholder="Exemplo: 180 (centímetros)">
+
+        <label for="weight">Peso (kg):</label>
+        <input type="number" id="weight" name="weight" placeholder="Exemplo: 75 (quilos)">
+
+        <label for="activityLevel">Nível de Atividade:</label>
+        <select id="activityLevel" name="activityLevel">
+            <option value="sedentary">Inativo</option>
+            <option value="lightlyActive">Pouco ativo</option>
+            <option value="active">Ativo</option>
+            <option value="veryActive">Muito ativo</option>
+        </select>
+
+        <button type="button" onclick="calculateEER()">Calcular</button>
+    </form>
+
+    <h2>Resultado:</h2>
+    <p id="result"></p>
+    <button class="btnmodal" type="button" onclick="showResolution()">Ver Solução</button>
+     <hr class="soon2">
+    <h1 class="footer">Em desenvolvimento por: <br> Bruno Pisciotta e Duda Dias ♡</h1>
+</div>
+</div>
+<br>
+
+<script>
+
+let sidebarOpen = false;
+
+function toggleNav() {
+const sidebar = document.getElementById("mySidebar");
+const content = document.querySelector(".container");
+const toggleBtn = document.querySelector(".toggle-btn");
+
+if (!sidebarOpen) {
+sidebar.style.width = "250px";
+content.style.marginLeft = "250px";
+toggleBtn.style.display = "none";
+sidebarOpen = true;
+} else {
+sidebar.style.width = "0";
+content.style.marginLeft = "auto"; 
+toggleBtn.style.display = "block";
+sidebarOpen = false;
+}
+}
+
+function closeNav() {
+const sidebar = document.getElementById("mySidebar");
+const content = document.querySelector(".container");
+const toggleBtn = document.querySelector(".toggle-btn");
+
+sidebar.style.width = "0";
+content.style.marginLeft = "auto"; 
+toggleBtn.style.display = "block";
+sidebarOpen = false;
+}
+
+function range(){
+ let resultado = document.getElementById("resultado");
+ let valor = document.getElementById("valor").value;
+ resultado.innerHTML = valor
+}
+
+range()
+
+document.addEventListener("change", range);
+
+function calculateEER() {
+        // Obter os valores dos campos do formulário
+        const sex = document.querySelector('input[name="sex"]:checked').value;
+        const age = parseFloat(document.getElementById("valor").value);
+        const height = parseFloat(document.getElementById("height").value);
+        const weight = parseFloat(document.getElementById("weight").value);
+        
+        // Inicializar variáveis para o cálculo do EER/GET
+        let eer;
+        let energyForGrowth;
+
+        // Determinar a fórmula com base no sexo e nível de atividade
+        if (sex === 'male') {
+            if (age >= 3 && age <= 13) {
+                if (age === 3) {
+                    energyForGrowth = 20;
+                } else if (age >= 4 && age <= 8) {
+                    energyForGrowth = 15;
+                } else if (age >= 9 && age <= 13) {
+                    energyForGrowth = 25;
+                }
+                
+                const activityLevel = document.getElementById("activityLevel").value;
+                if (activityLevel === 'sedentary') {
+                    eer = -447.51 + (3.68 * age) + (13.01 * height) + (13.15 * weight) + energyForGrowth;
+                } else if (activityLevel === 'lightlyActive') {
+                    eer = 19.12 + (3.68 * age) + (8.62 * height) + (20.28 * weight) + energyForGrowth;
+                } else if (activityLevel === 'active') {
+                    eer = -388.19 + (3.68 * age) + (12.66 * height) + (20.46 * weight) + energyForGrowth;
+                } else if (activityLevel === 'veryActive') {
+                    eer = -671.75 + (3.68 * age) + (15.38 * height) + (23.28 * weight) + energyForGrowth;
+                } else {
+                    alert("Selecione um nível de atividade válido.");
+                    return;
+                }
+            } else {
+                alert("A idade deve estar entre 3 e 13 anos.");
+                return;
+            }
+        } else if (sex === 'female') {
+            if (age >= 3 && age <= 13) {
+                if (age === 3) {
+                    energyForGrowth = 15;
+                } else if (age >= 4 && age <= 8) {
+                    energyForGrowth = 15;
+                } else if (age >= 9 && age <= 13) {
+                    energyForGrowth = 30;
+                }
+                
+                const activityLevel = document.getElementById("activityLevel").value;
+                if (activityLevel === 'sedentary') {
+                    eer = 55.59 - (22.25 * age) + (8.43 * height) + (17.07 * weight) + energyForGrowth;
+                } else if (activityLevel === 'lightlyActive') {
+                    eer = -297.54 - (22.25 * age) + (12.77 * height) + (14.73 * weight) + energyForGrowth;
+                } else if (activityLevel === 'active') {
+                    eer = -189.55 - (22.25 * age) + (11.74 * height) + (18.34 * weight) + energyForGrowth;
+                } else if (activityLevel === 'veryActive') {
+                    eer = -709.59 - (22.25 * age) + (18.22 * height) + (14.25 * weight) + energyForGrowth;
+                } else {
+                    alert("Selecione um nível de atividade válido.");
+                    return;
+                }
+            } else {
+                alert("A idade deve estar entre 3 e 13 anos.");
+                return;
+            }
+        } else {
+            alert("Selecione o sexo (Homem ou Mulher).");
+            return;
+        }
+
+        // Exibir o resultado do EER/GET
+        const resultElement = document.getElementById("result");
+        resultElement.textContent = `EER/GET calculado: ${eer.toFixed(2)} kcal/dia`;
+    }
+
+    // Atualizar o valor exibido conforme o usuário move o controle deslizante de idade
+    document.getElementById("valor").addEventListener("input", function() {
+        const value = this.value;
+        document.getElementById("resultado").textContent = value + " anos";
+    });
+
+    function showResolution() {
+    const sex = document.querySelector('input[name="sex"]:checked').value;
+    const age = parseFloat(document.getElementById("valor").value);
+    const height = parseFloat(document.getElementById("height").value);
+    const weight = parseFloat(document.getElementById("weight").value);
+    const activityLevel = document.getElementById("activityLevel").value;
+
+    // Função para calcular a energia de crescimento com base na idade
+    function getEnergyForGrowth(age) {
+        if (age === 3) {
+            return 20;
+        } else if (age >= 4 && age <= 8) {
+            return 15;
+        } else if (age >= 9 && age <= 13) {
+            return 25;
+        }
+        return 0; // Retorna 0 para idades fora do intervalo especificado
+    }
+
+    // Verifique se todos os campos foram preenchidos corretamente
+    if (!sex || isNaN(age) || isNaN(height) || isNaN(weight)) {
+        alert("Preencha todos os campos com valores numéricos e selecione o sexo para calcular a EER.");
+        return; // Não continue se algum campo estiver vazio, não numérico ou o sexo não estiver selecionado
+    }
+
+    let EER = 0;
+    let explanation = ""; // Inicialize a explicação vazia
+
+    // Verifique se o sexo foi selecionado
+    if (sex) {
+        if (sex === "male") {
+            if (activityLevel === 'sedentary') {
+                const energyForGrowth = getEnergyForGrowth(age);
+                EER = -447.51 + 3.68 * age + 13.01 * height + 13.15 * weight + energyForGrowth;
+                explanation = `
+                  A fórmula utilizada para calcular o Gasto Energético Total (GET) para <strong>meninos</strong> sedentários é:<br><br>
+                  <strong>EER =</strong> -447.51 + (3.68 * idade) + (13.01 * altura) + (13.15 * peso) + energia para crescimento.<br><br>
+                  Substituindo os valores:<br>
+                  <strong>EER =</strong> -447.51 + (3.68 * ${age}) + (13.01 * ${height}) + (13.15 * ${weight}) + ${energyForGrowth}.<br><br>
+                  <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+                `;
+            } else if (activityLevel === 'lightlyActive') {
+                const energyForGrowth = getEnergyForGrowth(age);
+                EER = 19.12 + 3.68 * age + 8.62 * height + 20.28 * weight + energyForGrowth;
+                explanation = `
+                  A fórmula utilizada para calcular o Gasto Energético Total (GET) para <strong>meninos</strong> pouco ativos é:<br><br>
+                  <strong>EER =</strong> 19.12 + (3.68 * idade) + (8.62 * altura) + (20.28 * peso) + energia para crescimento.<br><br>
+                  Substituindo os valores:<br>
+                  <strong>EER =</strong> 19.12 + (3.68 * ${age}) + (8.62 * ${height}) + (20.28 * ${weight}) + ${energyForGrowth}.<br><br>
+                  <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+                `;
+            } else if (activityLevel === 'active') {
+                const energyForGrowth = getEnergyForGrowth(age);
+                EER = -388.19 + 3.68 * age + 12.66 * height + 20.46 * weight + energyForGrowth;
+                explanation = `
+                  A fórmula utilizada para calcular o Gasto Energético Total (GET) para <strong>meninos</strong> ativos é:<br><br>
+                  <strong>EER =</strong> -388.19 + (3.68 * idade) + (12.66 * altura) + (20.46 * peso) + energia para crescimento.<br><br>
+                  Substituindo os valores:<br>
+                  <strong>EER =</strong> -388.19 + (3.68 * ${age}) + (12.66 * ${height}) + (20.46 * ${weight}) + ${energyForGrowth}.<br><br>
+                  <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+                `;
+            } else if (activityLevel === 'veryActive') {
+                const energyForGrowth = getEnergyForGrowth(age);
+                EER = -671.75 + 3.68 * age + 15.38 * height + 23.28 * weight + energyForGrowth;
+                explanation = `
+                  A fórmula utilizada para calcular o Gasto Energético Total (GET) para <strong>meninos</strong> muito ativos é:<br><br>
+                  <strong>EER =</strong> -671.75 + (3.68 * idade) + (15.38 * altura) + (23.28 * peso) + energia para crescimento.<br><br>
+                  Substituindo os valores:<br>
+                  <strong>EER =</strong> -671.75 + (3.68 * ${age}) + (15.38 * ${height}) + (23.28 * ${weight}) + ${energyForGrowth}.<br><br>
+                  <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+                `;
+            }
+        } else if (sex === "female") {
+            if (activityLevel === 'sedentary') {
+                const energyForGrowth = getEnergyForGrowth(age);
+                EER = 55.59 - 22.25 * age + 8.43 * height + 17.07 * weight + energyForGrowth;
+                explanation = `
+                  A fórmula utilizada para calcular o Gasto Energético Total (GET) para <strong>meninas</strong> sedentárias é:<br><br>
+                  <strong>EER =</strong> 55.59 - (22.25 * idade) + (8.43 * altura) + (17.07 * peso) + energia para crescimento.<br><br>
+                  Substituindo os valores:<br>
+                  <strong>EER =</strong> 55.59 - (22.25 * ${age}) + (8.43 * ${height}) + (17.07 * ${weight}) + ${energyForGrowth}.<br><br>
+                  <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+                `;
+            } else if (activityLevel === 'lightlyActive') {
+                const energyForGrowth = getEnergyForGrowth(age);
+                EER = -297.54 - 22.25 * age + 12.77 * height + 14.73 * weight + energyForGrowth;
+                explanation = `
+                  A fórmula utilizada para calcular o Gasto Energético Total (GET) para <strong>meninas</strong> pouco ativas é:<br><br>
+                  <strong>EER =</strong> -297.54 - (22.25 * idade) + (12.77 * altura) + (14.73 * peso) + energia para crescimento.<br><br>
+                  Substituindo os valores:<br>
+                  <strong>EER =</strong> -297.54 - (22.25 * ${age}) + (12.77 * ${height}) + (14.73 * ${weight}) + ${energyForGrowth}.<br><br>
+                  <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+                `;
+            } else if (activityLevel === 'active') {
+                const energyForGrowth = getEnergyForGrowth(age);
+                EER = -189.55 - 22.25 * age + 11.74 * height + 18.34 * weight + energyForGrowth;
+                explanation = `
+                  A fórmula utilizada para calcular o Gasto Energético Total (GET) para <strong>meninas</strong> ativas é:<br><br>
+                  <strong>EER =</strong> -189.55 - (22.25 * idade) + (11.74 * altura) + (18.34 * peso) + energia para crescimento.<br><br>
+                  Substituindo os valores:<br>
+                  <strong>EER =</strong> -189.55 - (22.25 * ${age}) + (11.74 * ${height}) + (18.34 * ${weight}) + ${energyForGrowth}.<br><br>
+                  <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+                `;
+            } else if (activityLevel === 'veryActive') {
+                const energyForGrowth = getEnergyForGrowth(age);
+                EER = -709.59 - 22.25 * age + 18.22 * height + 14.25 * weight + energyForGrowth;
+                explanation = `
+                  A fórmula utilizada para calcular o Gasto Energético Total (GET) para <strong>meninas</strong> muito ativas é:<br><br>
+                  <strong>EER =</strong> -709.59 - (22.25 * idade) + (18.22 * altura) + (14.25 * peso) + energia para crescimento.<br><br>
+                  Substituindo os valores:<br>
+                  <strong>EER =</strong> -709.59 - (22.25 * ${age}) + (18.22 * ${height}) + (14.25 * ${weight}) + ${energyForGrowth}.<br><br>
+                  <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
+                `;
+            }
+        }
+    }
+
+    // Verifique se o resultado é negativo e, se for, defina como zero
+    if (EER < 0) {
+        EER = 0;
+    }
+
+    // Preencha o conteúdo do modal com a resolução e explicação
+    const resolutionSteps = document.getElementById("resolutionSteps");
+    resolutionSteps.innerHTML = explanation;
+
+    // Exiba o modal com a resolução
+    const modal = document.getElementById("resolutionModal");
+    modal.style.display = "block";
+}
+
+// Fechar modal
+function closeResolutionModal() {
+    const modal = document.getElementById("resolutionModal");
+    modal.style.display = "none";
+}
+// Fecha o modal se o usuário clicar fora dele
+window.onclick = function(event) {
+  const modal = document.getElementById("resolutionModal"); 
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
+
+
+
+</script>
+<div id="resolutionModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeResolutionModal()">&times;</span>
+        <h2>Resolução do Cálculo</h2>
+        <div id="resolutionSteps">
+            <!-- Os passos do cálculo serão exibidos aqui -->
+        </div>
+    </div>
+</div>
+</body>
+</html>

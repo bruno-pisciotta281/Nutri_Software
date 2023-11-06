@@ -310,9 +310,10 @@ if (isset($_COOKIE['user_identifier'])) {
     <a href="../get_gestantes.html" class="btn btn-primary">GET para Gestantes</a>
     <a href="../get_lactantes.html" class="btn btn-primary">GET para Lactantes</a>
     <a href="../get_lactentes.html" class="btn btn-primary">GET para Lactentes</a>
+    <a href="../get_3a13anos.html" class="btn btn-primary">GET de 3 a 13 anos</a>
+    <a href="../get_adultos.html" class="btn btn-primary">GET para Adultos</a>
   </div>
   <center>
-    <a href="../get_adultos.html" style="width: 150px;" class="btn btn-primary">GET para <br> Adultos</a>
     <p style="font-size: 15px;">Em breve mais funcionalidades!</p>
     <hr class="soon2">
   </center>
