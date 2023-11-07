@@ -372,10 +372,7 @@ input::placeholder {
     cursor: pointer;
 }
 
-input[type="radio"]:checked::selection {
-  background-color: yellow;
-  color: black;
-}
+
   
   </style>
 
@@ -419,10 +416,10 @@ input[type="radio"]:checked::selection {
         </div>
 
         <label for="age">Idade (anos): <span style="color: #a1ffa1;"></span></label>
+        <span style="color: #45a049; font-weight: bold;"><p id="resultado">.</p></span>
         <p>Selecione a idade baixo &darr;</p>
         <input type="range" min="3" max="13" value="3" step="0.1" class="estilo" id="valor">
-        <p id="resultado">.</p>
-
+        
         <label for="height">Altura (cm):</label>
         <input type="number" id="height" name="height" placeholder="Exemplo: 180 (centímetros)">
 
