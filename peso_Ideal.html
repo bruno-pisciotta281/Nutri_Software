@@ -80,7 +80,7 @@
     background-color: #45a049;
   }
 
-  #bmi-result {
+  #result {
     margin-top: 1em;
     padding: 0.8em;
     background-color: #e1ffe1;
@@ -339,24 +339,21 @@ input::placeholder {
 <div class="container">
   <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
   <br>
-  <h1>Calculadora de IMC</h1>
-  <p>Insira os dados abaixo para calcular o Índice de Massa Corporal (IMC).</p>
+  <h1>Calculadora de Peso Ideal</h1>
+  <p>Insira os dados abaixo para calcular o Peso Ideal.</p>
   <hr class="soon2">
-  <form id="bmi-form">
-    <label for="preWeight">Peso (Kg):</label>
-    <input type="number" id="preWeight" name="preWeight" placeholder="Exemplo: 78 (quilos)">
-    <br>
+  <form id="weightCalculatorForm">
+    <label for="imcIdeal">IMC Ideal:</label>
+    <input type="number" id="imcIdeal" name="imcIdeal" step="0.01" placeholder="Exemplo: 20" required>
+    
+    <label for="height">Estatura (metros):</label>
+    <input type="number" id="height" name="height" step="0.01" placeholder="Exemplo: 1.75" required>
+    
+    <button type="button" onclick="calculateWeightIdeal()">Calcular Peso Ideal</button>
+</form>
 
-    <label for="heightM">Altura (Metros):</label>
-    <input type="number" id="heightM" name="heightM" placeholder="Exemplo: 1,80 (metros)">
-    <br>
-
-    <button type="button" onclick="calculateBMI()">Calcular IMC</button>
-  </form>
-
-  <h2>Resultado do IMC</h2>
-  <div id="bmi-result"></div>
-  <script src="script.js"></script>
+  <h2>Resultado:</h2>
+  <div id="result"></div>
   <button class="btnmodal" type="button" id="showResolutionBtn" onclick="showResolution()">Ver Resolução</button>
 
   <hr class="soon2">
@@ -365,34 +362,26 @@ input::placeholder {
   <table>
     <thead>
       <tr>
-        <th>IMC (kg/m²)</th>
-        <th>Classificação</th>
+        <th>IMC (Kg/m²)</th>
+        <th>MULHER</th>
+        <th>HOMEM</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Menor que 18,5</td>
-        <td>Baixo peso</td>
+        <td>Mínimo</td>
+        <td>19</td>
+        <td>20</td>
       </tr>
       <tr>
-        <td>De 18,5 a 24,9</td>
-        <td>Peso normal</td>
+        <td>Médio</td>
+        <td>21</td>
+        <td>22</td>
       </tr>
       <tr>
-        <td>De 25 a 29,9</td>
-        <td>Sobrepeso</td>
-      </tr>
-      <tr>
-        <td>De 30 a 34,9</td>
-        <td>Obesidade grau I</td>
-      </tr>
-      <tr>
-        <td>De 35 a 39,9</td>
-        <td>Obesidade grau II</td>
-      </tr>
-      <tr>
-        <td>Igual ou maior que 40</td>
-        <td>Obesidade grau III</td>
+        <td>Máximo</td>
+        <td>24</td>
+        <td>25</td>
       </tr>
     </tbody>
   </table>
@@ -434,61 +423,70 @@ input::placeholder {
     sidebarOpen = false;
   }
 
-  // Função para mostrar o modal da resolução do IMC
-function showResolution() {
-  // Calcula o IMC com base nos dados inseridos
-  const preWeight = parseFloat(document.getElementById("preWeight").value);
-  const heightM = parseFloat(document.getElementById("heightM").value);
+  function calculateWeightIdeal() {
+            const imcIdeal = parseFloat(document.getElementById("imcIdeal").value);
+            const height = parseFloat(document.getElementById("height").value);
+            
+            if (isNaN(imcIdeal) || isNaN(height)) {
+                alert("Preencha os campos com valores numéricos.");
+                return;
+            }
+            
+            const weightIdeal = imcIdeal * Math.pow(height, 2);
+            
+            const resultElement = document.getElementById("result");
+            resultElement.textContent = `Peso Ideal/Teórico: ${weightIdeal.toFixed(2)} kg`;
+        }
 
-// Verifique se todos os campos foram preenchidos
-if (isNaN(preWeight) || isNaN(heightM) ) {
-  alert("Preencha todos os campos e gere um resultado para verificar a Resolução.");
-  return; // Não continue se algum campo estiver vazio ou não numérico
-}
+        function showResolution() {
+            const imcIdeal = parseFloat(document.getElementById("imcIdeal").value);
+            const height = parseFloat(document.getElementById("height").value);
 
-const modal = document.getElementById("resolutionModal");
-  modal.style.display = "block";
+            if (isNaN(imcIdeal) || isNaN(height)) {
+                alert("Preencha os campos com valores numéricos.");
+                return;
+            }
 
-  const BMI = preWeight / (heightM * heightM);
+            const weightIdeal = imcIdeal * Math.pow(height, 2);
 
-  // Atualiza o conteúdo da resolução
-  const resolutionContent = document.getElementById("resolutionContent");
-  resolutionContent.innerHTML = `
-    <p><strong>Peso:</strong> ${preWeight} kg</p>
-    <p><strong>Altura:</strong> ${heightM} metros</p>
-    <p><strong>IMC Calculado:</strong> ${BMI.toFixed(2)}</p>
-    <p>Aqui está a lógica para calcular o IMC:</p>
-    <p>IMC = Peso (kg) / (Altura (metros) * Altura (metros))</p>
-    <p>IMC = ${preWeight} / (${heightM} * ${heightM})</p>
-    <p> <strong> IMC = ${BMI.toFixed(2)} </strong></p>
-  `;
-}
+            const resolutionSteps = `
+                <p>Para calcular o Peso Ideal/Teórico, usamos a fórmula:</p>
+                <p><strong>Peso Ideal/Teórico = IMC Ideal x Estatura² (m)</strong></p>
+                <p>Substituindo os valores:</p>
+                <p><strong>Peso Ideal/Teórico = ${imcIdeal} x ${height}²</strong></p>
+                <p><strong>Peso Ideal/Teórico = ${weightIdeal.toFixed(2)} kg</strong></p>
+            `;
 
-// Função para fechar o modal da resolução do IMC
-function closeResolution() {
-  const modal = document.getElementById("resolutionModal");
-  modal.style.display = "none";
-}
+            const resolutionStepsElement = document.getElementById("resolutionSteps");
+            resolutionStepsElement.innerHTML = resolutionSteps;
 
+            const modal = document.getElementById("resolutionModal");
+            modal.style.display = "block";
+        }
+
+        function closeResolutionModal() {
+            const modal = document.getElementById("resolutionModal");
+            modal.style.display = "none";
+        }
+  
 // Fecha o modal se o usuário clicar fora dele
 window.onclick = function(event) {
-  const modal = document.getElementById("resolutionModal");
+  const modal = document.getElementById("resolutionModal"); 
   if (event.target == modal) {
     modal.style.display = "none";
   }
+}
 
-  }
 </script>
 </body>
-<!-- Modal da Resolução do IMC -->
 <div id="resolutionModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeResolution()">&times;</span>
-    <h2>Resolução do Cálculo de IMC:</h2>
-    <div id="resolutionContent">
-      <!-- O conteúdo da resolução será exibido aqui -->
+    <div class="modal-content">
+        <span class="close" onclick="closeResolutionModal()">&times;</span>
+        <h2>Resolução do Cálculo</h2>
+        <div id="resolutionSteps">
+            <!-- Os passos do cálculo serão exibidos aqui -->
+        </div>
     </div>
-  </div>
 </div>
 
 </html>

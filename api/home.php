@@ -250,9 +250,11 @@ session_start();
     <hr class="soon1">
     <h2 class="tnav">Calculadoras:</h2>
     <a href="../imc.html">Índice de Massa Corporal</a>
+    <a href="../peso_Ideal.html">Peso Ideal</a>
     <a href="../get_gestantes.html">Gasto Energético Total para Gestantes</a>
     <a href="../get_lactantes.html">Gasto Energético Total para Lactantes</a>
     <a href="../get_lactentes.html">Gasto Energético Total para Lactentes</a>
+    <a href="../get_3a13anos.html">Gasto Energético Total de 03 a 13 anos</a>
     <a href="../get_adultos.html">Gasto Energético Total para Adultos</a>
     <hr class="soon1">
     <a href="conteudo.html"><strong>Página de Conteúdos</strong></a>
@@ -306,14 +308,15 @@ if (isset($_COOKIE['user_identifier'])) {
   <hr class="soon2">
   <h1>Calculadoras:</h1>
   <div class="btn-container">
-    <a href="../imc.html" class="btn btn-primary">Calculadora de IMC</a>
-    <a href="../get_gestantes.html" class="btn btn-primary">GET para Gestantes</a>
-    <a href="../get_lactantes.html" class="btn btn-primary">GET para Lactantes</a>
-    <a href="../get_lactentes.html" class="btn btn-primary">GET para Lactentes</a>
+    <a href="../imc.html" class="btn btn-primary">IMC</a> -
+    <a href="../peso_Ideal.html" class="btn btn-primary">Peso Ideal</a> 
+    <a href="../get_gestantes.html" class="btn btn-primary">GET para Gestantes</a> -
+    <a href="../get_lactantes.html" class="btn btn-primary">GET para Lactantes</a> 
+    <a href="../get_lactentes.html" class="btn btn-primary">GET para Lactentes</a> - 
     <a href="../get_3a13anos.html" class="btn btn-primary">GET de 3 a 13 anos</a>
-    <a href="../get_adultos.html" class="btn btn-primary">GET para Adultos</a>
   </div>
   <center>
+    <a href="../get_adultos.html" class="btn btn-primary">GET para Adultos</a>
     <p style="font-size: 15px;">Em breve mais funcionalidades!</p>
     <hr class="soon2">
   </center>
