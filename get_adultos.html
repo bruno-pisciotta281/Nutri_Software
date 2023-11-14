@@ -356,7 +356,7 @@ input::placeholder {
     <a href="get_gestantes.html">Gasto Energético Total para Gestantes</a>
     <a href="get_lactantes.html">Gasto Energético Total para Lactantes</a>
     <a href="get_lactentes.html">Gasto Energético Total para Lactentes</a>
-    <a href="get_3a13anos.html">Gasto Energético Total de 03 a 13 anos</a>
+    <a href="get_3a19anos.html">Gasto Energético Total de 03 a 19 anos</a>
     <a href="get_adultos.html">Gasto Energético Total para Adultos</a>
     <hr class="soon1">
     <a href="conteudo.html"><strong>Página de Conteúdos</strong></a>
@@ -488,7 +488,7 @@ function calculateEER() {
     } else if (activityLevel === "active") {
       eer = 1004.82 - (10.83 * age) + (6.52 * height) + (15.91 * weight);
     } else if (activityLevel === "veryActive") {
-      eer = 1517.88 - (10.83 * age) + (15.61 * height) + (19.11 * weight);
+      eer = -517.88 - (10.83 * age) + (15.61 * height) + (19.11 * weight);
     }
   } else if (gender === "female") {
     if (activityLevel === "sedentary") {
@@ -498,7 +498,7 @@ function calculateEER() {
     } else if (activityLevel === "active") {
       eer = 710.25 - (7.01 * age) + (6.54 * height) + (12.34 * weight);
     } else if (activityLevel === "veryActive") {
-      eer = 1011.83 - (7.01 * age) + (9.07 * height) + (12.56 * weight);
+      eer = 511.83 - (7.01 * age) + (9.07 * height) + (12.56 * weight);
     }
   }
 
@@ -563,7 +563,7 @@ function showResolution() {
           A fórmula utilizada para calcular o Gasto Energético Total (GET) para <strong>homens adultos muito ativos</strong> é:<br><br>
           <strong>EER =</strong> 1517.88 - (10.83 * idade) + (15.61 * altura) + (19.11 * peso).<br><br>
           Substituindo os valores:<br>
-          <strong>EER =</strong> 1517.88 - (10.83 * ${age}) + (15.61 * ${height}) + (19.11 * ${weight}).<br><br>
+          <strong>EER =</strong> -517.88 - (10.83 * ${age}) + (15.61 * ${height}) + (19.11 * ${weight}).<br><br>
           <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
         `;
       }
@@ -601,7 +601,7 @@ function showResolution() {
           A fórmula utilizada para calcular o Gasto Energético Total (GET) para <strong>mulheres adultas muito ativas</strong> é:<br><br>
           <strong>EER =</strong> 1011.83 - (7.01 * idade) + (9.07 * altura) + (12.56 * peso).<br><br>
           Substituindo os valores:<br>
-          <strong>EER =</strong> 1011.83 - (7.01 * ${age}) + (9.07 * ${height}) + (12.56 * ${weight}).<br><br>
+          <strong>EER =</strong> 511.83 - (7.01 * ${age}) + (9.07 * ${height}) + (12.56 * ${weight}).<br><br>
           <strong>EER = ${EER.toFixed(2)} kcal/dia.</strong>
         `;
       }

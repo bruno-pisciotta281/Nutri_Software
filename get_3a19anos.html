@@ -389,7 +389,7 @@ input::placeholder {
   <a href="get_gestantes.html">Gasto Energético Total para Gestantes</a>
   <a href="get_lactantes.html">Gasto Energético Total para Lactantes</a>
   <a href="get_lactentes.html">Gasto Energético Total para Lactentes</a>
-  <a href="get_3a13anos.html">Gasto Energético Total de 03 a 13 anos</a>
+  <a href="get_3a19anos.html">Gasto Energético Total de 03 a 19 anos</a>
   <a href="get_adultos.html">Gasto Energético Total para Adultos</a>
   <hr class="soon1">
   <a href="conteudo.html"><strong>Página de Conteúdos</strong></a>
@@ -400,7 +400,7 @@ input::placeholder {
   <div class="container">
   <div class="toggle-btn" onclick="toggleNav()">&#9776;</div>
   <br>
-  <h1>Calculadora de Gasto Energético de 3 a 13 anos</h1>
+  <h1>Calculadora de Gasto Energético de 3 a 19 anos</h1>
   <p>Insira as informações abaixo para calcular o GET.</p>
   <hr class="soon2">
   <form id="calculatorForm">
@@ -420,7 +420,7 @@ input::placeholder {
         <label for="age">Idade (anos): <span style="color: #a1ffa1;"></span></label>
         <span style="color: #45a049; font-weight: bold;"><p id="resultado">.</p></span>
         <p>Selecione a idade baixo &darr;</p>
-        <input type="range" min="3" max="13" value="3" step="0.1" class="estilo" id="valor">
+        <input type="range" min="3" max="19" value="3" step="0.1" class="estilo" id="valor">
         
         <label for="height">Altura (cm):</label>
         <input type="number" id="height" name="height" placeholder="Exemplo: 180 (centímetros)">
@@ -504,15 +504,17 @@ function calculateEER() {
 
         // Determinar a fórmula com base no sexo e nível de atividade
         if (sex === 'male') {
-            if (age >= 3 && age <= 13) {
+            if (age >= 3 && age <= 19) {
                 if (age === 3) {
                     energyForGrowth = 20;
                 } else if (age >= 4 && age <= 8) {
                     energyForGrowth = 15;
                 } else if (age >= 9 && age <= 13) {
                     energyForGrowth = 25;
-                }
-                
+                } else if (age >= 14 && age <= 19) {
+                    energyForGrowth = 20;
+                  }
+
                 const activityLevel = document.getElementById("activityLevel").value;
                 if (activityLevel === 'sedentary') {
                     eer = -447.51 + (3.68 * age) + (13.01 * height) + (13.15 * weight) + energyForGrowth;
@@ -527,17 +529,19 @@ function calculateEER() {
                     return;
                 }
             } else {
-                alert("A idade deve estar entre 3 e 13 anos.");
+                alert("A idade deve estar entre 3 e 19 anos.");
                 return;
             }
         } else if (sex === 'female') {
-            if (age >= 3 && age <= 13) {
+            if (age >= 3 && age <= 19) {
                 if (age === 3) {
                     energyForGrowth = 15;
                 } else if (age >= 4 && age <= 8) {
                     energyForGrowth = 15;
                 } else if (age >= 9 && age <= 13) {
                     energyForGrowth = 30;
+                } else if (age >= 14 && age <= 19) {
+                    energyForGrowth = 20;
                 }
                 
                 const activityLevel = document.getElementById("activityLevel").value;
@@ -554,7 +558,7 @@ function calculateEER() {
                     return;
                 }
             } else {
-                alert("A idade deve estar entre 3 e 13 anos.");
+                alert("A idade deve estar entre 3 e 19 anos.");
                 return;
             }
         } else {
@@ -587,7 +591,9 @@ function calculateEER() {
         } else if (age >= 4 && age <= 8) {
             return 15;
         } else if (age >= 9 && age <= 13) {
-            return 25;
+          return 25;
+        } else if (age >= 14 && age <= 19) {
+          return 20;
         }
         return 0; // Retorna 0 para idades fora do intervalo especificado
     }
