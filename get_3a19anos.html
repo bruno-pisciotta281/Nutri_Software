@@ -493,11 +493,19 @@ document.addEventListener("change", range);
 
 function calculateEER() {
         // Obter os valores dos campos do formulário
-        const sex = document.querySelector('input[name="sex"]:checked').value;
+        const sexInput = document.querySelector('input[name="sex"]:checked');
         const age = parseFloat(document.getElementById("valor").value);
         const height = parseFloat(document.getElementById("height").value);
         const weight = parseFloat(document.getElementById("weight").value);
-        
+
+            // Verifique se todos os campos foram preenchidos corretamente
+        if (!sexInput || isNaN(height) || isNaN(weight)) {
+            alert("Preencha todos os campos com valores numéricos e selecione o sexo para calcular a EER.");
+            return; // Não continue se algum campo estiver vazio, não numérico ou o sexo não estiver selecionado
+        }
+
+        const sex = sexInput.value; 
+
         // Inicializar variáveis para o cálculo do EER/GET
         let eer;
         let energyForGrowth;
@@ -596,12 +604,6 @@ function calculateEER() {
           return 20;
         }
         return 0; // Retorna 0 para idades fora do intervalo especificado
-    }
-
-    // Verifique se todos os campos foram preenchidos corretamente
-    if (!sex || isNaN(age) || isNaN(height) || isNaN(weight)) {
-        alert("Preencha todos os campos com valores numéricos e selecione o sexo para calcular a EER.");
-        return; // Não continue se algum campo estiver vazio, não numérico ou o sexo não estiver selecionado
     }
 
     let EER = 0;
