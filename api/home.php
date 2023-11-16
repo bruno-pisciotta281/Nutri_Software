@@ -283,6 +283,7 @@ if (isset($_COOKIE['user_identifier'])) {
     if ($row) {
         $userName = $row['nome'];
         echo "<br>";
+        echo "<hr class='soon2'>";
         echo "<p>Olá, <strong class='user-name'>$userName</strong></p>";
     } else {
         echo "Faça o Login Novamente!";
@@ -296,9 +297,9 @@ if (isset($_COOKIE['user_identifier'])) {
   <h1>Bem-vindo(a) ao Software de Nutrição <strong>NutriD&B</strong></h1>
   <img style="height: 200px" src="../media/hello.svg" alt="">
   <br><br>
-  <p style="text-align:center;">O software NutriD&B te auxilia a calcular as necessidades energéticas de acordo com a <strong>idade</strong>, <strong>sexo</strong> e <strong>estado fisiológico</strong> na área de Nutrição. <br> <br> As fórmulas utilizadas para os cálculos tem como base a <strong>DRI 2023</strong>.</p>
+  <p style="text-align:center;">O software NutriD&B te auxilia a calcular as necessidades energéticas de acordo com a <strong>idade</strong>, <strong>sexo</strong> e <strong>estado fisiológico</strong> na área de Nutrição. <br> <br> Lembrando que, as fórmulas utilizadas para os cálculos tem como base a <strong>DRI 2023</strong>!</p>
   <hr class="soon2">
-  <h2>Como Usar:</h2>
+  <h2>Como Utilizar:</h2>
   <p>Siga estes passos simples para começar:</p>
   <ol>
     <li>Escolha uma calculadora abaixo.</li>
@@ -346,10 +347,10 @@ if (isset($_COOKIE['user_identifier'])) {
       if ($userRole === 'administrador') {
           // Se o usuário for administrador, exiba o botão para acessar a página de gerenciamento
           echo '<hr class="soon2">';
-          echo '<p>Conteúdo para admins</p>';
+          echo '<p><strong>--- Sessão de Admins ---</strong></p>';
           echo '<hr class="soon2">';
           echo '<h1>Gestão:</h1>';
-          echo '<p>Para você administrador, gerencie aqui os usuários da plataforma!</p>';
+          echo '<p>Para você administrador, gerencie aqui os usuários do Software!</p>';
           echo '<a href="manage_users.php" class="btn btn-primary">Gerenciar Usuários</a>';
           echo '<hr class="soon2">';
       }
