@@ -282,6 +282,7 @@ if (isset($_COOKIE['user_identifier'])) {
 
     if ($row) {
         $userName = $row['nome'];
+        echo "<br>";
         echo "<p>Olá, <strong class='user-name'>$userName</strong></p>";
     } else {
         echo "Faça o Login Novamente!";
